@@ -2,6 +2,10 @@ const gulp = require('gulp')
 
 const postcss = require('gulp-postcss')
 
+const stylus = require('gulp-stylus')
+
+// const poststylus = require('poststylus')
+
 const autoprefixer = require('autoprefixer'); //自动加上浏览器前缀
 
 const cssnano = require('cssnano');
@@ -21,6 +25,9 @@ gulp.task('default', () => {
     // console.log(aspectRatio)
     var plugins = [
         aspectRatio({}),
+        postcsswritesvg({
+            utf8:false
+        }),
         pxtoviewport({
             viewportWidth: 750, // 视窗的宽度，对应的是我们设计稿的宽度，一般是750 
             viewportHeight: 1334, // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置 
@@ -30,6 +37,7 @@ gulp.task('default', () => {
             minPixelValue: 1, // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值 
             mediaQuery: false // 允许在媒体查询中转换`px`著作权归作者所有。             
         }),
+        viewportUnits({}),
         autoprefixer({browsers: ['last 2 version']}),
         cssnano({
             preset:"advanced",
@@ -37,7 +45,8 @@ gulp.task('default', () => {
             "postcss-zindex":false
         })        
     ];
-    return gulp.src('./css/*.css')
+    return gulp.src('./css/*.styl')
+        .pipe(stylus())
         .pipe(postcss(plugins))
         .pipe(gulp.dest('./dist'));
 })
