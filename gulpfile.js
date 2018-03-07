@@ -18,8 +18,9 @@ const postcsswritesvg = require('postcss-write-svg')
 const pxtoviewport = require('postcss-px-to-viewport'); // 代码中写px编译后转化成vm
 
 gulp.task('default', () => {
-
+    // console.log(aspectRatio)
     var plugins = [
+        aspectRatio({}),
         pxtoviewport({
             viewportWidth: 750, // 视窗的宽度，对应的是我们设计稿的宽度，一般是750 
             viewportHeight: 1334, // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置 
@@ -34,8 +35,7 @@ gulp.task('default', () => {
             preset:"advanced",
             autoprefixer:false,
             "postcss-zindex":false
-        }),
-        aspectRatio({})
+        })        
     ];
     return gulp.src('./css/*.css')
         .pipe(postcss(plugins))
