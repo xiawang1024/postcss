@@ -4,7 +4,6 @@ const postcss = require('gulp-postcss')
 
 const stylus = require('gulp-stylus')
 
-// const poststylus = require('poststylus')
 
 const autoprefixer = require('autoprefixer'); //自动加上浏览器前缀
 
@@ -21,7 +20,11 @@ const postcsswritesvg = require('postcss-write-svg')
 // UI设计稿750px宽，那么100vw = 750px，即1vw = 7.5px
 const pxtoviewport = require('postcss-px-to-viewport'); // 代码中写px编译后转化成vm
 
-gulp.task('default', () => {
+
+const browserSync = require('browser-sync')
+const opn = require('opn')
+
+gulp.task('wx-css', () => {
     // console.log(aspectRatio)
     var plugins = [
         aspectRatio({}),
@@ -51,7 +54,56 @@ gulp.task('default', () => {
         .pipe(gulp.dest('./dist'));
 })
 
+gulp.task('wx-img', function() {
+    gulp.src('img/*.{png,jpg,gif,ico}')
+        .pipe(imagemin({
+            progressive: true, //Boolean类型 默认:false 无损压缩图片
+            optimizationLevel: 5, //number类型 默认:3 取值范围:0-7(优化等级)
+            interlced: true, //Boolean类型 默认false 隔行扫描gif进行渲染
+            multipass: true //Boolean类型 默认false 多次优化svg到完全优化                                                
+        }))
+        .pipe(gulp.dest('dist/img'));
+})
 
+gulp.task('wx-html', function () {
+    gulp.src('*.html') //指定当前文件夹下的所有html文件        
+        .pipe(gulp.dest('dist')) //将压缩后的文件输出到build文件夹下
+        .pipe(browserSync.stream()); //自动打开浏览器
+
+})
+
+// 定义path
+let path = {
+    css: './css/*.css',
+    js: './js/*.js',
+    html: './*.html',
+    src: './dist'    
+};
+
+// 任务列表
+// const TASK = ['wx-css', 'wx-js', 'wx-img', 'wx-html']
+const TASK = ['wx-css','wx-html']
+
+gulp.task('default', TASK, function(){    
+    //打开静态服务器
+    browserSync.init({
+        server:{
+            baseDir: path.src
+        },
+        port:3000,
+        open:false
+    }, function(){
+        var homepage = 'http://localhost:3000/';
+        opn(homepage);
+    });
+
+    //监听文件的变化实时编译 然后刷新
+    const watcher = gulp.watch([path.html, path.js, path.css], TASK)
+    watcher.on("change", function(event) {
+        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');     
+        browserSync.reload();
+    });
+});
 
 
 

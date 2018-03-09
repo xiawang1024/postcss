@@ -10,9 +10,23 @@
             window.viewportUnitsBuggyfill.init({ 
                 hacks: window.viewportUnitsBuggyfillHacks
             });
+            var winDPI = window.devicePixelRatio;
+                var uAgent = window.navigator.userAgent;
+                var screenHeight = window.screen.height;
+                var screenWidth = window.screen.width;
+                var winWidth = window.innerWidth;
+                var winHeight = window.innerHeight;
+                console.log(
+                    "Windows DPI:" + winDPI +
+                    ";\ruAgent:" + uAgent +
+                    ";\rScreen Width:" + screenWidth +
+                    ";\rScreen Height:" + screenHeight +
+                    ";\rWindow Width:" + winWidth +
+                    ";\rWindow Height:" + winHeight
+                )
         } 
     </script>    
-    <link rel="stylesheet" href="./dist/index.css">
+    <link rel="stylesheet" href="./index.css">
     <title>POST-CSS</title>
 </head>
 <body>
@@ -24,7 +38,7 @@
     </div>
     
     <div class="border">
-       jlkjl
+       <div style="width:60px;height:60px;background:rgba(255,255,255,1)"></div>
     </div>
 </body>
 </html>
