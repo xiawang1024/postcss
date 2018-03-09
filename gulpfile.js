@@ -74,7 +74,7 @@ gulp.task('wx-html', function () {
 
 // 定义path
 let path = {
-    css: './css/*.css',
+    css: './css/*.styl',
     js: './js/*.js',
     html: './*.html',
     src: './dist'    
