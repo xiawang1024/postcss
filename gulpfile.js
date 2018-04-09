@@ -75,14 +75,15 @@ gulp.task('wx-html', function () {
 // 定义path
 let path = {
     css: './css/*.styl',
+    img:'./img/*.{png,jpg,gif,ico}',
     js: './js/*.js',
     html: './*.html',
     src: './dist'    
 };
 
 // 任务列表
-// const TASK = ['wx-css', 'wx-js', 'wx-img', 'wx-html']
-const TASK = ['wx-css','wx-html']
+const TASK = ['wx-css', 'wx-js', 'wx-img', 'wx-html']
+// const TASK = ['wx-css','wx-html']
 
 gulp.task('default', TASK, function(){    
     //打开静态服务器
@@ -98,7 +99,7 @@ gulp.task('default', TASK, function(){
     });
 
     //监听文件的变化实时编译 然后刷新
-    const watcher = gulp.watch([path.html, path.js, path.css], TASK)
+    const watcher = gulp.watch([path.html, path.js, path.css, path.img], TASK)
     watcher.on("change", function(event) {
         console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');     
         browserSync.reload();
