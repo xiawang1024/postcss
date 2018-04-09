@@ -4,6 +4,9 @@ const postcss = require('gulp-postcss')
 
 const stylus = require('gulp-stylus')
 
+const imagemin = require('gulp-imagemin')
+
+const tinypng = require('gulp-tinypng')
 
 const autoprefixer = require('autoprefixer'); //自动加上浏览器前缀
 
@@ -51,18 +54,30 @@ gulp.task('wx-css', () => {
     return gulp.src('./css/*.styl')
         .pipe(stylus())
         .pipe(postcss(plugins))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('./dist/css'));
 })
 
+gulp.task('wx-png', function () {
+	gulp.src('img/*.{png,jpg}')
+		.pipe(tinypng('S2DiR0odohioVwKoGNivVMOdzRUEPpwI'))
+		.pipe(gulp.dest('./dist/img'));
+});
+
+
 gulp.task('wx-img', function() {
-    gulp.src('img/*.{png,jpg,gif,ico}')
+    gulp.src('./img/*.{png,jpg,gif,ico}')
         .pipe(imagemin({
-            progressive: true, //Boolean类型 默认:false 无损压缩图片
+            progressive: false, //Boolean类型 默认:false 无损压缩图片
             optimizationLevel: 5, //number类型 默认:3 取值范围:0-7(优化等级)
             interlced: true, //Boolean类型 默认false 隔行扫描gif进行渲染
             multipass: true //Boolean类型 默认false 多次优化svg到完全优化                                                
         }))
         .pipe(gulp.dest('dist/img'));
+})
+
+gulp.task('wx-js', function () {
+    gulp.src('./js/*.js')   
+    .pipe(gulp.dest('dist/js')) 
 })
 
 gulp.task('wx-html', function () {
@@ -71,7 +86,6 @@ gulp.task('wx-html', function () {
         .pipe(browserSync.stream()); //自动打开浏览器
 
 })
-
 // 定义path
 let path = {
     css: './css/*.styl',
@@ -82,7 +96,7 @@ let path = {
 };
 
 // 任务列表
-const TASK = ['wx-css', 'wx-js', 'wx-img', 'wx-html']
+const TASK = ['wx-css', 'wx-js', 'wx-png', 'wx-html']
 // const TASK = ['wx-css','wx-html']
 
 gulp.task('default', TASK, function(){    
