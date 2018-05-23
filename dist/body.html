@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <title>给党唱支生日歌</title>
+    <link rel="stylesheet" href="./css/body.css">
+    <link rel="stylesheet" href="./css/toast.css">
+</head>
+
+<body>
+    <div class="g-top">
+        <a href="http://hndt.com" class="logo-wrap"></a>
+    </div>
+    <div class="g-body">
+        <div class="g-hd">
+        </div>
+
+        <div class="g-bd">
+            <div class="m-info">
+                <p class="u-subject">歌曲信息</p>
+                <div class="info-wrap clearfix">
+                    <div class="img-wrap">
+                        <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
+                    </div>
+                    <div class="text-wrap">
+                        <h2 class="title">
+                            <span class="red">歌名：</span>
+                            这是歌名标题
+                        </h2>
+                        <p class="name">歌手：名字</p>
+                        <p class="time">上传时间：2018-06-06</p>
+                        <p class="from">歌曲来源：来源地</p>
+                        <div class="btn-group">
+                            <button class="btn" id="playOrPause">播放</button>
+                            <button class="btn">(45)</button>
+                        </div>
+                        <audio src="http://owaup0bqu.bkt.clouddn.com/wangfei.mp3" style="display:none" id="audio"></audio>
+                    </div>
+                </div>
+            </div>
+            <div class="m-comment">
+                <p class="u-subject">评论</p>
+                <div class="send-comment clearfix">
+                    <div class="avatar-wrap">
+                        <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
+                    </div>
+                    <div class="comment-wrap">
+                        <textarea name="comment" class="comment" id="comment" placeholder="评论" style="resize:none"></textarea>
+                        <button class="submit" id="sendMsg">评论</button>
+                    </div>
+                </div>
+                <div class="comment-list">
+                    <p class="u-subject">精彩评论（45）</p>
+                    <ul class="list-wrap">
+                        <li class="list clearfix">
+                            <div class="avatar-wrap">
+                                <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
+                            </div>
+                            <div class="text-wrap">
+                                <div class="cont-wrap">
+                                    <span class="name">你若安好：</span>
+                                    <p class="cont">这是评论内容这是评论内容这是评论内容这是评论内容</p>
+                                </div>
+                                <div class="other-wrap clearfix">
+                                    <span class="time">30分钟前</span>
+                                    <span class="zan">(10)</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list clearfix">
+                            <div class="avatar-wrap">
+                                <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
+                            </div>
+                            <div class="text-wrap">
+                                <div class="cont-wrap">
+                                    <span class="name">你若安好：</span>
+                                    <p class="cont">这是评论内容这是评论内容这是评论内容这是评论内容</p>
+                                </div>
+                                <div class="other-wrap clearfix">
+                                    <span class="time">30分钟前</span>
+                                    <span class="zan">(10)</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list clearfix">
+                            <div class="avatar-wrap">
+                                <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
+                            </div>
+                            <div class="text-wrap">
+                                <div class="cont-wrap">
+                                    <span class="name">你若安好：</span>
+                                    <p class="cont">这是评论内容这是评论内容这是评论内容这是评论内容</p>
+                                </div>
+                                <div class="other-wrap clearfix">
+                                    <span class="time">30分钟前</span>
+                                    <span class="zan">(10)</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list clearfix">
+                            <div class="avatar-wrap">
+                                <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
+                            </div>
+                            <div class="text-wrap">
+                                <div class="cont-wrap">
+                                    <span class="name">你若安好：</span>
+                                    <p class="cont">这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容这是评论内容</p>
+                                </div>
+                                <div class="other-wrap clearfix">
+                                    <span class="time">30分钟前</span>
+                                    <span class="zan">(10)</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="u-see-more">查看更多&gt;&gt;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="g-ft">
+        <p class="para">Copyright © 2017 hndt Corporation,All Rights Reserved</p>
+        <p class="para">河南广播网 版权所有</p>
+    </div>
+    <script>
+        // if (!+"\v1") {
+        //     document.body.innerHTML =
+        //         "<div style='background: #00a1d6; text-align: center; padding: 10px 0; color: #fff;'>为了保护你的账号安全，该网站已不支持IE8及以下版本浏览器访问，建议你升级到IE最新版本浏览器，或使用Chrome等其他浏览器。<\/div>"
+        // }
+    </script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/body.js"></script>
+</body>
+
+</html>
