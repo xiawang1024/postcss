@@ -14,6 +14,7 @@
         }
     </script>
     <link rel="stylesheet" href="./css/body.css">
+    <link rel="stylesheet" href="./css/toast.css">
     <title>给党唱支生日歌</title>
 </head>
 
@@ -40,10 +41,10 @@
                     <p class="time">上传时间：2018-06-06</p>
                     <p class="from">歌曲来源：来源地</p>
                     <div class="btn-group">
-                        <button class="btn">播放</button>
+                        <button class="btn" id="playOrPause">播放</button>
                         <button class="btn">(45)</button>
                     </div>
-                    <audio src="" style="display:none" id="audio"></audio>
+                    <audio src="http://owaup0bqu.bkt.clouddn.com/wangfei.mp3" style="display:none" id="audio"></audio>
                 </div>
             </div>
         </div>
@@ -55,12 +56,27 @@
                 </div>
                 <div class="comment-wrap">
                     <textarea name="comment" class="comment" id="comment" placeholder="评论" style="resize:none"></textarea>
-                    <button class="submit">评论</button>
+                    <button class="submit" id="sendMsg">评论</button>
                 </div>
             </div>
             <div class="comment-list">
                 <p class="u-subject">精彩评论</p>
                 <ul class="list-wrap">
+                    <li class="list">
+                        <div class="avatar-wrap">
+                            <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
+                        </div>
+                        <div class="text-wrap">
+                            <div class="cont-wrap">
+                                <span class="name">你若安好：</span>
+                                <p class="cont">这是评论内容这是评论内容这是评论内容这是评论内容</p>
+                            </div>
+                            <div class="other-wrap clearfix">
+                                <span class="time">30分钟前</span>
+                                <span class="zan">(10)</span>
+                            </div>
+                        </div>
+                    </li>
                     <li class="list">
                         <div class="avatar-wrap">
                             <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="img">
