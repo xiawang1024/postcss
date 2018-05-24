@@ -6,3 +6,7 @@ $(function() {
 		$('.g-bd .m-tab-wrap').eq(index).css('display', 'block').siblings('.m-tab-wrap').css('display', 'none');
 	});
 });
+
+$('.g-bd .products-list .u-see-more').click(function() {
+	alert('查看更多');
+});

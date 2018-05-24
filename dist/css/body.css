@@ -461,6 +461,7 @@ body {
   background: url("../icon/icon-zan.png") left center no-repeat;
   background-size: 18px auto;
   font-size: 15px;
+  cursor: pointer;
 }
 .g-bd .m-comment .comment-list .u-see-more {
   width: 100%;

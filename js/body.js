@@ -29,6 +29,15 @@
 		}
 	});
 
+	//点赞
+	$('.g-bd .m-comment .comment-list .list .zan').click(function() {
+		toast('点赞成功！');
+	});
+	//查看更多
+	$('.g-bd .m-comment .comment-list .u-see-more').click(function() {
+		toast('查看更多');
+	});
+
 	var getSingle = function(fn) {
 		var result;
 		return function() {
