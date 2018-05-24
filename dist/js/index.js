@@ -13,3 +13,8 @@ $('.g-bd .m-tab .item').click(function() {
 	var index = $(this).index();
 	$('.g-bd .m-tab-wrap').eq(index).css('display', 'block').siblings('.m-tab-wrap').css('display', 'none');
 });
+
+//查看更多
+$('.g-bd .products-list .u-see-more').click(function() {
+	alert('查看更多');
+});
