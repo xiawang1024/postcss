@@ -1,3 +1,4 @@
+//fastClick 消除click 300ms延迟
 if ('addEventListener' in document) {
 	document.addEventListener(
 		'DOMContentLoaded',
@@ -7,3 +8,5 @@ if ('addEventListener' in document) {
 		false
 	);
 }
+
+console.log('gulp工作流');
