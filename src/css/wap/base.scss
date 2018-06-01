@@ -1,0 +1,41 @@
+body,
+html {
+	line-height: 1;
+	font-weight: 300;
+	font-family: 'Microsoft YaHei', 'PingFang SC', 'STHeitiSC-Light', 'Heiti SC', 'Roboto', 'Noto', arial, sans-serif;
+	background: #fff
+}
+
+/* 固定宽高比 */
+
+[aspectratio] {
+	position: relative;
+}
+
+[aspectratio]::before {
+	content: '';
+	display: block;
+	width: 1px;
+	margin-left: -1px;
+	height: 0;
+}
+
+[aspectratio-content] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+[w-16-9] {
+	aspect-ratio: '16:9'
+}
+
+/* 解决部分机型img不显示问题 */
+
+img {
+	content: normal !important;
+}

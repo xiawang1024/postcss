@@ -4,6 +4,8 @@ const del = require('del');
 
 const postcss = require('gulp-postcss');
 
+const sass = require('gulp-sass');
+
 const stylus = require('gulp-stylus');
 
 const uglify = require('gulp-uglify');
@@ -44,13 +46,13 @@ const opn = require('opn');
 
 // 定义path
 let baseDir = './src';
-let cssDir = `${baseDir}/css/*.styl`;
+let cssDir = `${baseDir}/css/*.scss`;
 let jsDir = `${baseDir}/js/*.js`;
 let imgDir = `${baseDir}/img/*.{png,jpg,gif,ico}`;
 let htmlDir = `${baseDir}/*.html`;
 let outDir = `${baseDir}/dist`;
 let path = {
-	css: `${baseDir}/css/*.styl`,
+	css: `${baseDir}/css/*.scss`,
 	img: `${baseDir}/img/*.{png,jpg,gif,ico}`,
 	js: `${baseDir}/js/*.js`,
 	html: `${baseDir}/*.html`,
@@ -84,7 +86,7 @@ gulp.task('wx-css', () => {
 	return gulp
 		.src(cssDir)
 		.pipe(sourceMaps.init())
-		.pipe(stylus())
+		.pipe(sass())
 		.pipe(postcss(plugins))
 		.pipe(concat('app.css'))
 		.pipe(gulp.dest(`${outDir}/css/`));
@@ -174,6 +176,6 @@ gulp.task('default', TASK, function() {
 		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 		setTimeout(() => {
 			browserSync.reload();
-		}, 1000);
+		}, 2000);
 	});
 });

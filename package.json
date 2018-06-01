@@ -45,6 +45,7 @@
     "postcss-write-svg": "^3.0.1"
   },
   "devDependencies": {
-    "cssnano-preset-advanced": "^4.0.0-rc.2"
+    "cssnano-preset-advanced": "^4.0.0-rc.2",
+    "gulp-sass": "^4.0.1"
   }
 }

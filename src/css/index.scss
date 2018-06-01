@@ -1,0 +1,10 @@
+@import './wap/index.scss';
+body {
+    width: 750px;
+    .list {
+        margin: 30px;
+        padding: 10px;
+        @include tp-1px(#f00);
+        @include bt-1px(#f00);
+    }
+}
