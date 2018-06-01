@@ -1,0 +1,27 @@
+body,
+html {
+	line-height: 1;
+	font-weight: 300;
+	font-family: 'Microsoft YaHei', 'PingFang SC', 'STHeitiSC-Light', 'Heiti SC', 'Roboto', 'Noto', arial, sans-serif;
+	background: #eee;
+}
+
+a {
+	color: #73151a;
+}
+
+a:hover {
+	color: #0081dc;
+	text-decoration: underline;
+}
+
+.clearfix {
+	display:inline-block &::after {
+		display: block;
+		content: '.';
+		height: 0;
+		line-height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
