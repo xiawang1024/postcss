@@ -8,6 +8,10 @@ const stylus = require('gulp-stylus');
 
 const uglify = require('gulp-uglify');
 
+const babel = require('gulp-babel');
+
+const sourceMaps = require('gulp-sourcemaps');
+
 const concat = require('gulp-concat');
 
 const rev = require('gulp-rev');
@@ -79,6 +83,7 @@ gulp.task('wx-css', () => {
 	];
 	return gulp
 		.src(cssDir)
+		.pipe(sourceMaps.init())
 		.pipe(stylus())
 		.pipe(postcss(plugins))
 		.pipe(concat('app.css'))
@@ -86,7 +91,17 @@ gulp.task('wx-css', () => {
 });
 
 gulp.task('wx-js', () => {
-	return gulp.src(jsDir).pipe(uglify()).pipe(concat('app.js')).pipe(gulp.dest(`${outDir}/js/`));
+	return gulp
+		.src(jsDir)
+		.pipe(sourceMaps.init())
+		.pipe(
+			babel({
+				presets: [ 'env' ]
+			})
+		)
+		.pipe(uglify())
+		.pipe(concat('app.js'))
+		.pipe(gulp.dest(`${outDir}/js/`));
 });
 
 gulp.task('wx-png', function() {
