@@ -1,8 +1,8 @@
 window.onload = function() {
-	var TITLE = '河南广播网2018春节特别报道';
+	var TITLE = '给党唱支生日歌--庆祝中国共产党建党97周年';
 	var LINK = ''; //分享链接
-	var IMG_URL = 'http://hndt.com/res/logo_300.png';
-	var DESC = '河南广播网2018春节特别报道--我们的节日！';
+	var IMG_URL = 'http://www.hndt.com/h5/partysday/PartysDay.jpg';
+	var DESC = '庆祝中国共产党建党97周年--大型系列文化活动！';
 
 	//微信配置
 	var href = window.location.href;
@@ -13,7 +13,19 @@ window.onload = function() {
 			timestamp: data.timestamp,
 			nonceStr: data.nonceStr,
 			signature: data.signature,
-			jsApiList: [ 'onMenuShareTimeline', 'onMenuShareAppMessage' ]
+			jsApiList: [
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'chooseImage',
+				'previewImage',
+				'startRecord',
+				'playVoice',
+				'stopRecord',
+				'downloadVoice',
+				'uploadVoice',
+				'stopVoice',
+				'openLocation'
+			]
 		});
 	});
 

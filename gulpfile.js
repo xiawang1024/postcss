@@ -93,17 +93,26 @@ gulp.task('wx-css', () => {
 });
 
 gulp.task('wx-js', () => {
-	return gulp
-		.src(jsDir)
-		.pipe(sourceMaps.init())
-		.pipe(
-			babel({
-				presets: [ 'env' ]
-			})
-		)
-		.pipe(uglify())
-		.pipe(concat('app.js'))
-		.pipe(gulp.dest(`${outDir}/js/`));
+	return (
+		gulp
+			.src([
+				`${baseDir}/js/zepto.js`,
+				`${baseDir}/js/fastclick.js`,
+				`${baseDir}/js/jweixin.js`,
+				`${baseDir}/js/wxshare.js`,
+				`${baseDir}/js/weui.js`,
+				`${baseDir}/js/index.js`
+			])
+			.pipe(sourceMaps.init())
+			// .pipe(
+			// 	babel({
+			// 		presets: [ 'env' ]
+			// 	})
+			// )
+			.pipe(uglify())
+			.pipe(concat('app.js'))
+			.pipe(gulp.dest(`${outDir}/js/`))
+	);
 });
 
 gulp.task('wx-png', function() {
