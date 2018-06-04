@@ -65,11 +65,12 @@
 			}
 		});
 	}
-	var START, END;
+	var START, END, recordTimer;
 	$('#talk_btn').on('touchstart', function(event) {
 		event.preventDefault();
 		if (!$('#selectSong').data('id')) {
 			weui.topTips('请先选择歌曲！');
+
 			return;
 		}
 
@@ -101,6 +102,9 @@
 			wx.stopRecord({
 				success: function(res) {
 					var voiceLocalId = res.localId;
+					wx.playVoice({
+						localId: voiceLocalId // 需要播放的音频的本地ID，由stopRecord接口获得
+					});
 					uploadVoice(voiceLocalId);
 				},
 				fail: function(res) {
@@ -110,7 +114,7 @@
 		}
 	});
 	//上传录音
-	function uploadVoice() {
+	function uploadVoice(voiceLocalId) {
 		//调用微信的上传录音接口把本地录音先上传到微信的服务器
 		//不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
 		wx.uploadVoice({
