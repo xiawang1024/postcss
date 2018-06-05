@@ -1,4 +1,26 @@
 !(function() {
+	//微信code
+	var weChatCode = weChat.getQueryString('code');
+	if (weChatCode) {
+		getOpenId(weChatCode);
+	}
+	function getOpenId(code) {
+		if (!weChat.getStorage('WXHNDTOPENID')) {
+			$.ajax({
+				type: 'GET',
+				url: '',
+				data: { code: code },
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+					weChat.setStorage('WXHNDTOPENID', JSON.stringify(data));
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		}
+	}
 	// fastClick 消除click 300ms延迟
 	if ('addEventListener' in document) {
 		document.addEventListener(

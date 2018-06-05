@@ -5,6 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        var weChatConf = {
+            baseUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?",
+            appId: 'wx5f789dea59c6c2c5',
+            redirect_uri: 'http://www.hndt.com',
+            response_type: 'code',
+            scope: 'snsapi_base', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
+            state: Date.parse(new Date()),
+            weChat_Redirect: '#wechat_redirect'
+        }
+        var weChat = {
+            getQueryString: function (name) {
+                var url = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var newUrl = window.location.search.substr(1).match(url);
+                if (newUrl != null) {
+                    return unescape(newUrl[2]);
+                } else {
+                    return false;
+                }
+            },
+            redirectUrl: function () {
+                return weChatConf.baseUrl + "appid=" + weChatConf.appId + "&redirect_uri=" +
+                    encodeURIComponent(weChatConf.redirect_uri) + "&response_type=" +
+                    weChatConf.response_type + "&scope=" + weChatConf.scope + "&state=" +
+                    weChatConf.state + weChatConf.weChat_Redirect
+            },
+            getOpenId: function (code) {
+
+            },
+            getStorage: function (name) {
+                return localStorage.getItem(name)
+            },
+            setStorage: function (name, value) {
+                return localStorage.setItem(name, value)
+            }
+        }
+        if (!weChat.getQueryString('code')) {
+            // window.location = weChat.redirectUrl()
+        }
+    </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
         window.onload = function () {
