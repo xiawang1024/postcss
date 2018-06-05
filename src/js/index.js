@@ -5,21 +5,26 @@
 		getOpenId(weChatCode);
 	}
 	function getOpenId(code) {
-		if (!weChat.getStorage('WXHNDTOPENID')) {
-			$.ajax({
-				type: 'GET',
-				url: '',
-				data: { code: code },
-				dataType: 'json',
-				success: function(data) {
-					console.log(data);
-					weChat.setStorage('WXHNDTOPENID', JSON.stringify(data));
-				},
-				error: function(err) {
-					console.log(err);
+		// if (!weChat.getStorage('WXHNDTOPENID')) {
+		$.ajax({
+			type: 'GET',
+			url: 'https://a.weixin.hndt.com/boom/api/token/access/redirect2',
+			data: { code: code },
+			dataType: 'json',
+			success: function(data) {
+				console.log(data);
+				if (data.status == 'ok') {
+					weChat.setStorage('WXHNDTOPENID', JSON.stringify(data.data));
+				} else {
+					window.location = weChat.redirectUrl();
 				}
-			});
-		}
+			},
+			error: function(err) {
+				console.log(err);
+				window.location = weChat.redirectUrl();
+			}
+		});
+		// }
 	}
 	// fastClick 消除click 300ms延迟
 	if ('addEventListener' in document) {
@@ -87,9 +92,13 @@
 			}
 		});
 	}
-	var START, END, recordTimer;
+
+	var START = 0,
+		END = 0,
+		recordTimer;
 	$('#talk_btn').on('touchstart', function(event) {
 		event.preventDefault();
+		START = Date.parse(new Date());
 		if (!$('#selectSong').data('id')) {
 			weui.topTips('请先选择歌曲！');
 
@@ -97,7 +106,6 @@
 		}
 
 		$(this).html('松开停止录音');
-		START = new Date().getTime();
 
 		recordTimer = setTimeout(function() {
 			wx.startRecord({
@@ -113,13 +121,21 @@
 	//松手结束录音
 	$('#talk_btn').on('touchend', function(event) {
 		event.preventDefault();
-		END = new Date().getTime();
+		END = Date.parse(new Date());
 		$(this).html('按住开始录音');
-		if (END - START < 300) {
+		if (!$('#selectSong').data('id')) {
+			weui.topTips('请先选择歌曲！');
+
+			return;
+		}
+		//2秒内不录音
+		if (END - START < 2000) {
 			END = 0;
 			START = 0;
-			//小于300ms，不录音
+			weui.alert('时间过短，请重新录制！');
+			//小于2000ms，不录音
 			clearTimeout(recordTimer);
+			return;
 		} else {
 			wx.stopRecord({
 				success: function(res) {
@@ -127,10 +143,28 @@
 					wx.playVoice({
 						localId: voiceLocalId // 需要播放的音频的本地ID，由stopRecord接口获得
 					});
-					uploadVoice(voiceLocalId);
+
+					weui.confirm('回听已录制的歌曲', {
+						buttons: [
+							{
+								label: '重新录制',
+								type: 'default',
+								onClick: function() {
+									console.log('no');
+								}
+							},
+							{
+								label: '确定上传',
+								type: 'primary',
+								onClick: function() {
+									uploadVoice(voiceLocalId);
+								}
+							}
+						]
+					});
 				},
 				fail: function(res) {
-					alert(JSON.stringify(res));
+					console.log(JSON.stringify(res));
 				}
 			});
 		}
@@ -143,14 +177,17 @@
 			localId: voiceLocalId, // 需要上传的音频的本地ID，由stopRecord接口获得
 			isShowProgressTips: 1, // 默认为1，显示进度提示
 			success: function(res) {
+				var userInfo = weChat.getStorage('WXHNDTOPENID');
+				var openId = JSON.parse(userInfo).openid;
+				var songName = $('#selectSong').html();
 				//把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
 				$.ajax({
-					url: '后端处理上传录音的接口',
-					type: 'post',
-					data: JSON.stringify(res),
+					url: 'https://a.weixin.hndt.com/boom/api/wx/radio/download',
+					type: 'get',
+					data: { mediaId: res.serverId, openId: openId, name: songName },
 					dataType: 'json',
 					success: function(data) {
-						weui.toast('歌曲上传成功！');
+						weui.toast('上传成功！');
 					},
 					error: function(xhr, errorType, error) {
 						console.log(error);

@@ -9,7 +9,7 @@
         var weChatConf = {
             baseUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?",
             appId: 'wx5f789dea59c6c2c5',
-            redirect_uri: 'http://www.hndt.com',
+            redirect_uri: 'https://a.weixin.hndt.com/h5/partysday/index.html',
             response_type: 'code',
             scope: 'snsapi_base', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
             state: Date.parse(new Date()),
@@ -42,7 +42,7 @@
             }
         }
         if (!weChat.getQueryString('code')) {
-            // window.location = weChat.redirectUrl()
+            window.location = weChat.redirectUrl()
         }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
@@ -55,7 +55,7 @@
     </script>
     <link rel="stylesheet" href="./css/app.css">
     <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <title>PostCss</title>
+    <title>给党唱支生日歌--庆祝中国共产党建党97周年</title>
 </head>
 
 <body>
@@ -99,7 +99,15 @@
         </div>
     </div>
     <script src="./js/app.js"></script>
-    <script src="http://www.hndt.com/global/js/baidu.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?8d8b13e4dff379c880b2436c9ae60cc8";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </body>
 
 </html>
