@@ -52,6 +52,7 @@ html,body
                     font-size: 18px
                     .btn
                         // width: 82px
+                        display inline-block
                         height: 46px
                         line-height: 46px
                         text-align: center
@@ -68,8 +69,10 @@ html,body
                                 background: url('../icon/icon-pause.png') left 10px center no-repeat $color
                                 background-size: auto 23px
                         &:nth-child(2)
-                            background: url('../icon/icon-msg.png') left 10px center no-repeat $color
-                            background-size: auto 23px
+                            padding 0 10px 0 10px
+                            background: $color
+                            // background: url('../icon/icon-msg.png') left 10px center no-repeat $color
+                            // background-size: auto 23px
     .m-comment
         width: 100%
         margin-top: 40px
