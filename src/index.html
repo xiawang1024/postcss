@@ -11,7 +11,7 @@
             appId: 'wx5f789dea59c6c2c5',
             redirect_uri: 'https://a.weixin.hndt.com/h5/partysday/index.html',
             response_type: 'code',
-            scope: 'snsapi_base', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
+            scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
             state: Date.parse(new Date()),
             weChat_Redirect: '#wechat_redirect'
         }
@@ -42,7 +42,7 @@
             }
         }
         if (!weChat.getQueryString('code')) {
-            window.location = weChat.redirectUrl()
+            // window.location = weChat.redirectUrl()
         }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="para">
-            <p class="order">第二步：开始录制您的歌曲</p>
+            <p class="order">第二步：开始录制您的歌曲<span class="red">（最长录制时间60s）</span></p>
             <div class="wrap">
                 <span class="talk_btn" id="talk_btn">按住开始录音</span>
 

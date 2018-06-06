@@ -177,14 +177,17 @@
 			localId: voiceLocalId, // 需要上传的音频的本地ID，由stopRecord接口获得
 			isShowProgressTips: 1, // 默认为1，显示进度提示
 			success: function(res) {
-				var userInfo = weChat.getStorage('WXHNDTOPENID');
-				var openId = JSON.parse(userInfo).openid;
+				var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+
+				var openId = userInfo.openid;
+				var username = userInfo.nickname || '';
+				var icon = userInfo.headimgurl || '';
 				var songName = $('#selectSong').html();
 				//把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
 				$.ajax({
 					url: 'https://a.weixin.hndt.com/boom/api/wx/radio/download',
 					type: 'get',
-					data: { mediaId: res.serverId, openId: openId, name: songName },
+					data: { mediaId: res.serverId, openId: openId, name: songName, username: username, icon: icon },
 					dataType: 'json',
 					success: function(data) {
 						weui.toast('上传成功！');
