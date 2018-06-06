@@ -287,10 +287,11 @@ body {
   font-size: 15px;
 }
 .g-bd .m-info .info-wrap .text-wrap .btn-group {
-  margin-top: 50px;
+  margin-top: 20px;
   font-size: 16px;
 }
 .g-bd .m-info .info-wrap .text-wrap .btn-group .btn {
+  display: inline-block;
   height: 46px;
   line-height: 46px;
   text-align: center;
@@ -311,8 +312,8 @@ body {
   background-size: auto 20px;
 }
 .g-bd .m-info .info-wrap .text-wrap .btn-group .btn:nth-child(2) {
-  background: url("../icon/icon-msg.png") left 10px center no-repeat #c7000a;
-  background-size: auto 20px;
+  background: #c7000a;
+  padding: 0 10px;
 }
 .g-bd .m-comment {
   width: 100%;
