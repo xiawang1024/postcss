@@ -102,7 +102,7 @@ let path = {
 };
 
 // 任务列表
-const TASK = [ 'wx-css', 'wx-js', 'wx-png', 'wx-html' ];
+const TASK = [ 'wx-css', 'wx-js', 'wx-img', 'wx-html' ];
 // const TASK = ['wx-css','wx-html']
 
 gulp.task('default', TASK, function() {
