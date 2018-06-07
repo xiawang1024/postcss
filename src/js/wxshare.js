@@ -1,8 +1,8 @@
 window.onload = function() {
-	var TITLE = '给党唱支生日歌--庆祝中国共产党建党97周年';
+	var TITLE = '给党唱支生日歌--我的歌曲库';
 	var LINK = 'https://a.weixin.hndt.com/h5/partysday/songlist/index.html?cid=' + weChat.getQueryString('cid'); //分享链接
 	var IMG_URL = 'http://www.hndt.com/h5/partysday/PartysDay.jpg';
-	var DESC = '庆祝中国共产党建党97周年--大型系列文化活动！';
+	var DESC = '给党唱支生日歌--庆祝中国共产党建党97周年大型系列文化活动！';
 
 	//微信配置
 	var href = window.location.href;

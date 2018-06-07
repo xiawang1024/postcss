@@ -2,6 +2,7 @@
 	$('#back').click(function() {
 		window.location = 'https://a.weixin.hndt.com/h5/partysday/index.html?cid=' + weChat.getQueryString('cid');
 	});
+
 	var app = new Vue({
 		el: '#app',
 		data: {
@@ -72,6 +73,10 @@
 				app.showSongList = app.songList.filter(function(item) {
 					return item.status == index;
 				});
+			},
+			goBack: function() {
+				window.location =
+					'https://a.weixin.hndt.com/h5/partysday/index.html?cid=' + weChat.getQueryString('cid');
 			}
 		}
 	});

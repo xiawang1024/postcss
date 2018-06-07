@@ -35,9 +35,18 @@ body {
 		}
 		.m-list {
 			margin-top: 40px;
-			.title {
-				font-size: 30px;
+			.title-wrap {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
 				@include bt-1px(#ccc);
+				.title {
+					font-size: 30px;
+				}
+				.go-record {
+					position: relative;
+					font-size: 28px;
+				}
 			}
 			.m-tab {
 				width: 100%;
