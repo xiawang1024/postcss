@@ -183,11 +183,19 @@
 				var username = userInfo.nickname || '';
 				var icon = userInfo.headimgurl || '';
 				var songName = $('#selectSong').html();
+				var origin = weChat.getQueryString('cid') || '';
 				//把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
 				$.ajax({
 					url: 'https://a.weixin.hndt.com/boom/api/wx/radio/download',
 					type: 'get',
-					data: { mediaId: res.serverId, openId: openId, name: songName, username: username, icon: icon },
+					data: {
+						mediaId: res.serverId,
+						openId: openId,
+						name: songName,
+						username: username,
+						icon: icon,
+						origin: origin
+					},
 					dataType: 'json',
 					success: function(data) {
 						weui.toast('上传成功！');
