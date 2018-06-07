@@ -9,7 +9,7 @@
 		$.ajax({
 			type: 'GET',
 			url: 'https://a.weixin.hndt.com/boom/api/token/access/redirect2',
-			data: { code: code },
+			data: { code: code, cate: weChatConf.appId },
 			dataType: 'json',
 			success: function(data) {
 				console.log(data);
