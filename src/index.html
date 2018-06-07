@@ -42,7 +42,7 @@
             }
         }
         if (!weChat.getQueryString('code')) {
-            window.location = weChat.redirectUrl()
+            // window.location = weChat.redirectUrl()
         }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
@@ -62,30 +62,28 @@
     <div class="g-hd">
 
     </div>
-    <!--
+
     <div aspectratio w-16-9 class="img">
         <img aspectratio-content src="./img/banner.png" alt="">
     </div>
-    -->
-    <div class="img">
-        <img src="./img/banner.png" alt="" width="100%">
-    </div>
-    <div class="g-form">
-        <div class="para">
-            <p class="order">第一步：选择您要录制的歌曲名</p>
-            <div class="wrap">
-                <span class="label" id="selectSong">点击选择歌曲</span>
 
-            </div>
+    <div class="g-userInfo">
+        <div class="avatar-wrap">
+            <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIZMNEsoPhvIHFCKaibAyVIFlv2vwP5hNoqMRV1HmEgcIBg9xtmHCdIzAWTicoiaib248RSn8rp9UicjGg/132"
+                alt="" class="avatar">
         </div>
-        <div class="para">
-            <p class="order">第二步：开始录制您的歌曲
-                <span class="red">（最长录制时间60s）</span>
-            </p>
-            <div class="wrap">
-                <span class="talk_btn" id="talk_btn">按住开始录音</span>
-
+        <div class="m-list">
+            <h3 class="title">您的歌曲库</h3>
+            <div class="m-tab">
+                <button class="btn z-crt">审核过的</button>
+                <button class="btn">未审核的</button>
             </div>
+            <ul class="list-wrap">
+                <li class="list">
+                    <span class="song-name">爱我中华</span>
+                    <span class="icon-play"></span>
+                </li>
+            </ul>
         </div>
     </div>
 
