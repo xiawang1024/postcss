@@ -96,6 +96,7 @@ gulp.task('wx-js', () => {
 	return (
 		gulp
 			.src([
+				`${baseDir}/js/vue.js`,
 				`${baseDir}/js/zepto.js`,
 				`${baseDir}/js/fastclick.js`,
 				`${baseDir}/js/weui.js`,

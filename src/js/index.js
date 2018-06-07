@@ -1,20 +1,98 @@
 !(function() {
+	var app = new Vue({
+		el: '#app',
+		data: {
+			userInfo: {
+				nickname: '冰糖先生',
+				headimgurl:
+					'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eroqJEibh9fzG5BI9lKXRkE6xrNBjibNaXAOEu4faqcQwUibicL0dzicYECeTVJibsGmvichvTTnUQScdUtg/132'
+			},
+			songList: [],
+			showSongList: [],
+			audioSrc: '',
+			tabIndex: 1,
+			playIndex: -1
+		},
+		created: function() {},
+		mounted: function() {
+			this.audio = document.getElementById('audio');
+		},
+		methods: {
+			getSongs: function(openId) {
+				openId = 'oaYgpwOCN8OE1moSxalrwnU_NN94';
+				$.ajax({
+					type: 'get',
+					url: 'http://a.weixin.hndt.com/boom/api/wx/radio/list?openId=' + openId,
+					success: function(data) {
+						if (data.status == 'ok') {
+							app.songList = data.data;
+							app.showSong(1);
+						} else {
+							weui.alert('暂未录制上传歌曲！');
+						}
+					}
+				});
+			},
+			getUser: function(data) {
+				app.userInfo = data;
+			},
+			playSong: function(src, index) {
+				if (app.playIndex != index) {
+					app.audioSrc = src;
+
+					setTimeout(function() {
+						app.playIndex = index;
+						this.audio.play();
+					}, 20);
+				} else {
+					if (!this.audio.paused) {
+						setTimeout(function() {
+							app.playIndex = -1;
+							this.audio.pause();
+						}, 20);
+					} else {
+						setTimeout(function() {
+							app.playIndex = index;
+							this.audio.play();
+						}, 20);
+					}
+				}
+			},
+			tabSwitch: function(index) {
+				this.audio.pause();
+				app.playIndex = -1;
+				app.tabIndex = index;
+				app.showSong(index);
+			},
+			showSong: function(index) {
+				app.showSongList = app.songList.filter(function(item) {
+					return item.status == index;
+				});
+			}
+		}
+	});
+	app.getSongs();
 	//微信code
+
 	var weChatCode = weChat.getQueryString('code');
 	if (weChatCode) {
-		getOpenId(weChatCode);
+		getOpenId(weChatCode, function(data) {
+			app.getUser(data);
+			app.getSongs(data.openid);
+		});
 	}
-	function getOpenId(code) {
+	function getOpenId(code, cb) {
 		// if (!weChat.getStorage('WXHNDTOPENID')) {
 		$.ajax({
 			type: 'GET',
 			url: 'https://a.weixin.hndt.com/boom/api/token/access/redirect2',
-			data: { code: code, cate: 'wxa443e32d84844c0b' },
+			data: { code: code, cate: 'wx5f789dea59c6c2c5' },
 			dataType: 'json',
 			success: function(data) {
 				console.log(data);
 				if (data.status == 'ok') {
 					weChat.setStorage('WXHNDTOPENID', JSON.stringify(data.data));
+					cb && cb(data.data);
 				} else {
 					window.location = weChat.redirectUrl();
 				}
