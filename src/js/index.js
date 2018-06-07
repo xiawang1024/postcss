@@ -14,14 +14,16 @@
 			showSongList: [],
 			audioSrc: '',
 			tabIndex: 1,
-			playIndex: -1
+			playIndex: -1,
+			audio: document.getElementById('audio')
 		},
 		created: function() {},
 		mounted: function() {
-			this.audio = document.getElementById('audio');
+			// app.audio = document.getElementById('audio');
 		},
 		methods: {
 			getSongs: function(openId) {
+				// openId = 'oaYgpwAWb44JGI4rdW8NCEgEMnJ8';
 				$.ajax({
 					type: 'get',
 					url: 'https://a.weixin.hndt.com/boom/api/wx/radio/list?openId=' + openId,
@@ -41,27 +43,27 @@
 			playSong: function(src, index) {
 				if (app.playIndex != index) {
 					app.audioSrc = src;
-
+					app.audio.setAttribute('src', src);
 					setTimeout(function() {
 						app.playIndex = index;
-						this.audio.play();
+						app.audio.play();
 					}, 20);
 				} else {
-					if (!this.audio.paused) {
+					if (!app.audio.paused) {
 						setTimeout(function() {
 							app.playIndex = -1;
-							this.audio.pause();
+							app.audio.pause();
 						}, 20);
 					} else {
 						setTimeout(function() {
 							app.playIndex = index;
-							this.audio.play();
-						}, 20);
+							app.audio.play();
+						}, 40);
 					}
 				}
 			},
 			tabSwitch: function(index) {
-				this.audio.pause();
+				app.audio.pause();
 				app.playIndex = -1;
 				app.tabIndex = index;
 				app.showSong(index);
