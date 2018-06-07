@@ -1,4 +1,11 @@
 !(function() {
+	document.body.addEventListener('touchstart', function() {
+		console.log(':active');
+	});
+	$('#goSongList').click(function() {
+		window.location =
+			'https://a.weixin.hndt.com/h5/partysday/songlist/index.html?cid=' + weChat.getQueryString('cid');
+	});
 	//微信code
 	var weChatCode = weChat.getQueryString('code');
 	if (weChatCode) {
