@@ -8,9 +8,22 @@
     <script>
         var backUrl = window.location.href;
         (function (url) {
-            if (!getQueryString('openId')) {
-                var redirectUrl = 'http://a.weixin.hndt.com/wx/openid?cate=person&back=' + url;
-                window.location = redirectUrl;
+
+            function isWeiXin() {
+
+                var ua = window.navigator.userAgent.toLowerCase();
+                //通过正则表达式匹配ua中是否含有MicroMessenger字符串
+                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if (isWeiXin()) {
+                if (!getQueryString('openId')) {
+                    var redirectUrl = 'http://a.weixin.hndt.com/wx/openid?cate=person&back=' + url;
+                    window.location = redirectUrl;
+                }
             }
 
             function getQueryString(query) {
