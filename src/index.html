@@ -61,7 +61,7 @@
 <body>
     <div class="g-hd">
         <h1 class="m-title">都市KTV</h1>
-        <span class="icon-rule"></span>
+        <span class="icon-rule" id="icon-rule"></span>
     </div>
     <div class="g-bd">
         <div class="m-info">
@@ -71,7 +71,9 @@
                         <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="avatar">
                     </div>
                 </div>
-                <p class="u-name">房主：姓名</p>
+                <p class="u-name">房主：
+                    <span>姓名</span>
+                </p>
                 <span class="u-btn"></span>
             </div>
             <div class="m-user">
@@ -80,14 +82,16 @@
                         <img src="http://www.hndt.com/podcast/976/1131/res/EEghUGNE.jpg?1511506999379" alt="" class="avatar">
                     </div>
                 </div>
-                <p class="u-name">挑战者：姓名</p>
+                <p class="u-name">挑战者：
+                    <span>姓名</span>
+                </p>
                 <span class="u-btn"></span>
             </div>
         </div>
         <div class="m-progress">
             <div class="m-percent">
-                <div class="u-owner-percent">80%</div>
-                <div class="u-challenge-percent">20%</div>
+                <div class="u-owner-percent">0%</div>
+                <div class="u-challenge-percent">0%</div>
             </div>
             <div class="m-progress-wrap">
                 <div class="u-owner"></div>
@@ -97,12 +101,14 @@
         </div>
         <div class="m-refresh">
             <span class="u-tips">下一位挑战者是谁？</span>
-            <button class="u-btn">刷新！</button>
+            <button class="u-btn" id="refresh-btn">刷新！</button>
         </div>
     </div>
     <div class="g-line"></div>
     <div class="g-ft">
-        <div class="m-barrage"></div>
+        <div class="m-barrage">
+            <canvas class="barrage"></canvas>
+        </div>
         <div class="m-send">
             <input type="text" class="u-ipt" placeholder="请输入评论内容">
             <button class="u-btn">发送</button>

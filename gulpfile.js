@@ -98,6 +98,7 @@ gulp.task('wx-js', () => {
 			.src([
 				`${baseDir}/js/zepto.js`,
 				`${baseDir}/js/fastclick.js`,
+				`${baseDir}/js/barrage.js`,
 				`${baseDir}/js/weui.js`,
 				`${baseDir}/js/jweixin.js`,
 				`${baseDir}/js/wxshare.js`,

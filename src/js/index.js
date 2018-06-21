@@ -1,4 +1,5 @@
 !(function() {
+	var loading = weui.loading('努力加载中...');
 	document.body.addEventListener('touchstart', function() {
 		console.log(':active');
 	});
@@ -212,6 +213,192 @@
 					}
 				});
 			}
+		});
+	}
+
+	//弹幕系统
+	var canvasEle = document.querySelector('canvas');
+	var barrage = new Barrage(canvasEle);
+
+	var page = 1;
+	getMsgList(page, function(data) {
+		console.log(data);
+		if (data) {
+			shootMsg(data);
+		}
+	});
+
+	setInterval(function() {
+		page++;
+		getMsgList(page, function(data) {
+			console.log(data);
+			if (data) {
+				shootMsg(data);
+			} else {
+				page = 0;
+			}
+		});
+	}, 22500);
+
+	//弹幕发射
+	function shootMsg(list) {
+		var i = 0;
+		var timerId = setInterval(function() {
+			if (list[i]) {
+				barrage.pushMessage({ text: list[i].comment.content, color: '#fff' });
+			} else {
+				i = 0;
+				clearInterval(timerId);
+			}
+			i++;
+		}, 1500);
+	}
+
+	//取得消息
+	function getMsgList(page, cb) {
+		$.ajax({
+			type: 'post',
+			url: 'https://talk.hndt.com/test/upRadio.do',
+			data: {
+				page: page,
+				cid: 1000,
+				creater: '',
+				fromUid: '',
+				content: ''
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.success) {
+					if (data.result) {
+						cb && cb(data.result.list);
+					} else {
+						cb && cb(false);
+						console.log('没有更多评论');
+					}
+				} else {
+					console.log('error');
+				}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	}
+
+	//活动规则
+	$('#icon-rule').click(function() {
+		weui.alert('<h1>游戏规则</h1><h1>游戏规则</h1><h1>游戏规则</h1>');
+	});
+
+	//投票
+	$('.m-info .m-user .u-btn').click(function() {});
+	getActiveInfo();
+	//获取正在进行的活动信息
+	var ingActiveInfo = {};
+
+	function getActiveInfo() {
+		$.ajax({
+			type: 'get',
+			url: 'http://192.168.9.77:8003/boom/api/battle/active',
+			dataType: 'json',
+			success: function(data) {
+				console.log(data);
+				loading.hide();
+				selectBattle(data, function() {
+					refreshInfo();
+					voteHandler();
+				});
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	}
+	function selectBattle(data, cb) {
+		var battleList = data.battleSessionList;
+		var ingBattle = battleList.filter(function(item, index) {
+			return item.voteStatus === 0;
+		});
+		ingActiveInfo.id = data.id;
+		$('.g-hd .m-title').html(data.previewTitle);
+		if (ingBattle && ingBattle.length > 0) {
+			insertHtml(ingBattle[0]);
+			votePercent(ingBattle[0]);
+			ingActiveInfo.cid = ingBattle.id;
+			ingActiveInfo.firstManNo = ingBattle.firstManNo;
+			ingActiveInfo.secondManNo = ingBattle.secondManNo;
+		} else {
+			ingActiveInfo.cid = battleList[0].id;
+		}
+		console.log(ingBattle);
+		cb && cb(ingActiveInfo);
+	}
+	function insertHtml(info) {
+		var firstMan = $('.m-info .m-user').eq(0);
+		var secondMan = $('.m-info .m-user').eq(1);
+		firstMan.find('.avatar').attr('src', info.firstManIcon);
+		secondMan.find('.avatar').attr('src', info.secondManIcon);
+		firstMan.find('.u-name span').html(info.firstManName);
+		secondMan.find('.u-name span').html(info.secondManName);
+	}
+
+	function votePercent(info) {
+		var percentEle = $('.m-percent');
+		var percentProgress = $('.m-progress-wrap');
+		percentEle.find('.u-owner-percent').html(info.firstVotePercent + '%');
+		percentEle.find('.u-challenge-percent').html(info.secondVotePercent + '%');
+
+		percentProgress.find('.u-owner').css('width', info.firstVotePercent + '%');
+		percentProgress.find('.u-challenge').css('width', info.secondVotePercent + '%');
+	}
+
+	//刷新服务
+	function refreshInfo() {
+		$('#refresh-btn').click(function() {
+			$.ajax({
+				type: 'get',
+				url:
+					'http://192.168.9.77:8003/boom/api/battle/refresh?id=' +
+					ingActiveInfo.id +
+					'&sid=' +
+					ingActiveInfo.cid,
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+					weui.alert(data.msg);
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		});
+	}
+
+	//投票
+	function voteHandler() {
+		$('.m-info .m-user .u-btn').click(function() {
+			var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+
+			$.ajax({
+				type: 'post',
+				url: 'http://192.168.9.77:8003/boom/api/battle/voteadd',
+				data: {
+					openId: userInfo.openid,
+					mobile: '',
+					userId: 123132132465,
+					id: ingActiveInfo.id,
+					sid: ingActiveInfo.sid,
+					firstManNo: ingActiveInfo.firstManNo,
+					secondManNo: ingActiveInfo.secondManNo
+				},
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
 		});
 	}
 })();

@@ -62,3 +62,15 @@
     -webkit-line-clamp: $n;
     overflow: hidden;
 }
+
+@mixin extend-click() {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+    }
+}
