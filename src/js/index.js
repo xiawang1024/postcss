@@ -217,8 +217,6 @@
 	}
 
 	//弹幕系统
-	var canvasEle = document.querySelector('canvas');
-	var barrage = new Barrage(canvasEle);
 
 	var page = 1;
 	getMsgList(page, function(data) {
@@ -228,24 +226,29 @@
 		}
 	});
 
-	setInterval(function() {
-		page++;
-		getMsgList(page, function(data) {
-			console.log(data);
-			if (data) {
-				shootMsg(data);
-			} else {
-				page = 0;
-			}
-		});
-	}, 22500);
+	var barrage = new DanMa('barrage', 'danma', 12);
+	// 弹幕发射
 
-	//弹幕发射
+	$('#sendBtn').click(function() {
+		//假象发送
+		barrage.emit({
+			text: $('#sendMsg').val().trim(),
+			color: '#' + Math.floor(Math.random() * 0xffffff).toString(16),
+			font: '12px'
+		});
+		$('#sendMsg').val('');
+		//真实提交
+	});
+
 	function shootMsg(list) {
 		var i = 0;
 		var timerId = setInterval(function() {
 			if (list[i]) {
-				barrage.pushMessage({ text: list[i].comment.content, color: '#fff' });
+				barrage.emit({
+					text: list[i].comment.content,
+					color: '#' + Math.floor(Math.random() * 0xffffff).toString(16),
+					font: '12px'
+				});
 			} else {
 				i = 0;
 				clearInterval(timerId);
@@ -292,21 +295,28 @@
 
 	//投票
 	$('.m-info .m-user .u-btn').click(function() {});
-	getActiveInfo();
+
 	//获取正在进行的活动信息
+	getActiveInfo(false);
+	//刷新vote百分比
+	setInterval(function() {
+		getActiveInfo(true);
+	}, 5000);
 	var ingActiveInfo = {};
 
-	function getActiveInfo() {
+	function getActiveInfo(onlyVote) {
 		$.ajax({
 			type: 'get',
-			url: 'http://192.168.9.77:8003/boom/api/battle/active',
+			url: 'https://a.weixin.hndt.com/boom/api/battle/active',
 			dataType: 'json',
 			success: function(data) {
 				console.log(data);
-				loading.hide();
-				selectBattle(data, function() {
-					refreshInfo();
+				setTimeout(function() {
+					loading.hide();
+				}, 20);
+				selectBattle(data, onlyVote, function() {
 					voteHandler();
+					refreshInfo();
 				});
 			},
 			error: function(err) {
@@ -314,7 +324,7 @@
 			}
 		});
 	}
-	function selectBattle(data, cb) {
+	function selectBattle(data, onlyVote, cb) {
 		var battleList = data.battleSessionList;
 		var ingBattle = battleList.filter(function(item, index) {
 			return item.voteStatus === 0;
@@ -322,11 +332,15 @@
 		ingActiveInfo.id = data.id;
 		$('.g-hd .m-title').html(data.previewTitle);
 		if (ingBattle && ingBattle.length > 0) {
-			insertHtml(ingBattle[0]);
-			votePercent(ingBattle[0]);
-			ingActiveInfo.cid = ingBattle.id;
-			ingActiveInfo.firstManNo = ingBattle.firstManNo;
-			ingActiveInfo.secondManNo = ingBattle.secondManNo;
+			if (onlyVote) {
+				votePercent(ingBattle[0]);
+			} else {
+				insertHtml(ingBattle[0]);
+				votePercent(ingBattle[0]);
+				ingActiveInfo.cid = ingBattle.id;
+				ingActiveInfo.firstManNo = ingBattle.firstManNo;
+				ingActiveInfo.secondManNo = ingBattle.secondManNo;
+			}
 		} else {
 			ingActiveInfo.cid = battleList[0].id;
 		}
@@ -343,6 +357,7 @@
 	}
 
 	function votePercent(info) {
+		console.log('onlyVote');
 		var percentEle = $('.m-percent');
 		var percentProgress = $('.m-progress-wrap');
 		percentEle.find('.u-owner-percent').html(info.firstVotePercent + '%');
@@ -354,17 +369,19 @@
 
 	//刷新服务
 	function refreshInfo() {
-		$('#refresh-btn').click(function() {
+		$('#refresh-btn').off();
+		$('#refresh-btn').on('click', function() {
 			$.ajax({
 				type: 'get',
 				url:
-					'http://192.168.9.77:8003/boom/api/battle/refresh?id=' +
+					'https://a.weixin.hndt.com/boom/api/battle/refresh?id=' +
 					ingActiveInfo.id +
 					'&sid=' +
 					ingActiveInfo.cid,
 				dataType: 'json',
 				success: function(data) {
 					console.log(data);
+
 					weui.alert(data.msg);
 				},
 				error: function(err) {
@@ -381,11 +398,11 @@
 
 			$.ajax({
 				type: 'post',
-				url: 'http://192.168.9.77:8003/boom/api/battle/voteadd',
+				url: 'https://a.weixin.hndt.com/boom/api/battle/voteadd',
 				data: {
 					openId: userInfo.openid,
 					mobile: '',
-					userId: 123132132465,
+					userId: userInfo.id,
 					id: ingActiveInfo.id,
 					sid: ingActiveInfo.sid,
 					firstManNo: ingActiveInfo.firstManNo,
@@ -393,7 +410,8 @@
 				},
 				dataType: 'json',
 				success: function(data) {
-					console.log(data);
+					console.log(ingActiveInfo);
+					weui.alert(data.msg);
 				},
 				error: function(err) {
 					console.log(err);

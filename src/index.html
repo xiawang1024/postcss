@@ -106,17 +106,18 @@
     </div>
     <div class="g-line"></div>
     <div class="g-ft">
-        <div class="m-barrage">
-            <canvas class="barrage"></canvas>
+        <div class="m-barrage" id="barrage">
+
         </div>
         <div class="m-send">
-            <input type="text" class="u-ipt" placeholder="请输入评论内容">
-            <button class="u-btn">发送</button>
+            <input type="text" class="u-ipt" id="sendMsg" placeholder="请输入评论内容">
+            <button class="u-btn" id="sendBtn">发送</button>
         </div>
     </div>
     <div class="g-copyright">
         河南广播云提供技术支持
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
     <script src="./js/app.js"></script>
     <script>
         var _hmt = _hmt || [];
@@ -126,6 +127,23 @@
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
+    </script>
+    <script>
+        var stats = new Stats();
+        stats.showPanel(0);
+        document.body.appendChild(stats.domElement);
+
+        function animate() {
+            stats.begin();
+
+            // monitored code goes here
+
+            stats.end();
+
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
     </script>
 </body>
 
