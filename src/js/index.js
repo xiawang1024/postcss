@@ -383,6 +383,7 @@
 		percentProgress.find('.u-challenge').css('width', info.secondVotePercent + '%');
 	}
 	//投票率刷新服务
+	var VOTE_REFRESH_TIME = 5000;
 	function voteRefresh() {
 		clearInterval(timerId);
 		var timerId = setInterval(function() {
@@ -406,7 +407,7 @@
 					console.log(err);
 				}
 			});
-		}, 5000);
+		}, VOTE_REFRESH_TIME);
 	}
 	function votePercentRefresh(info) {
 		var percentEle = $('.m-percent');
@@ -450,8 +451,9 @@
 		$('.m-info .m-user .u-btn').on('click', function() {
 			var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
 			var number = null;
+			// weui.alert(userInfo.id);
 			console.log(typeof $(this).data('order'));
-			if ($(this).data('order') === '0') {
+			if ($(this).data('order') === 0) {
 				number = ingActiveInfo.firstManNo;
 			} else {
 				number = ingActiveInfo.secondManNo;
