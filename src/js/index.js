@@ -226,10 +226,23 @@
 		}
 	});
 
+	setInterval(function() {
+		getMsgList(page, function(data) {
+			console.log(data);
+			if (data) {
+				shootMsg(data);
+			}
+		});
+	}, 22500);
 	var barrage = new DanMa('barrage', 'danma', 12);
 	// 弹幕发射
 
 	$('#sendBtn').click(function() {
+		var sendMsg = $('#sendMsg').val();
+		if (!sendMsg) {
+			weui.topTips('请输入内容！谢谢');
+			return;
+		}
 		//假象发送
 		barrage.emit({
 			text: $('#sendMsg').val().trim(),
@@ -257,7 +270,7 @@
 		}, 1500);
 	}
 
-	//取得消息
+	//取得弹幕消息
 	function getMsgList(page, cb) {
 		$.ajax({
 			type: 'post',
@@ -299,9 +312,9 @@
 	//获取正在进行的活动信息
 	getActiveInfo(false);
 	//刷新vote百分比
-	setInterval(function() {
-		getActiveInfo(true);
-	}, 5000);
+	// setInterval(function() {
+	// 	getActiveInfo(false);
+	// }, 5000);
 	var ingActiveInfo = {};
 
 	function getActiveInfo(onlyVote) {
@@ -314,9 +327,12 @@
 				setTimeout(function() {
 					loading.hide();
 				}, 20);
-				selectBattle(data, onlyVote, function() {
+				selectBattle(data, function(isBattleIng) {
+					console.log(ingActiveInfo);
 					voteHandler();
 					refreshInfo();
+					console.log(isBattleIng);
+					voteRefresh();
 				});
 			},
 			error: function(err) {
@@ -324,7 +340,8 @@
 			}
 		});
 	}
-	function selectBattle(data, onlyVote, cb) {
+
+	function selectBattle(data, cb) {
 		var battleList = data.battleSessionList;
 		var ingBattle = battleList.filter(function(item, index) {
 			return item.voteStatus === 0;
@@ -332,20 +349,20 @@
 		ingActiveInfo.id = data.id;
 		$('.g-hd .m-title').html(data.previewTitle);
 		if (ingBattle && ingBattle.length > 0) {
-			if (onlyVote) {
-				votePercent(ingBattle[0]);
-			} else {
-				insertHtml(ingBattle[0]);
-				votePercent(ingBattle[0]);
-				ingActiveInfo.cid = ingBattle.id;
-				ingActiveInfo.firstManNo = ingBattle.firstManNo;
-				ingActiveInfo.secondManNo = ingBattle.secondManNo;
-			}
+			insertHtml(ingBattle[0]);
+			votePercent(ingBattle[0]);
+			ingActiveInfo.sid = ingBattle[0].id;
+			ingActiveInfo.firstManNo = ingBattle[0].firstManNo;
+			ingActiveInfo.secondManNo = ingBattle[0].secondManNo;
 		} else {
-			ingActiveInfo.cid = battleList[0].id;
+			insertHtml(battleList[0]);
+			votePercent(battleList[0]);
+			ingActiveInfo.sid = battleList[0].id;
 		}
+		var isBattleIng = !!(ingBattle && ingBattle.length > 0);
+		console.log(ingActiveInfo);
 		console.log(ingBattle);
-		cb && cb(ingActiveInfo);
+		cb && cb(isBattleIng);
 	}
 	function insertHtml(info) {
 		var firstMan = $('.m-info .m-user').eq(0);
@@ -362,11 +379,44 @@
 		var percentProgress = $('.m-progress-wrap');
 		percentEle.find('.u-owner-percent').html(info.firstVotePercent + '%');
 		percentEle.find('.u-challenge-percent').html(info.secondVotePercent + '%');
-
 		percentProgress.find('.u-owner').css('width', info.firstVotePercent + '%');
 		percentProgress.find('.u-challenge').css('width', info.secondVotePercent + '%');
 	}
+	//投票率刷新服务
+	function voteRefresh() {
+		clearInterval(timerId);
+		var timerId = setInterval(function() {
+			$.ajax({
+				type: 'get',
+				url:
+					'https://a.weixin.hndt.com/boom/api/battle/voteshow?id=' +
+					ingActiveInfo.id +
+					'&sid=' +
+					ingActiveInfo.sid,
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+					if (data.status === 'ok') {
+						votePercentRefresh(data.data);
+					} else {
+						console.log('votePercentRefresh failed');
+					}
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		}, 5000);
+	}
+	function votePercentRefresh(info) {
+		var percentEle = $('.m-percent');
+		var percentProgress = $('.m-progress-wrap');
+		percentEle.find('.u-owner-percent').html(info.countFirst + '%');
+		percentEle.find('.u-challenge-percent').html(info.countSecond + '%');
 
+		percentProgress.find('.u-owner').css('width', info.countFirst + '%');
+		percentProgress.find('.u-challenge').css('width', info.countSecond + '%');
+	}
 	//刷新服务
 	function refreshInfo() {
 		$('#refresh-btn').off();
@@ -377,12 +427,15 @@
 					'https://a.weixin.hndt.com/boom/api/battle/refresh?id=' +
 					ingActiveInfo.id +
 					'&sid=' +
-					ingActiveInfo.cid,
+					ingActiveInfo.sid,
 				dataType: 'json',
 				success: function(data) {
 					console.log(data);
-
-					weui.alert(data.msg);
+					if (data.status === 'ok') {
+						getActiveInfo(false);
+					} else {
+						weui.alert(data.msg);
+					}
 				},
 				error: function(err) {
 					console.log(err);
@@ -393,9 +446,16 @@
 
 	//投票
 	function voteHandler() {
-		$('.m-info .m-user .u-btn').click(function() {
+		$('.m-info .m-user .u-btn').off();
+		$('.m-info .m-user .u-btn').on('click', function() {
 			var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
-
+			var number = null;
+			console.log(typeof $(this).data('order'));
+			if ($(this).data('order') === '0') {
+				number = ingActiveInfo.firstManNo;
+			} else {
+				number = ingActiveInfo.secondManNo;
+			}
 			$.ajax({
 				type: 'post',
 				url: 'https://a.weixin.hndt.com/boom/api/battle/voteadd',
@@ -405,8 +465,7 @@
 					userId: userInfo.id,
 					id: ingActiveInfo.id,
 					sid: ingActiveInfo.sid,
-					firstManNo: ingActiveInfo.firstManNo,
-					secondManNo: ingActiveInfo.secondManNo
+					number: number
 				},
 				dataType: 'json',
 				success: function(data) {

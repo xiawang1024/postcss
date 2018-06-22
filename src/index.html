@@ -35,7 +35,7 @@
         var weChatConf = {
             baseUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?",
             appId: 'wx5f789dea59c6c2c5',
-            redirect_uri: 'https://a.weixin.hndt.com/h5/partysday/index.html?cid=' + weChat.getQueryString('cid'),
+            redirect_uri: 'https://a.weixin.hndt.com/h5/dushiktv/index.html',
             response_type: 'code',
             scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
             state: Date.parse(new Date()),
@@ -60,7 +60,7 @@
 
 <body>
     <div class="g-hd">
-        <h1 class="m-title">都市KTV</h1>
+        <h1 class="m-title"></h1>
         <span class="icon-rule" id="icon-rule"></span>
     </div>
     <div class="g-bd">
@@ -72,9 +72,9 @@
                     </div>
                 </div>
                 <p class="u-name">房主：
-                    <span>姓名</span>
+                    <span></span>
                 </p>
-                <span class="u-btn"></span>
+                <span class="u-btn" data-order='0'></span>
             </div>
             <div class="m-user">
                 <div class="u-avatar">
@@ -83,9 +83,9 @@
                     </div>
                 </div>
                 <p class="u-name">挑战者：
-                    <span>姓名</span>
+                    <span></span>
                 </p>
-                <span class="u-btn"></span>
+                <span class="u-btn" data-order='1'></span>
             </div>
         </div>
         <div class="m-progress">
