@@ -219,6 +219,7 @@
 	//都市KTV 参数
 	var GET_MSG_LIST_TIME = 50000;
 	var VOTE_REFRESH_TIME = 5000;
+	var HU_DONG_ID = 2000;
 
 	//弹幕系统
 
@@ -265,10 +266,10 @@
 				if (data.status == 1) {
 					$.ajax({
 						type: 'post',
-						url: 'http://www.softzztiedu.top/test/upRadio.do',
+						url: 'https://talk.hndt.com/test/upRadio.do',
 						data: {
 							page: 0,
-							cid: 2000,
+							cid: HU_DONG_ID,
 							creater: data.data.name,
 							fromUid: data.data.id,
 							content: content
@@ -305,10 +306,10 @@
 	function getMsgList(page, cb) {
 		$.ajax({
 			type: 'post',
-			url: 'http://www.softzztiedu.top/test/upRadio.do',
+			url: 'https://talk.hndt.com/test/upRadio.do',
 			data: {
 				page: page,
-				cid: 2000,
+				cid: HU_DONG_ID,
 				creater: '',
 				fromUid: '',
 				content: ''

@@ -42,7 +42,7 @@
             weChat_Redirect: '#wechat_redirect'
         }
         if (!weChat.getQueryString('code')) {
-            // window.location = weChat.redirectUrl()
+            window.location = weChat.redirectUrl()
         }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
@@ -117,7 +117,6 @@
     <div class="g-copyright">
         河南广播云提供技术支持
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
     <script src="./js/app.js"></script>
     <script>
         var _hmt = _hmt || [];
@@ -128,23 +127,7 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
-    <script>
-        var stats = new Stats();
-        stats.showPanel(0);
-        document.body.appendChild(stats.domElement);
 
-        function animate() {
-            stats.begin();
-
-            // monitored code goes here
-
-            stats.end();
-
-            requestAnimationFrame(animate);
-        }
-
-        requestAnimationFrame(animate);
-    </script>
 </body>
 
 </html>

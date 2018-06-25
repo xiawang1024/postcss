@@ -1,8 +1,8 @@
 window.onload = function() {
-	var TITLE = '给党唱支生日歌--庆祝中国共产党建党97周年';
-	var LINK = 'https://a.weixin.hndt.com/h5/partysday/index.html'; //分享链接
-	var IMG_URL = 'http://www.hndt.com/h5/partysday/PartysDay.jpg';
-	var DESC = '庆祝中国共产党建党97周年--大型系列文化活动！';
+	var TITLE = '都市KTV';
+	var LINK = 'https://a.weixin.hndt.com/h5/dushiktv/index.html'; //分享链接
+	var IMG_URL = 'http://www.hndt.com/podcast/1111/res/xtmZ0Bee.png?1508751589195';
+	var DESC = '都市KTV';
 
 	//微信配置
 	var href = window.location.href;
