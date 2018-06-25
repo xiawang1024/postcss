@@ -216,6 +216,10 @@
 		});
 	}
 
+	//都市KTV 参数
+	var GET_MSG_LIST_TIME = 50000;
+	var VOTE_REFRESH_TIME = 5000;
+
 	//弹幕系统
 
 	var page = 1;
@@ -233,7 +237,7 @@
 				shootMsg(data);
 			}
 		});
-	}, 22500);
+	}, GET_MSG_LIST_TIME);
 	var barrage = new DanMa('barrage', 'danma', 12);
 	// 弹幕发射
 
@@ -249,8 +253,35 @@
 			color: '#' + Math.floor(Math.random() * 0xffffff).toString(16),
 			font: '12px'
 		});
+		var content = $('#sendMsg').val().trim();
 		$('#sendMsg').val('');
 		//真实提交
+		var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+		$.ajax({
+			type: 'get',
+			url: 'https://a.weixin.hndt.com/user/find/openid?openid=' + userInfo.openid,
+			dataType: 'json',
+			success: function(data) {
+				if (data.status == 1) {
+					$.ajax({
+						type: 'post',
+						url: 'http://www.softzztiedu.top/test/upRadio.do',
+						data: {
+							page: 0,
+							cid: 2000,
+							creater: data.data.name,
+							fromUid: data.data.id,
+							content: content
+						}
+					});
+				} else {
+					console.log('get userinfo failed');
+				}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 	});
 
 	function shootMsg(list) {
@@ -274,10 +305,10 @@
 	function getMsgList(page, cb) {
 		$.ajax({
 			type: 'post',
-			url: 'https://talk.hndt.com/test/upRadio.do',
+			url: 'http://www.softzztiedu.top/test/upRadio.do',
 			data: {
 				page: page,
-				cid: 1000,
+				cid: 2000,
 				creater: '',
 				fromUid: '',
 				content: ''
@@ -383,7 +414,7 @@
 		percentProgress.find('.u-challenge').css('width', info.secondVotePercent + '%');
 	}
 	//投票率刷新服务
-	var VOTE_REFRESH_TIME = 5000;
+
 	function voteRefresh() {
 		clearInterval(timerId);
 		var timerId = setInterval(function() {
