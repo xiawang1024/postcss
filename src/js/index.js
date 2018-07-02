@@ -219,7 +219,7 @@
 	//都市KTV 参数
 	var GET_MSG_LIST_TIME = 50000;
 	var VOTE_REFRESH_TIME = 5000;
-	var HU_DONG_ID = 2000;
+	var HU_DONG_ID = 1000;
 
 	//弹幕系统
 
@@ -239,7 +239,7 @@
 			}
 		});
 	}, GET_MSG_LIST_TIME);
-	var barrage = new DanMa('barrage', 'danma', 12);
+	var barrage = new DanMa('barrage', 'danma', 9);
 	// 弹幕发射
 
 	$('#sendBtn').click(function() {
