@@ -230,8 +230,8 @@
 			shootMsg(data);
 		}
 	});
-
-	setInterval(function() {
+	clearInterval(listTimerId); //TODO: clear
+	var listTimerId = setInterval(function() {
 		getMsgList(page, function(data) {
 			console.log(data);
 			if (data) {
