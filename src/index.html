@@ -30,6 +30,10 @@
             },
             setStorage: function (name, value) {
                 return localStorage.setItem(name, value)
+            },
+            isWeiXin: function () {
+                var ua = navigator.userAgent.toLowerCase();
+                return ua.match(/MicroMessenger/i) == "micromessenger";
             }
         }
         var weChatConf = {
