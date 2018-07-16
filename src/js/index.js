@@ -1,6 +1,6 @@
 !(function() {
 	$('#back').click(function() {
-		window.location = 'https://a.weixin.hndt.com/h5/partysday/index.html?cid=' + weChat.getQueryString('cid');
+		window.location = 'https://a.weixin.hndt.com/h5/partysday/index.html';
 	});
 	var app = new Vue({
 		el: '#app',
