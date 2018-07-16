@@ -29,6 +29,28 @@
 				color: #2481c5;
 				border-bottom: 1px solid #2481c5;
 			}
+			.bd-wrap {
+				.info-wrap {
+					width: 100%;
+					margin-top: 30px;
+					.avatar-wrap {
+						float: left;
+						width: 200px;
+						font-size: 0;
+						.avatar {
+							width: 200px;
+							height: 296px;
+						}
+					}
+					.text-wrap {
+						float: left;
+						margin-left: 30px;
+					}
+				}
+				.m-qrcode {
+					display: none;
+				}
+			}
 			.list-wrap {
 				margin-top: 30px;
 				width: 100%;
