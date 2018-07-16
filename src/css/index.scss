@@ -8,130 +8,64 @@
 			position: relative;
 			width: 100%;
 			height: 80px;
-			background: url('../img/icon-logo.png') center center no-repeat;
+			background: url('../img/icon-logo-wap.png') center center no-repeat;
 			background-size: auto 60px;
-			.icon-back {
-				position: absolute;
-				top: 20px;
-				display: inline-block;
-				width: 80px;
-				height: 40px;
-				background: url('../img/icon-back.png') center center no-repeat;
-				background-size: contain;
-				box-sizing: border-box
-			}
 		}
-		.g-userInfo {
+		.g-banner {
 			width: 100%;
-			padding: 40px;
+			height: 400px;
+			background: url('../img/icon-banner-wap.png') center center no-repeat;
+			background-size: cover;
+		}
+		.g-bd {
+			width: 100%;
+			padding: 30px;
 			box-sizing: border-box;
-			.avatar-wrap {
+			.title {
 				width: 100%;
-				text-align: center;
-				font-size: 0;
-				.avatar {
-					width: 132px;
-					height: 132px;
-					border-radius: 50%;
-				}
+				height: 60px;
+				line-height: 60px;
+				font-size: 32px;
+				color: #2481c5;
+				border-bottom: 1px solid #2481c5;
 			}
-			.m-list {
-				margin-top: 40px;
-				.title {
-					font-size: 30px;
-					@include bt-1px(#ccc);
-				}
-				.m-tab {
-					width: 100%;
-					height: 100px;
-					display: flex;
-					align-items: center;
-					justify-content: space-around; // @include bt-1px(#ccc);
-					.btn {
-						display: inline-block;
-						width: 250px;
-						height: 60px;
-						outline: none;
-						border: none;
-						border-radius: 60px;
+			.list-wrap {
+				margin-top: 30px;
+				width: 100%;
+				.list {
+					float: left;
+					width: 200px;
+					margin-left: 45px;
+					margin-bottom: 40px;
+					&:nth-child(3n+1) {
+						margin-left: 0
+					}
+					.avatar-wrap {
+						width: 200px;
+						font-size: 0;
+						.avatar {
+							width: 200px;
+							height: 296px;
+						}
+					}
+					.text-wrap {
+						margin-top: 12px;
 						font-size: 28px;
-						color: #fff;
-						background: #e60811;
-						&.z-crt {
-							color: orange;
-						}
-					}
-				}
-				.list-wrap {
-					width: 100%;
-					.list {
-						display: flex;
-						align-items: center;
-						justify-content: space-around;
-						padding: 16px 0;
-						@include bt-1px(#e5e5e5);
-						.song-info {
-							flex: 1;
-							.song-name {
-								font-size: 30px;
-								color: #333;
-							}
-							.song-created-at {
-								font-size: 28px;
-								color: #666;
-							}
-						}
-						.icon-play {
-							flex: 0 0 100px;
+						text-align: center;
+						.link {
+							margin-top: 6px;
 							display: inline-block;
-							width: 80px;
-							height: 80px;
-							background: url('../img/icon-play.png') center center no-repeat;
-							background-size: contain;
-							&.z-crt {
-								background: url('../img/icon-pause.png') center center no-repeat;
-								background-size: contain;
+							padding: 4px 14px;
+							border-radius: 6px;
+							color: #ffffff;
+							background: #2481c5;
+							.icon {
+								display: inline-block;
+								width: 26px;
+								height: 21px;
+								background: url('../img/icon-toupiao.png') center center no-repeat;
+								background-size: cover;
 							}
-						}
-					}
-				}
-			}
-		}
-		.g-form {
-			width: 100%;
-			padding: 40px;
-			box-sizing: border-box;
-			.para {
-				width: 100%;
-				margin-bottom: 40px;
-				text-align: center;
-				.order {
-					font-size: 28px;
-					.red {
-						font-size: 24px;
-						color: #e60811;
-					}
-				}
-				.wrap {
-					width: 100%;
-					margin-top: 30px;
-					overflow: hidden;
-					.talk_btn {
-						display: inline-block;
-						margin-top: 20px;
-						padding: 18px 20px;
-						color: #fff;
-						border-radius: 8px;
-						background: #44b549;
-						&:active {
-							background: #e60811;
-						}
-					}
-				}
-				&:first-child {
-					.wrap {
-						.label {
-							color: #e60811;
 						}
 					}
 				}
@@ -166,6 +100,9 @@
 				margin-top: 20px;
 			}
 		}
+		.g-ft-pc {
+			display: none;
+		}
 	}
 }
 
@@ -174,27 +111,105 @@
 	@import './pc/index.scss';
 	body.ignore {
 		width: 100%;
+		background: #f3f3f3;
 		.g-hd {
-			position: relative;
 			width: 100%;
-			height: 80px;
-			background: url('../img/icon-logo.png') center center no-repeat;
-			background-size: auto 60px;
-			.icon-back {
-				position: absolute;
-				top: 20px;
-				display: inline-block;
-				width: 80px;
-				height: 40px;
-				background: url('../img/icon-back.png') center center no-repeat;
-				background-size: contain;
-				box-sizing: border-box
+			height: 46px;
+			.link {
+				display: block;
+				width: 1200px;
+				height: 46px;
+				margin: 0 auto;
+				background: url('../img/icon-logo-pc.png') left center no-repeat;
 			}
 		}
-		.img {
+		.g-banner {
 			width: 100%;
-			img {
+			height: 602px;
+			background: url('../img/icon-banner-pc.png') center center no-repeat;
+			background-size: cover;
+		}
+		.g-bd {
+			width: 1200px;
+			margin: 0 auto;
+			padding: 40px 20px 0;
+			border: 1px solid #dddddd;
+			border-top: none;
+			background: #ffffff;
+			box-sizing: border-box;
+			.title {
 				width: 100%;
+				height: 45px;
+				line-height: 45px;
+				font-size: 18px;
+				color: #2481c5;
+				border-bottom: 1px solid #2481c5;
+			}
+			.list-wrap {
+				margin-top: 30px;
+				width: 100%;
+				.list {
+					float: left;
+					width: 180px;
+					margin-left: 64px;
+					margin-bottom: 40px;
+					&:nth-child(5n+1) {
+						margin-left: 0
+					}
+					.avatar-wrap {
+						width: 180px;
+						font-size: 0;
+						.avatar {
+							width: 180px;
+							height: 267px;
+						}
+					}
+					.text-wrap {
+						margin-top: 12px;
+						font-size: 16px;
+						text-align: center;
+						.link {
+							margin-top: 6px;
+							display: inline-block;
+							padding: 4px 14px;
+							border-radius: 6px;
+							color: #ffffff;
+							background: #2481c5;
+							.icon {
+								vertical-align: middle;
+								display: inline-block;
+								width: 26px;
+								height: 21px;
+								background: url('../img/icon-toupiao.png') center center no-repeat;
+								background-size: cover;
+							}
+							.text {
+								vertical-align: middle;
+								font-size: 15px;
+							}
+						}
+					}
+				}
+			}
+		}
+		.g-download,
+		.g-ft {
+			display: none;
+		}
+		.g-ft-pc {
+			width: 100%;
+			margin-top: 50px;
+			height: 115px;
+			text-align: center;
+			font-size: 13px;
+			color: #666;
+			overflow: hidden;
+			background: #f5f5f5;
+			.para {
+				line-height: 2;
+				&:first-child {
+					margin-top: 30px;
+				}
 			}
 		}
 	}
