@@ -92,18 +92,6 @@ gulp.task('wx-css', () => {
 		.pipe(gulp.dest(`${outDir}/css/`));
 });
 
-gulp.task('pc-css', () => {
-	// console.log(aspectRatio)
-	const plugins = [ autoprefixer({ browsers: [ 'last 2 version' ] }) ];
-	return gulp
-		.src(cssDir)
-		.pipe(sourceMaps.init())
-		.pipe(sass())
-		.pipe(postcss(plugins))
-		.pipe(concat('app.css'))
-		.pipe(gulp.dest(`${outDir}/css/`));
-});
-
 gulp.task('wx-js', () => {
 	return (
 		gulp
@@ -156,10 +144,8 @@ gulp.task('wx-html', function() {
 gulp.task('clean', () => {
 	return del([ `${outDir}/css/*`, `${outDir}/js/*` ]);
 });
-//TODO: pc wap 切换
-const TASK_TYPE = '';
-let taskType = TASK_TYPE == 'pc' ? 'pc-css' : 'wx-css';
-gulp.task('revision', [ taskType, 'wx-js', 'wx-html', 'clean' ], () => {
+
+gulp.task('revision', [ 'wx-css', 'wx-js', 'wx-html', 'clean' ], () => {
 	return gulp
 		.src(`${outDir}/**/*.{css,js}`)
 		.pipe(rev())
