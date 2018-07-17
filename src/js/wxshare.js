@@ -1,8 +1,8 @@
 window.onload = function() {
-	var TITLE = '给党唱支生日歌--庆祝中国共产党建党97周年';
-	var LINK = 'https://a.weixin.hndt.com/h5/partysday/songlist/index.html?cid=' + weChat.getQueryString('cid'); //分享链接
-	var IMG_URL = 'http://www.hndt.com/h5/partysday/PartysDay.jpg';
-	var DESC = '庆祝中国共产党建党97周年--大型系列文化活动！';
+	var TITLE = '郑州电子商务领军人物评选';
+	var LINK = 'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' + weChat.getQueryString('id'); //分享链接
+	var IMG_URL = 'https://a.weixin.hndt.com/h5/2018dianshang/img/icon-share.png';
+	var DESC = '郑州电子商务领军人物评选';
 
 	//微信配置
 	var href = window.location.href;
