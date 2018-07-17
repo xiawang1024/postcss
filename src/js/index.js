@@ -64,6 +64,10 @@
 			//投票
 			$('#vote-btn').click(function() {
 				var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+				if (!userInfo) {
+					weui.alert('请打开微信投票！');
+					return;
+				}
 				var voteLoading = weui.loading('努力提交中...');
 				$.ajax({
 					type: 'POST',
