@@ -1,4 +1,5 @@
 !(function() {
+	var loading = weui.loading('加载中...');
 	if (weChat.isPhone()) {
 		// fastClick 消除click 300ms延迟
 		if ('addEventListener' in document) {
@@ -51,6 +52,7 @@
 		dataType: 'json',
 		success: function(data) {
 			listToHtml(data);
+			loading.hide();
 		}
 	});
 	function listToHtml(list) {
