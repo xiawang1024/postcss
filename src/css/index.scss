@@ -43,52 +43,79 @@
 						}
 					}
 					.text-wrap {
+						position: relative;
 						float: left;
+						width: 460px;
+						height: 296px;
 						margin-left: 30px;
+						font-size: 28px;
+						.ticket-wrap {
+							position: absolute;
+							bottom: 6px;
+							color: #ffffff;
+							.ticket-num {
+								display: inline-block;
+								height: 60px;
+								line-height: 60px;
+								padding: 6px 16px;
+								border-radius: 4px;
+								background: #2481c5;
+							}
+							.ticket-handler {
+								display: inline-block;
+								margin-left: 30px;
+								height: 60px;
+								line-height: 60px;
+								border-radius: 4px;
+								padding: 6px 24px 6px 70px;
+								background: url('../img/icon-toupiao.png') left 24px center no-repeat #2481c5;
+								background-size: auto 32px;
+							}
+						}
 					}
 				}
 				.m-qrcode {
 					display: none;
 				}
 			}
-			.list-wrap {
-				margin-top: 30px;
+		}
+		.g-bdc {
+			width: 100%;
+			padding: 30px;
+			box-sizing: border-box;
+			.title {
 				width: 100%;
-				.list {
-					float: left;
-					width: 200px;
-					margin-left: 45px;
-					margin-bottom: 40px;
-					&:nth-child(3n+1) {
-						margin-left: 0
+				height: 60px;
+				line-height: 60px;
+				font-size: 32px;
+				color: #2481c5;
+				border-bottom: 1px solid #2481c5;
+			}
+			.bd-wrap {
+				.video-wrap {
+					position: relative;
+					width: 690px;
+					height: 389px;
+					margin-top: 30px;
+					.play-btn {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						width: 160px;
+						height: 160px;
+						background: url('../img/icon-video-play.png') center center no-repeat;
+						background-size: cover;
 					}
-					.avatar-wrap {
-						width: 200px;
-						font-size: 0;
-						.avatar {
-							width: 200px;
-							height: 296px;
-						}
+				}
+				.text-wrap {
+					margin-top: 20px;
+					.name {
+						font-size: 32px;
+						font-weight: bold;
 					}
-					.text-wrap {
-						margin-top: 12px;
-						font-size: 28px;
-						text-align: center;
-						.link {
-							margin-top: 6px;
-							display: inline-block;
-							padding: 4px 14px;
-							border-radius: 6px;
-							color: #ffffff;
-							background: #2481c5;
-							.icon {
-								display: inline-block;
-								width: 26px;
-								height: 21px;
-								background: url('../img/icon-toupiao.png') center center no-repeat;
-								background-size: cover;
-							}
-						}
+					.content {
+						margin-top: 10px;
 					}
 				}
 			}
@@ -157,6 +184,7 @@
 			padding: 40px 20px 0;
 			border: 1px solid #dddddd;
 			border-top: none;
+			border-bottom: none;
 			background: #ffffff;
 			box-sizing: border-box;
 			.title {
@@ -167,49 +195,125 @@
 				color: #2481c5;
 				border-bottom: 1px solid #2481c5;
 			}
-			.list-wrap {
-				margin-top: 30px;
+			.bd-wrap {
 				width: 100%;
-				.list {
-					float: left;
-					width: 180px;
-					margin-left: 64px;
-					margin-bottom: 40px;
-					&:nth-child(5n+1) {
-						margin-left: 0
-					}
+				.info-wrap {
+					float: left; // width: 100%;
+					margin-top: 30px;
 					.avatar-wrap {
-						width: 180px;
+						float: left;
+						width: 200px;
 						font-size: 0;
 						.avatar {
-							width: 180px;
-							height: 267px;
+							width: 200px;
+							height: 296px;
 						}
 					}
 					.text-wrap {
-						margin-top: 12px;
+						position: relative;
+						float: left;
+						width: 460px;
+						height: 296px;
+						margin-left: 30px;
 						font-size: 16px;
-						text-align: center;
-						.link {
-							margin-top: 6px;
-							display: inline-block;
-							padding: 4px 14px;
-							border-radius: 6px;
+						.name,
+						.work,
+						.honor {
+							line-height: 2;
+						}
+						.ticket-wrap {
+							position: absolute;
+							bottom: 6px;
 							color: #ffffff;
-							background: #2481c5;
-							.icon {
-								vertical-align: middle;
+							.ticket-num {
 								display: inline-block;
-								width: 26px;
-								height: 21px;
-								background: url('../img/icon-toupiao.png') center center no-repeat;
-								background-size: cover;
+								height: 40px;
+								line-height: 40px;
+								padding: 2px 16px;
+								border-radius: 4px;
+								background: #2481c5;
 							}
-							.text {
-								vertical-align: middle;
-								font-size: 15px;
+							.ticket-handler {
+								display: none;
+								margin-left: 30px;
+								height: 60px;
+								line-height: 60px;
+								border-radius: 4px;
+								padding: 6px 24px 6px 70px;
+								background: url('../img/icon-toupiao.png') left 24px center no-repeat #2481c5;
+								background-size: auto 32px;
 							}
 						}
+					}
+				}
+				.m-qrcode {
+					// display: none;
+					float: right;
+					margin-top: 70px;
+					margin-right: 210px;
+					font-size: 0;
+					.qrcode {
+						width: 160px;
+						height: 160px;
+					}
+					.tips {
+						margin-top: 20px;
+						text-align: center;
+						font-size: 15px;
+						color: #000;
+					}
+				}
+			}
+		}
+		.g-bdc {
+			width: 1200px;
+			margin: 0 auto;
+			padding: 40px 20px;
+			border: 1px solid #dddddd;
+			border-top: none;
+			background: #ffffff;
+			box-sizing: border-box;
+			.title {
+				width: 100%;
+				height: 45px;
+				line-height: 45px;
+				font-size: 18px;
+				color: #2481c5;
+				border-bottom: 1px solid #2481c5;
+			}
+			.bd-wrap {
+				width: 100%;
+				.video-wrap {
+					float: left;
+					position: relative;
+					width: 350px;
+					height: 197px;
+					margin-top: 30px;
+					.play-btn {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						width: 60px;
+						height: 60px;
+						background: url('../img/icon-video-play.png') center center no-repeat;
+						background-size: cover;
+						cursor: pointer;
+					}
+				}
+				.text-wrap {
+					float: left;
+					width: 500px;
+					margin-top: 30px;
+					margin-left: 30px;
+					.name {
+						font-size: 20px;
+						font-weight: bold;
+					}
+					.content {
+						margin-top: 10px;
+						font-size: 14px;
+						line-height: 2;
 					}
 				}
 			}
