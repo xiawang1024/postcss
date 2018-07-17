@@ -71,14 +71,35 @@
 					dataType: 'json',
 					data: {
 						title: data.title,
-						ref: window.location.href,
+						ref: 'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' + data.id,
 						openId: userInfo.openid,
 						mobile: '',
 						userId: '',
 						id: data.id
 					},
 					success: function(data) {
-						weui.toast('投票成功！');
+						if (data.status == 'ok') {
+							//投票信息
+							$.ajax({
+								type: 'post',
+								url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshow',
+								data: {
+									id: weChat.getQueryString('id')
+								},
+								dataType: 'json',
+								success: function(data) {
+									$('.g-bd .ticket-num').html('票数：' + data.data + '');
+								},
+								error: function(err) {
+									console.log(err);
+								}
+							});
+							voteLoading.hide();
+							weui.toast('投票成功！');
+						} else {
+							voteLoading.hide();
+							weui.toast('投票失败！今日投票次数用完，明日再投！');
+						}
 					}
 				});
 			});
