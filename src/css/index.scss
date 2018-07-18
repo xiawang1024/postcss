@@ -13,6 +13,14 @@
 			height: 80px;
 			background: url('../img/icon-logo-wap.png') center center no-repeat;
 			background-size: auto 60px;
+			.back {
+				position: absolute;
+				display: inline-block;
+				width: 100px;
+				height: 80px;
+				background: url('../img/icon-back.png') center center no-repeat;
+				background-size: auto 50px;
+			}
 		}
 		.g-banner {
 			width: 100%;
@@ -97,8 +105,7 @@
 			.bd-wrap {
 				.video-wrap {
 					position: relative;
-					width: 690px;
-					// height: 389px;
+					width: 690px; // height: 389px;
 					margin-top: 30px;
 					.play-btn {
 						display: none;
@@ -182,6 +189,9 @@
 				height: 46px;
 				margin: 0 auto;
 				background: url('../img/icon-logo-pc.png') left center no-repeat;
+			}
+			.back {
+				display: none;
 			}
 		}
 		.g-banner {
@@ -298,8 +308,7 @@
 				.video-wrap {
 					float: left;
 					position: relative;
-					width: 350px;
-					// height: 197px;
+					width: 350px; // height: 197px;
 					margin-top: 30px;
 					.play-btn {
 						display: none;

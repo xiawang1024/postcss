@@ -34,6 +34,7 @@
 			url: 'https://a.weixin.hndt.com/boom/api/token/access/redirect2',
 			data: { code: code, cate: 'wx5f789dea59c6c2c5' },
 			dataType: 'json',
+			timeout: 5000,
 			success: function(data) {
 				console.log(data);
 				if (data.status == 'ok') {
@@ -58,6 +59,7 @@
 		type: 'GET',
 		url: url,
 		dataType: 'json',
+		timeout: 5000,
 		success: function(data) {
 			toHtml(data);
 			//视频播放
@@ -75,6 +77,7 @@
 					type: 'POST',
 					url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteadd',
 					dataType: 'json',
+					timeout: 5000,
 					data: {
 						title: data.title,
 						ref: 'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' + data.id,
@@ -104,8 +107,13 @@
 							weui.toast('投票成功！');
 						} else {
 							voteLoading.hide();
-							weui.toast('投票失败！今日投票次数用完，明日再投！');
+							weui.alert('投票失败！今日投票次数用完，明日再投！');
 						}
+					},
+					error: function(err) {
+						console.log(err);
+						loading.hide();
+						weui.alert('网络错误！');
 					}
 				});
 			});
@@ -117,6 +125,8 @@
 		},
 		error: function(err) {
 			console.log(err);
+			loading.hide();
+			weui.alert('网络错误！');
 		}
 	});
 
