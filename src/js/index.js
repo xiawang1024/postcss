@@ -45,10 +45,10 @@
 		});
 	}
 
-	//填充列表
+	// 填充列表
 	$.ajax({
 		type: 'GET',
-		url: 'https://api.hndt.com/api/page?template_id=356&channel_id=1441',
+		url: 'https://a.weixin.hndt.com/h5/2018dianshang/data/index.json',
 		dataType: 'json',
 		success: function(data) {
 			$.ajax({
@@ -58,9 +58,9 @@
 				success: function(voteList) {
 					var newList = resetList(data, voteList);
 					listToHtml(newList);
+					loading.hide();
 				}
 			});
-			loading.hide();
 		},
 		error: function(err) {
 			console.log(err);
@@ -125,7 +125,7 @@
 				item.title +
 				'</h3>' +
 				'                    <div class="ticket-wrap">' +
-				'                        <span class="ticket-num">票数：' +
+				'                        <span class="ticket-num">票数:' +
 				item.vote +
 				'</span>' +
 				'                    </div>' +
