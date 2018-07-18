@@ -1,5 +1,5 @@
 // wap端 css
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
 	@import './wap/index.scss';
 	#video-pc {
 		display: none;
@@ -98,7 +98,7 @@
 				.video-wrap {
 					position: relative;
 					width: 690px;
-					height: 389px;
+					// height: 389px;
 					margin-top: 30px;
 					.play-btn {
 						display: none;
@@ -160,7 +160,7 @@
 }
 
 // pc端 css
-@media screen and (min-width:769px) {
+@media screen and (min-width: 769px) {
 	@import './pc/index.scss';
 	#video {
 		display: none;
@@ -294,7 +294,7 @@
 					float: left;
 					position: relative;
 					width: 350px;
-					height: 197px;
+					// height: 197px;
 					margin-top: 30px;
 					.play-btn {
 						display: none;
