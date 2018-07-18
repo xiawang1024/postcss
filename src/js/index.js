@@ -135,6 +135,10 @@
 		$('.g-bd .name').html(data.title);
 		$('.video').attr('src', data.video);
 		$('.g-bdc .content').html(data.body);
+		setTimeout(function() {
+			$('.content strong').css('color', '#2481c5');
+			$('.content strong').eq(0).css('color', '#000');
+		}, 20);
 	}
 
 	//投票信息
