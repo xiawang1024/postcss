@@ -55,9 +55,14 @@
 				type: 'GET',
 				url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshowlist',
 				dataType: 'json',
+				timeout: 5000,
 				success: function(voteList) {
 					var newList = resetList(data, voteList);
 					listToHtml(newList);
+					loading.hide();
+				},
+				error: function(err) {
+					weui.alert('网络错误！');
 					loading.hide();
 				}
 			});
@@ -65,7 +70,7 @@
 		error: function(err) {
 			console.log(err);
 			loading.hide();
-			weui.alert('网络错误');
+			weui.alert('网络错误！');
 		}
 	});
 	function resetList(list, voteList) {
@@ -116,9 +121,11 @@
 			html +=
 				'<li class="list">' +
 				'                <div class="avatar-wrap">' +
-				'                    <img src="' +
+				'                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
+				item.id +
+				'"><img src="' +
 				item.icon +
-				'" alt="" class="avatar">' +
+				'" alt="" class="avatar"></a>' +
 				'                </div>' +
 				'                <div class="text-wrap">' +
 				'                    <h3 class="name">' +
