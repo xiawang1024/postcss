@@ -51,16 +51,68 @@
 		url: 'https://api.hndt.com/api/page?template_id=356&channel_id=1441',
 		dataType: 'json',
 		success: function(data) {
-			listToHtml(data);
+			$.ajax({
+				type: 'GET',
+				url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshowlist',
+				dataType: 'json',
+				success: function(voteList) {
+					var newList = resetList(data, voteList);
+					listToHtml(newList);
+				}
+			});
 			loading.hide();
+		},
+		error: function(err) {
+			console.log(err);
+			loading.hide();
+			weui.alert('网络错误');
 		}
 	});
+	function resetList(list, voteList) {
+		var len = list.length;
+
+		for (key in voteList) {
+			for (var i = 0; i < len; i++) {
+				var item = list[i];
+				// console.log(item.id, key);
+				// console.log(item.id == key);
+				if (item.id == key) {
+					item.vote = voteList[key];
+					break;
+				} else {
+					item.vote = 0;
+				}
+			}
+		}
+		// console.log(list);
+		return list;
+	}
 	function listToHtml(list) {
 		var listWrap = $('.g-bd .list-wrap');
 		var len = list.length;
 		var html = '';
 		for (var i = 0; i < len; i++) {
 			var item = list[i];
+			// html +=
+			// 	'<li class="list">' +
+			// 	'                <div class="avatar-wrap">' +
+			// 	'                    <img src="' +
+			// 	item.icon +
+			// 	'" alt="" class="avatar">' +
+			// 	'                </div>' +
+			// 	'                <div class="text-wrap">' +
+			// 	'                    <h3 class="name">' +
+			// 	item.title +
+			// 	'</h3>' +
+			// 	'                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
+			// 	item.id +
+			// 	'" class="link">' +
+			// 	'                        <span class="icon"></span>' +
+			// 	'                        <span class="text">投票</span>' +
+			// 	'                    </a>' +
+			// 	'                </div>' +
+			// 	'            </li>';
+
 			html +=
 				'<li class="list">' +
 				'                <div class="avatar-wrap">' +
@@ -72,6 +124,11 @@
 				'                    <h3 class="name">' +
 				item.title +
 				'</h3>' +
+				'                    <div class="ticket-wrap">' +
+				'                        <span class="ticket-num">票数：' +
+				item.vote +
+				'</span>' +
+				'                    </div>' +
 				'                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
 				item.id +
 				'" class="link">' +

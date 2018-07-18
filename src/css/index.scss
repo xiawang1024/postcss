@@ -73,8 +73,18 @@
 						.name {
 							height: 132px;
 						}
+						.ticket-wrap {
+							margin-top: 10px;
+							.ticket-num {
+								display: inline-block;
+								padding: 4px 14px;
+								border-radius: 6px;
+								color: #ffffff;
+								background: #2481c5;
+							}
+						}
 						.link {
-							margin-top: 6px;
+							margin-top: 20px;
 							display: inline-block;
 							padding: 4px 14px;
 							border-radius: 6px;
@@ -215,10 +225,20 @@
 						.name {
 							height: 50px;
 						}
+						.ticket-wrap {
+							margin-top: 10px;
+							.ticket-num {
+								display: inline-block;
+								padding: 4px 16px;
+								border-radius: 6px;
+								color: #ffffff;
+								background: #2481c5;
+							}
+						}
 						.link {
-							margin-top: 6px;
+							margin-top: 10px;
 							display: inline-block;
-							padding: 4px 14px;
+							padding: 4px 16px;
 							border-radius: 6px;
 							color: #ffffff;
 							background: #2481c5;
