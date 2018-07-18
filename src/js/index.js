@@ -107,7 +107,7 @@
 							weui.toast('投票成功！');
 						} else {
 							voteLoading.hide();
-							weui.alert('投票失败！今日投票次数用完，明日再投！');
+							weui.alert('今日投票次数用完，明日再投！');
 						}
 					},
 					error: function(err) {

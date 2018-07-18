@@ -82,6 +82,9 @@
 								background: url('../img/icon-toupiao.png') left 24px center no-repeat #2481c5;
 								background-size: auto 32px;
 							}
+							.back {
+								display: none;
+							}
 						}
 					}
 				}
@@ -264,6 +267,16 @@
 								padding: 6px 24px 6px 70px;
 								background: url('../img/icon-toupiao.png') left 24px center no-repeat #2481c5;
 								background-size: auto 32px;
+							}
+							.back {
+								display: inline-block;
+								margin-left: 30px;
+								height: 40px;
+								line-height: 40px;
+								border-radius: 4px;
+								padding: 2px 16px;
+								color: #ffffff;
+								background: #2481c5;
 							}
 						}
 					}
