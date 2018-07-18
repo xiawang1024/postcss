@@ -139,9 +139,23 @@
 				}
 			}
 		}
+		.g-qrcode {
+			width: 100%;
+			margin-top: 50px;
+			.qrcode-wrap {
+				width: 100%;
+				display: flex;
+				font-size: 0;
+				justify-content: space-around;
+				.qrcode {
+					width: 200px;
+					height: 200px
+				}
+			}
+		}
 		.g-download {
 			width: 100%;
-			margin-top: 40px;
+			margin-top: 80px;
 			text-align: center;
 			.down {
 				display: inline-block;
@@ -360,6 +374,21 @@
 		.g-download,
 		.g-ft {
 			display: none;
+		}
+		.g-qrcode {
+			width: 100%;
+			margin-top: 50px;
+			.qrcode-wrap {
+				width: 500px;
+				margin: 0 auto;
+				font-size: 0;
+				.qrcode {
+					width: 160px;
+					&.second {
+						margin-left: 180px;
+					}
+				}
+			}
 		}
 		.g-ft-pc {
 			width: 100%;
