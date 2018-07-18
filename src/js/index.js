@@ -84,8 +84,6 @@
 				if (item.id == key) {
 					item.vote = voteList[key];
 					break;
-				} else {
-					item.vote = 0;
 				}
 			}
 		}
