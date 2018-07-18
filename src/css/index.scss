@@ -120,6 +120,11 @@
 					}
 					.content {
 						margin-top: 10px;
+						line-height: 2;
+						video,
+						img {
+							display: none;
+						}
 					}
 				}
 			}
@@ -322,6 +327,10 @@
 						margin-top: 10px;
 						font-size: 14px;
 						line-height: 2;
+						video,
+						img {
+							display: none;
+						}
 					}
 				}
 			}

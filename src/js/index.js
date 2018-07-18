@@ -52,9 +52,11 @@
 	}
 
 	//个人信息
+	// var url = 'https://api.hndt.com/api/page?template_id=357&article_id=' + weChat.getQueryString('id');
+	var url = 'https://a.weixin.hndt.com/h5/2018dianshang/data/' + weChat.getQueryString('id') + '.json';
 	$.ajax({
 		type: 'GET',
-		url: 'https://api.hndt.com/api/page?template_id=357&article_id=' + weChat.getQueryString('id'),
+		url: url,
 		dataType: 'json',
 		success: function(data) {
 			toHtml(data);
