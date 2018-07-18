@@ -135,6 +135,13 @@
 						img {
 							display: none;
 						}
+						strong {
+							color: #2481c5;
+							font-weight: bold;
+						}
+						strong:first-child {
+							color: #000;
+						}
 					}
 				}
 			}
@@ -366,6 +373,13 @@
 						video,
 						img {
 							display: none;
+						}
+						strong {
+							color: #2481c5;
+							font-weight: bold;
+						}
+						strong:first-child {
+							color: #000;
 						}
 					}
 				}
