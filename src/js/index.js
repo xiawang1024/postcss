@@ -21,11 +21,13 @@
 		});
 	}
 
-	var weChatCode = weChat.getQueryString('code');
-	if (weChatCode) {
-		getOpenId(weChatCode, function(data) {
-			console.log(data);
-		});
+	if (weChat.isWeiXin()) {
+		var weChatCode = weChat.getQueryString('code');
+		if (weChatCode) {
+			getOpenId(weChatCode, function(data) {
+				console.log(data);
+			});
+		}
 	}
 	function getOpenId(code, cb) {
 		// if (!weChat.getStorage('WXHNDTOPENID')) {
@@ -135,7 +137,9 @@
 		$('.g-bd .avatar').attr('src', data.icon);
 		$('.g-bd .name').html(data.title);
 		$('.video').attr('src', data.video);
-		$('.g-bdc .content').html(data.body);
+		var body = data.body.replace(/src/g, 'data');
+		$('.g-bdc .content').html(body);
+		// $('.g-bdc .content').html(data.body);
 		setTimeout(function() {
 			$('.content strong').css('color', '#2481c5');
 			$('.content strong').eq(0).css('color', '#000');
