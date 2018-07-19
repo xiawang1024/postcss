@@ -57,6 +57,9 @@
 				dataType: 'json',
 				timeout: 5000,
 				success: function(voteList) {
+					for (var i = 0; i < data.length; i++) {
+						data[i].vote = 0;
+					}
 					var newList = resetList(data, voteList);
 					listToHtml(newList);
 					loading.hide();
