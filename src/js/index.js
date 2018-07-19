@@ -107,6 +107,7 @@
 							weui.toast('投票成功！');
 						} else {
 							voteLoading.hide();
+							// weui.alert('投票于7月19日09时30分正式开启！');
 							weui.alert('今日投票次数用完，明日再投！');
 						}
 					},
