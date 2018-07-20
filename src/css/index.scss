@@ -154,9 +154,16 @@
 				display: flex;
 				font-size: 0;
 				justify-content: space-around;
-				.qrcode {
-					width: 200px;
-					height: 200px;
+				.qrcode-box {
+					width: 220px;
+					text-align: center;
+					.qrcode {
+						width: 200px;
+						height: 200px
+					}
+					.desc {
+						font-size: 20px;
+					}
 				}
 			}
 		}
@@ -395,10 +402,19 @@
 				width: 500px;
 				margin: 0 auto;
 				font-size: 0;
-				.qrcode {
+				.qrcode-box {
+					display: inline-block;
 					width: 160px;
 					&.second {
 						margin-left: 180px;
+					}
+					.qrcode {
+						width: 160px;
+					}
+					.desc {
+						margin-top: 8px;
+						text-align: center;
+						font-size: 14px;
 					}
 				}
 			}
