@@ -65,7 +65,6 @@
 		success: function(data) {
 			toHtml(data);
 			//视频播放
-			loading.hide();
 
 			//投票
 			$('#vote-btn').click(function() {
@@ -115,7 +114,7 @@
 					},
 					error: function(err) {
 						console.log(err);
-						loading.hide();
+						voteLoading.hide();
 						weui.alert('网络错误！');
 					}
 				});
@@ -154,11 +153,15 @@
 			id: weChat.getQueryString('id')
 		},
 		dataType: 'json',
+		timeout: 10000,
 		success: function(data) {
+			loading.hide();
 			$('.g-bd .ticket-num').html('票数：' + data.data + '');
 		},
 		error: function(err) {
 			console.log(err);
+			loading.hide();
+			weui.alert('网络错误！');
 		}
 	});
 })();
