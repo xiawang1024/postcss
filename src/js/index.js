@@ -84,6 +84,7 @@
 						ref: 'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' + data.id,
 						openId: userInfo.openid,
 						mobile: '',
+						code: weChat.getQueryString('code'),
 						userId: '',
 						id: data.id
 					},
