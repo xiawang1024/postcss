@@ -42,7 +42,7 @@
             weChat_Redirect: '#wechat_redirect'
         }
         if (!weChat.getQueryString('code')) {
-            window.location = weChat.redirectUrl()
+            // window.location = weChat.redirectUrl()
         }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
@@ -60,8 +60,8 @@
 
 <body>
     <div class="g-hd">
-        <h1 class="m-title"></h1>
-        <span class="icon-rule" id="icon-rule"></span>
+        <h1 class="m-title" style="display:none"></h1>
+        <span class="icon-rule" id="icon-rule" style="display:none"></span>
     </div>
     <div class="g-bd">
         <div class="m-info">

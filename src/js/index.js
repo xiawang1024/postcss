@@ -45,7 +45,7 @@
 	//都市KTV 参数
 	var GET_MSG_LIST_TIME = 50000;
 	var VOTE_REFRESH_TIME = 5000;
-	var HU_DONG_ID = 1000;
+	var HU_DONG_ID = 2000;
 
 	//弹幕系统
 
@@ -185,6 +185,7 @@
 				setTimeout(function() {
 					loading.hide();
 				}, 20);
+				weiShare(data.previewTitle, data.description);
 				selectBattle(data, function(isBattleIng) {
 					console.log(ingActiveInfo);
 					voteHandler();
@@ -198,7 +199,29 @@
 			}
 		});
 	}
-
+	function weiShare(title, desc) {
+		var LINK = 'http://mp.weixin.hnrtvcloud.com/h5/index.html';
+		var IMG_URL = 'http://mp.weixin.hnrtvcloud.com/img/logo.png';
+		we.ready(function() {
+			wx.onMenuShareTimeline({
+				title: title,
+				link: LINK,
+				imgUrl: IMG_URL,
+				success: function() {},
+				cancel: function() {}
+			});
+			wx.onMenuShareAppMessage({
+				title: title,
+				desc: desc,
+				link: LINK,
+				imgUrl: IMG_URL,
+				type: '',
+				dataUrl: '',
+				success: function() {},
+				cancel: function() {}
+			});
+		});
+	}
 	function selectBattle(data, cb) {
 		var battleList = data.battleSessionList;
 		var ingBattle = battleList.filter(function(item, index) {
