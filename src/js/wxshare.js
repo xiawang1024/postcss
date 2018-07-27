@@ -5,7 +5,7 @@ window.onload = function() {
 	var DESC = '都市KTV';
 
 	//微信配置
-	var href = window.location.href;
+	var href = 'http://mp.weixin.hnrtvcloud.com/h5/index.html';
 	$.post('https://a.weixin.hndt.com/at/sign', { url: href }, function(data) {
 		wx.config({
 			debug: false,

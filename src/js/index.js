@@ -174,7 +174,29 @@
 	// 	getActiveInfo(false);
 	// }, 5000);
 	var ingActiveInfo = {};
-
+	function weiShare(title, desc) {
+		var LINK = 'http://mp.weixin.hnrtvcloud.com/h5/index.html';
+		var IMG_URL = 'http://mp.weixin.hnrtvcloud.com/img/logo.png';
+		wx.ready(function() {
+			wx.onMenuShareTimeline({
+				title: title,
+				link: LINK,
+				imgUrl: IMG_URL,
+				success: function() {},
+				cancel: function() {}
+			});
+			wx.onMenuShareAppMessage({
+				title: title,
+				desc: desc,
+				link: LINK,
+				imgUrl: IMG_URL,
+				type: '',
+				dataUrl: '',
+				success: function() {},
+				cancel: function() {}
+			});
+		});
+	}
 	function getActiveInfo(onlyVote) {
 		$.ajax({
 			type: 'get',
@@ -199,29 +221,7 @@
 			}
 		});
 	}
-	function weiShare(title, desc) {
-		var LINK = 'http://mp.weixin.hnrtvcloud.com/h5/index.html';
-		var IMG_URL = 'http://mp.weixin.hnrtvcloud.com/img/logo.png';
-		we.ready(function() {
-			wx.onMenuShareTimeline({
-				title: title,
-				link: LINK,
-				imgUrl: IMG_URL,
-				success: function() {},
-				cancel: function() {}
-			});
-			wx.onMenuShareAppMessage({
-				title: title,
-				desc: desc,
-				link: LINK,
-				imgUrl: IMG_URL,
-				type: '',
-				dataUrl: '',
-				success: function() {},
-				cancel: function() {}
-			});
-		});
-	}
+
 	function selectBattle(data, cb) {
 		var battleList = data.battleSessionList;
 		var ingBattle = battleList.filter(function(item, index) {
