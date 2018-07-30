@@ -137,12 +137,6 @@
 				item.vote +
 				'</span>' +
 				'                    </div>' +
-				'                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
-				item.id +
-				'" class="link">' +
-				'                        <span class="icon"></span>' +
-				'                        <span class="text">投票</span>' +
-				'                    </a>' +
 				'                </div>' +
 				'            </li>';
 		}
