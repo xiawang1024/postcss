@@ -207,7 +207,7 @@
 				setTimeout(function() {
 					loading.hide();
 				}, 20);
-				// weiShare(data.previewTitle, data.description);
+				weiShare(data.previewTitle, data.description);
 				selectBattle(data, function(isBattleIng) {
 					console.log(ingActiveInfo);
 					voteHandler();
