@@ -42,7 +42,7 @@
             weChat_Redirect: '#wechat_redirect'
         }
         if (!weChat.getQueryString('code')) {
-            window.location = weChat.redirectUrl()
+            // window.location = weChat.redirectUrl()
         }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
@@ -59,9 +59,8 @@
 </head>
 
 <body>
-    <div class="g-hd">
-        <h1 class="m-title" style="display:none"></h1>
-        <span class="icon-rule" id="icon-rule" style="display:none"></span>
+    <div class="g-top">
+        <img src="./img/icon-top.png" alt="" class="img">
     </div>
     <div class="g-bd">
         <div class="m-info">
@@ -88,35 +87,8 @@
                 <span class="u-btn" data-order='1'></span>
             </div>
         </div>
-        <div class="m-progress">
-            <div class="m-percent">
-                <div class="u-owner-percent">0%</div>
-                <div class="u-challenge-percent">0%</div>
-            </div>
-            <div class="m-progress-wrap">
-                <div class="u-owner"></div>
-                <div class="u-challenge"></div>
-                <div class="icon-percent"></div>
-            </div>
-        </div>
-        <div class="m-refresh">
-            <span class="u-tips">下一位挑战者是谁？</span>
-            <button class="u-btn" id="refresh-btn">刷新！</button>
-        </div>
     </div>
-    <div class="g-line"></div>
-    <div class="g-ft">
-        <div class="m-barrage" id="barrage">
 
-        </div>
-        <div class="m-send">
-            <input type="text" class="u-ipt" id="sendMsg" placeholder="请输入评论内容">
-            <button class="u-btn" id="sendBtn">发送</button>
-        </div>
-    </div>
-    <div class="g-copyright">
-        河南广播云提供技术支持
-    </div>
     <script src="./js/app.js"></script>
     <script>
         var _hmt = _hmt || [];
