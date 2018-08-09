@@ -3,6 +3,11 @@ html {
 	background: #1d0033;
 }
 
+html,
+body {
+	overflow: hidden;
+}
+
 body {
 	position: absolute;
 	top: 0; // bottom: 0;
@@ -18,12 +23,12 @@ body {
 		font-size: 0;
 		text-align: center;
 		.img {
-			width: 707px;
+			width: 650px;
 		}
 	}
 	.g-bd {
-		position: absolute;
-		bottom: 160px;
+		// position: absolute;
+		// bottom: 160px;
 		width: 100%;
 		padding: 0 20px;
 		box-sizing: border-box;
