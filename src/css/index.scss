@@ -25,6 +25,12 @@ body {
 		.img {
 			width: 650px;
 		}
+		.desc {
+			position: relative;
+			margin-top: -70px;
+			font-size: 40px;
+			color: #ffffff;
+		}
 	}
 	.g-bd {
 		// position: absolute;
@@ -155,7 +161,7 @@ body {
 		}
 	}
 	.g-tips {
-		margin-top: 60px;
+		margin-top: 80px;
 		text-align: center;
 		font-size: 36px;
 		color: #ffffff;
