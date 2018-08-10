@@ -99,7 +99,7 @@ gulp.task('wx-js', () => {
 				`${baseDir}/js/zepto.js`,
 				`${baseDir}/js/fastclick.js`,
 				// `${baseDir}/js/barrage.js`,
-				`${baseDir}/js/danmu.js`,
+				`${baseDir}/js/tick.js`,
 				`${baseDir}/js/weui.js`,
 				`${baseDir}/js/jweixin.js`,
 				`${baseDir}/js/wxshare.js`,

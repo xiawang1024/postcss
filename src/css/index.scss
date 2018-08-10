@@ -154,6 +154,25 @@ body {
 			}
 		}
 	}
+	.g-tips {
+		margin-top: 60px;
+		text-align: center;
+		font-size: 36px;
+		color: #ffffff;
+		.tick {
+			margin-top: 40px;
+			font-size: 50px;
+		}
+	}
+	.g-time {
+		position: absolute;
+		bottom: 50px;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		font-size: 28px;
+		color: #fff;
+	}
 	.g-line {
 		width: 710px;
 		height: 10px;
