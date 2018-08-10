@@ -18,7 +18,7 @@
 	getActiveInfo(false);
 
 	function weiShare(title, desc) {
-		var LINK = 'http://mp.weixin.hnrtvcloud.com/h5/index.html';
+		var LINK = 'http://mp.weixin.hnrtvcloud.com/h5/notice/index.html';
 		var IMG_URL = 'http://mp.weixin.hnrtvcloud.com/img/logo.png';
 		wx.ready(function() {
 			wx.onMenuShareTimeline({
@@ -106,10 +106,11 @@
 				Tick(endTimeStamp);
 			} else {
 				console.log('隐藏倒计时');
+				$('#tips').hide();
 			}
 		} else {
 			console.log('隐藏倒计时');
-
+			$('#tips').hide();
 			return;
 		}
 	}
@@ -140,9 +141,9 @@
 				//计时器 timeout 回调
 				console.log('start');
 				$('#tips').html('活动正在进行，为您跳转中...');
-				setTimeout(function() {
-					window.location.href = 'http://mp.weixin.hnrtvcloud.com/h5/index.html';
-				}, 500);
+				// setTimeout(function() {
+				// 	window.location.href = 'http://mp.weixin.hnrtvcloud.com/h5/index.html';
+				// }, 1500);
 			}
 		});
 	}
@@ -150,5 +151,5 @@
 	/**
 	* 倒计时初始化
 	*/
-	init(5, '19:59:30', 1);
+	init(5, '00:50:00', 1);
 })();
