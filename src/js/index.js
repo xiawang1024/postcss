@@ -207,6 +207,15 @@
 				setTimeout(function() {
 					loading.hide();
 				}, 20);
+				if (data.status == 0) {
+					console.log('进行中');
+				} else {
+					console.log('结束');
+					weui.alert('本期已结束，谢谢关注！');
+					setTimeout(function() {
+						window.location.href = 'http://mp.weixin.hnrtvcloud.com/h5/notice/index.html';
+					}, 1000);
+				}
 				weiShare(data.previewTitle, data.description);
 				selectBattle(data, function(isBattleIng) {
 					console.log(ingActiveInfo);
