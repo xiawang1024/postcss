@@ -236,6 +236,9 @@
 		var ingBattle = battleList.filter(function(item, index) {
 			return item.voteStatus === 0;
 		});
+		var processBattle = battleList.filter(function(item, index) {
+			return item.processing === 1;
+		});
 		ingActiveInfo.id = data.id;
 		$('.g-hd .m-title').html(data.previewTitle);
 		if (ingBattle && ingBattle.length > 0) {
@@ -245,9 +248,11 @@
 			ingActiveInfo.firstManNo = ingBattle[0].firstManNo;
 			ingActiveInfo.secondManNo = ingBattle[0].secondManNo;
 		} else {
-			insertHtml(battleList[0]);
-			votePercent(battleList[0]);
-			ingActiveInfo.sid = battleList[0].id;
+			insertHtml(processBattle[0]);
+			votePercent(processBattle[0]);
+			ingActiveInfo.sid = processBattle[0].id;
+			ingActiveInfo.firstManNo = processBattle[0].firstManNo;
+			ingActiveInfo.secondManNo = processBattle[0].secondManNo;
 		}
 		var isBattleIng = !!(ingBattle && ingBattle.length > 0);
 		console.log(ingActiveInfo);
