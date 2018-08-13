@@ -31,12 +31,12 @@
 				if (data.status == 'ok') {
 					weChat.setStorage('WXHNDTOPENID', JSON.stringify(data.data));
 				} else {
-					window.location = weChat.redirectUrl();
+					window.location.href = weChat.redirectUrl();
 				}
 			},
 			error: function(err) {
 				console.log(err);
-				window.location = weChat.redirectUrl();
+				window.location.href = weChat.redirectUrl();
 			}
 		});
 		// }
