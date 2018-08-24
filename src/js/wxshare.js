@@ -2,7 +2,7 @@ window.onload = function() {
 	//微信配置
 	var href = window.location.href;
 	// alert(location.href.split('#')[0])
-	$.post('https://a.weixin.hndt.com/at/sign', { url: href }, function(data) {
+	$.post('http://a.weixin.hndt.com/boom/at/sign', { url: href }, function(data) {
 		wx.config({
 			debug: false,
 			appId: data.appId,
