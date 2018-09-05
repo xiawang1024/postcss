@@ -83,27 +83,44 @@
 		var content = $('#sendMsg').val().trim();
 		$('#sendMsg').val('');
 		//真实提交
-		var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+		// var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+		// $.ajax({
+		// 	type: 'get',
+		// 	url: 'http://a.weixin.hndt.com/user/find/openid?openid=' + userInfo.openid,
+		// 	dataType: 'json',
+		// 	success: function(data) {
+		// 		if (data.status == 1) {
+		// 			$.ajax({
+		// 				type: 'post',
+		// 				url: 'http://talk.hndt.com/test/upRadio.do',
+		// 				data: {
+		// 					page: 0,
+		// 					cid: HU_DONG_ID,
+		// 					creater: '游客',
+		// 					fromUid: 0,
+		// 					content: content
+		// 				}
+		// 			});
+		// 		} else {
+		// 			console.log('get userinfo failed');
+		// 		}
+		// 	},
+		// 	error: function(err) {
+		// 		console.log(err);
+		// 	}
+		// });
 		$.ajax({
-			type: 'get',
-			url: 'http://a.weixin.hndt.com/user/find/openid?openid=' + userInfo.openid,
-			dataType: 'json',
+			type: 'post',
+			url: 'http://talk.hndt.com/test/upRadio.do',
+			data: {
+				page: 0,
+				cid: HU_DONG_ID,
+				creater: '游客',
+				fromUid: 0,
+				content: content
+			},
 			success: function(data) {
-				if (data.status == 1) {
-					$.ajax({
-						type: 'post',
-						url: 'http://talk.hndt.com/test/upRadio.do',
-						data: {
-							page: 0,
-							cid: HU_DONG_ID,
-							creater: data.data.name,
-							fromUid: data.data.id,
-							content: content
-						}
-					});
-				} else {
-					console.log('get userinfo failed');
-				}
+				console.log('success');
 			},
 			error: function(err) {
 				console.log(err);
