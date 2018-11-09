@@ -1,328 +1,334 @@
 // wap端 css
-@media screen and (max-width:768px) {
-	@import './wap/index.scss';
-	body {
-		width: 750px;
-		margin: 0 auto;
-		.g-hd {
-			position: relative;
-			width: 100%;
-			height: 80px;
-			background: url('../img/icon-logo-wap.png') center center no-repeat;
-			background-size: auto 60px;
-		}
-		.g-banner {
-			width: 100%;
-			height: 400px;
-			background: url('../img/icon-banner-wap.png') center center no-repeat;
-			background-size: cover;
-		}
-		.g-m {
-			width: 100%;
-			padding: 30px;
-			box-sizing: border-box;
-			.title {
-				margin-bottom: 20px;
-				width: 100%;
-				height: 60px;
-				line-height: 60px;
-				font-size: 32px;
-				color: #2481c5;
-				border-bottom: 1px solid #2481c5;
-			}
-			.m-bd {
-				font-size: 28px;
-				line-height: 1.8;
-			}
-		}
-		.g-bd {
-			width: 100%;
-			padding: 30px;
-			box-sizing: border-box;
-			.title {
-				width: 100%;
-				height: 60px;
-				line-height: 60px;
-				font-size: 32px;
-				color: #2481c5;
-				border-bottom: 1px solid #2481c5;
-			}
-			.list-wrap {
-				margin-top: 30px;
-				width: 100%;
-				.list {
-					float: left;
-					width: 200px;
-					margin-left: 45px;
-					margin-bottom: 100px;
-					&:nth-child(3n+1) {
-						margin-left: 0
-					}
-					.avatar-wrap {
-						width: 200px;
-						font-size: 0;
-						.avatar {
-							width: 200px;
-							height: 296px;
-						}
-					}
-					.text-wrap {
-						margin-top: 12px;
-						font-size: 28px;
-						text-align: center;
-						.name {
-							height: 132px;
-						}
-						.ticket-wrap {
-							margin-top: 10px;
-							.ticket-num {
-								display: inline-block;
-								padding: 4px 8px;
-								border-radius: 6px;
-								color: #ffffff;
-								background: #2481c5;
-							}
-						}
-						.link {
-							margin-top: 20px;
-							display: inline-block;
-							padding: 4px 14px;
-							border-radius: 6px;
-							color: #ffffff;
-							background: #2481c5;
-							.icon {
-								display: inline-block;
-								width: 26px;
-								height: 21px;
-								background: url('../img/icon-toupiao.png') center center no-repeat;
-								background-size: cover;
-							}
-						}
-					}
-				}
-			}
-		}
-		.g-download {
-			width: 100%;
-			margin-top: 80px;
-			text-align: center;
-			.down {
-				display: inline-block;
-				padding: 20px 60px 20px 100px;
-				font-size: 28px;
-				color: #fff;
-				border-radius: 100px;
-				background: url('../img/icon-phone.png') left 60px center no-repeat #0081dc;
-				background-size: auto 40px;
-			}
-			.desc {
-				margin-top: 20px;
-				font-size: 24px;
-			}
-		}
-		.g-ft {
-			width: 100%;
-			margin-top: 40px;
-			padding: 28px 0;
-			@include tp-1px(#eee);
-			text-align: center;
-			font-size: 27px;
-			.m-copyright {
-				margin-top: 20px;
-			}
-		}
-		.g-qrcode {
-			width: 100%;
-			margin-top: 50px;
-			.qrcode-wrap {
-				width: 100%;
-				display: flex;
-				font-size: 0;
-				justify-content: space-around;
-				.qrcode-box {
-					width: 220px;
-					text-align: center;
-					.qrcode {
-						width: 200px;
-						height: 200px
-					}
-					.desc {
-						font-size: 20px;
-					}
-				}
-			}
-		}
-		.g-ft-pc {
-			display: none;
-		}
-	}
+@media screen and (max-width: 768px) {
+  @import './wap/index.scss';
+  body {
+    width: 750px;
+    margin: 0 auto;
+    .g-hd {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      background: url('../img/icon-logo-wap.png') center center no-repeat;
+      background-size: auto 60px;
+    }
+    .g-banner {
+      width: 100%;
+      height: 400px;
+      background: url('../img/icon-banner-wap.png') center center no-repeat;
+      background-size: cover;
+    }
+    .g-m {
+      width: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+      .title {
+        margin-bottom: 20px;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 32px;
+        color: #2481c5;
+        border-bottom: 1px solid #2481c5;
+      }
+      .m-bd {
+        font-size: 28px;
+        line-height: 1.8;
+      }
+    }
+    .g-bd {
+      width: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+      .title {
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 32px;
+        color: #2481c5;
+        border-bottom: 1px solid #2481c5;
+      }
+      .list-wrap {
+        margin-top: 30px;
+        width: 100%;
+        .list {
+          float: left;
+          width: 200px;
+          margin-left: 45px;
+          margin-bottom: 100px;
+          &:nth-child(3n + 1) {
+            margin-left: 0;
+          }
+          .avatar-wrap {
+            width: 200px;
+            font-size: 0;
+            .avatar {
+              width: 200px;
+              height: 296px;
+            }
+          }
+          .text-wrap {
+            margin-top: 12px;
+            font-size: 28px;
+            text-align: center;
+            .name {
+              height: 132px;
+            }
+            .ticket-wrap {
+              margin-top: 10px;
+              .ticket-num {
+                display: inline-block;
+                padding: 4px 8px;
+                border-radius: 6px;
+                color: #ffffff;
+                background: #2481c5;
+              }
+            }
+            .link {
+              margin-top: 20px;
+              display: inline-block;
+              padding: 4px 14px;
+              border-radius: 6px;
+              color: #ffffff;
+              background: #2481c5;
+              .icon {
+                display: inline-block;
+                width: 26px;
+                height: 21px;
+                background: url('../img/icon-toupiao.png') center center
+                  no-repeat;
+                background-size: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+    .g-download {
+      width: 100%;
+      margin-top: 80px;
+      text-align: center;
+      .down {
+        display: inline-block;
+        padding: 20px 60px 20px 100px;
+        font-size: 28px;
+        color: #fff;
+        border-radius: 100px;
+        background: url('../img/icon-phone.png') left 60px center no-repeat
+          #0081dc;
+        background-size: auto 40px;
+      }
+      .desc {
+        margin-top: 20px;
+        font-size: 24px;
+      }
+    }
+    .g-ft {
+      width: 100%;
+      margin-top: 40px;
+      padding: 28px 0;
+      @include tp-1px(#eee);
+      text-align: center;
+      font-size: 27px;
+      .m-copyright {
+        margin-top: 20px;
+      }
+    }
+    .g-qrcode {
+      width: 100%;
+      margin-top: 50px;
+      .qrcode-wrap {
+        width: 100%;
+        display: flex;
+        font-size: 0;
+        justify-content: space-around;
+        .qrcode-box {
+          width: 220px;
+          text-align: center;
+          .qrcode {
+            width: 200px;
+            height: 200px;
+          }
+          .desc {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .g-ft-pc {
+      display: none;
+    }
+  }
 }
 
 // pc端 css
-@media screen and (min-width:769px) {
-	@import './pc/index.scss';
-	body.ignore {
-		width: 100%;
-		background: #f3f3f3;
-		.g-hd {
-			width: 100%;
-			height: 46px;
-			.link {
-				display: block;
-				width: 1200px;
-				height: 46px;
-				margin: 0 auto;
-				background: url('../img/icon-logo-pc.png') left center no-repeat;
-			}
-		}
-		.g-banner {
-			width: 100%;
-			height: 602px;
-			background: url('../img/icon-banner-pc.png') center center no-repeat;
-			background-size: cover;
-		}
-		.g-m {
-			width: 1200px;
-			margin: 0 auto;
-			padding: 40px 20px 0;
-			border: 1px solid #dddddd;
-			border-top: none;
-			border-bottom: none;
-			background: #ffffff;
-			box-sizing: border-box;
-			.title {
-				margin-bottom: 10px;
-				width: 100%;
-				height: 45px;
-				line-height: 45px;
-				font-size: 18px;
-				color: #2481c5;
-				border-bottom: 1px solid #2481c5;
-			}
-			.m-bd {
-				font-size: 16px;
-				line-height: 2;
-			}
-		}
-		.g-bd {
-			width: 1200px;
-			margin: 0 auto;
-			padding: 40px 20px 0;
-			border: 1px solid #dddddd;
-			border-top: none;
-			background: #ffffff;
-			box-sizing: border-box;
-			.title {
-				width: 100%;
-				height: 45px;
-				line-height: 45px;
-				font-size: 18px;
-				color: #2481c5;
-				border-bottom: 1px solid #2481c5;
-			}
-			.list-wrap {
-				margin-top: 30px;
-				width: 100%;
-				.list {
-					float: left;
-					width: 180px;
-					margin-left: 64px;
-					margin-bottom: 60px;
-					&:nth-child(5n+1) {
-						margin-left: 0
-					}
-					.avatar-wrap {
-						width: 180px;
-						font-size: 0;
-						.avatar {
-							width: 180px;
-							height: 267px;
-						}
-					}
-					.text-wrap {
-						margin-top: 12px;
-						font-size: 16px;
-						text-align: center;
-						.name {
-							height: 50px;
-						}
-						.ticket-wrap {
-							margin-top: 10px;
-							.ticket-num {
-								display: inline-block;
-								padding: 4px 16px;
-								border-radius: 6px;
-								color: #ffffff;
-								background: #2481c5;
-							}
-						}
-						.link {
-							margin-top: 10px;
-							display: inline-block;
-							padding: 4px 16px;
-							border-radius: 6px;
-							color: #ffffff;
-							background: #2481c5;
-							.icon {
-								vertical-align: middle;
-								display: inline-block;
-								width: 26px;
-								height: 21px;
-								background: url('../img/icon-toupiao.png') center center no-repeat;
-								background-size: cover;
-							}
-							.text {
-								vertical-align: middle;
-								font-size: 15px;
-							}
-						}
-					}
-				}
-			}
-		}
-		.g-download,
-		.g-ft {
-			display: none;
-		}
-		.g-qrcode {
-			width: 100%;
-			margin-top: 50px;
-			.qrcode-wrap {
-				width: 500px;
-				margin: 0 auto;
-				font-size: 0;
-				.qrcode-box {
-					display: inline-block;
-					width: 160px;
-					&.second {
-						margin-left: 180px;
-					}
-					.qrcode {
-						width: 160px;
-					}
-					.desc {
-						margin-top: 8px;
-						text-align: center;
-						font-size: 14px;
-					}
-				}
-			}
-		}
-		.g-ft-pc {
-			width: 100%;
-			margin-top: 50px;
-			height: 115px;
-			text-align: center;
-			font-size: 13px;
-			color: #666;
-			overflow: hidden;
-			background: #f5f5f5;
-			.para {
-				line-height: 2;
-				&:first-child {
-					margin-top: 30px;
-				}
-			}
-		}
-	}
+@media screen and (min-width: 769px) {
+  @import './pc/index.scss';
+  body.ignore {
+    width: 100%;
+    .g-hd {
+      width: 100%;
+      height: 46px;
+      .link {
+        display: block;
+        width: 1200px;
+        height: 46px;
+        margin: 0 auto;
+        background: url('../img/icon-logo-pc.png') left center no-repeat;
+      }
+    }
+    .g-banner {
+      margin: 0 auto;
+      max-width: 1920px;
+      height: 908px;
+      background: url('../img/icon-banner-pc.png') center center no-repeat;
+      background-size: cover;
+    }
+    .g-m {
+      width: 1200px;
+      margin: 40px auto 0;
+      background: #ffffff;
+      box-sizing: border-box;
+      .title {
+        margin-bottom: 10px;
+        width: 100%;
+        height: 80px;
+        font-size: 18px;
+      }
+      &.first {
+        .title {
+          background: url('../img/icon-jieshao.png') center center no-repeat;
+          background-size: auto 80px;
+        }
+        .m-bd {
+          margin-top: 40px;
+          width: 100%;
+          font-size: 29px;
+          line-height: 1.8;
+          text-indent: 2em;
+          color: #000;
+          padding: 60px 96px;
+          border: 1px solid #ddd;
+          background: #ffede6;
+          box-sizing: border-box;
+        }
+      }
+    }
+    .g-bd {
+      width: 1200px;
+      margin: 40px auto 0;
+      background: #ffffff;
+      box-sizing: border-box;
+      .title {
+        width: 100%;
+        height: 80px;
+        background: url('../img/icon-toupiao.png') center center no-repeat;
+        background-size: auto 80px;
+      }
+      .list-wrap {
+        margin-top: 40px;
+        width: 100%;
+        border: 1px solid #ddd;
+        padding: 80px 41px;
+        background: #ffede6;
+        box-sizing: border-box;
+        .list {
+          float: left;
+          width: 190px;
+          margin-left: 41px;
+          margin-bottom: 60px;
+          &:nth-child(5n + 1) {
+            margin-left: 0;
+          }
+          .avatar-wrap {
+            width: 190px;
+            font-size: 0;
+            .avatar {
+              width: 190px;
+              height: 260px;
+            }
+          }
+          .text-wrap {
+            margin-top: 12px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 500;
+            .ticket-wrap {
+              .ticket-num {
+                display: inline-block;
+                padding: 4px 16px;
+              }
+            }
+            .link {
+              display: inline-block;
+              width: 190px;
+              height: 40px;
+              line-height: 40px;
+              margin-top: 10px;
+              border-radius: 6px;
+              color: #ffffff;
+              background: #b40500;
+              .icon {
+                vertical-align: middle;
+                display: inline-block;
+                display: none;
+                width: 26px;
+                height: 21px;
+                background: url('../img/icon-toupiao.png') center center
+                  no-repeat;
+                background-size: cover;
+              }
+              .text {
+                // vertical-align: middle;
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .g-download,
+    .g-ft {
+      display: none;
+    }
+    .g-qrcode {
+      width: 100%;
+      margin-top: 50px;
+      .qrcode-wrap {
+        width: 500px;
+        margin: 0 auto;
+        font-size: 0;
+        .qrcode-box {
+          display: inline-block;
+          width: 160px;
+          &.second {
+            margin-left: 180px;
+          }
+          .qrcode {
+            width: 160px;
+          }
+          .desc {
+            margin-top: 8px;
+            text-align: center;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .g-ft-pc {
+      width: 100%;
+      margin-top: 50px;
+      height: 115px;
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      overflow: hidden;
+      background: #f5f5f5;
+      .para {
+        line-height: 2;
+        &:first-child {
+          margin-top: 30px;
+        }
+      }
+    }
+  }
 }

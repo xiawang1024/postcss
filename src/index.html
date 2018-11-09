@@ -1,192 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script>
-        var weChat = {
-            getQueryString: function (name) {
-                var url = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                var newUrl = window.location.search.substr(1).match(url);
-                if (newUrl != null) {
-                    return unescape(newUrl[2]);
-                } else {
-                    return false;
-                }
-            },
-            redirectUrl: function () {
-                return weChatConf.baseUrl + "appid=" + weChatConf.appId + "&redirect_uri=" +
-                    encodeURIComponent(weChatConf.redirect_uri) + "&response_type=" +
-                    weChatConf.response_type + "&scope=" + weChatConf.scope + "&state=" +
-                    weChatConf.state + weChatConf.weChat_Redirect
-            },
-            getOpenId: function (code) {
-
-            },
-            getStorage: function (name) {
-                return localStorage.getItem(name)
-            },
-            setStorage: function (name, value) {
-                return localStorage.setItem(name, value)
-            },
-            isPhone: function () {
-                return (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))
-            },
-            isWeiXin: function () {
-                var ua = navigator.userAgent.toLowerCase();
-                return ua.match(/MicroMessenger/i) == "micromessenger";
-            }
+      var weChat = {
+        getQueryString: function(name) {
+          var url = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+          var newUrl = window.location.search.substr(1).match(url)
+          if (newUrl != null) {
+            return unescape(newUrl[2])
+          } else {
+            return false
+          }
+        },
+        redirectUrl: function() {
+          return (
+            weChatConf.baseUrl +
+            'appid=' +
+            weChatConf.appId +
+            '&redirect_uri=' +
+            encodeURIComponent(weChatConf.redirect_uri) +
+            '&response_type=' +
+            weChatConf.response_type +
+            '&scope=' +
+            weChatConf.scope +
+            '&state=' +
+            weChatConf.state +
+            weChatConf.weChat_Redirect
+          )
+        },
+        getOpenId: function(code) {},
+        getStorage: function(name) {
+          return localStorage.getItem(name)
+        },
+        setStorage: function(name, value) {
+          return localStorage.setItem(name, value)
+        },
+        isPhone: function() {
+          return /Android|webOS|iPhone|iPod|BlackBerry/i.test(
+            navigator.userAgent
+          )
+        },
+        isWeiXin: function() {
+          var ua = navigator.userAgent.toLowerCase()
+          return ua.match(/MicroMessenger/i) == 'micromessenger'
         }
-        var weChatConf = {
-            baseUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?",
-            appId: 'wx5f789dea59c6c2c5',
-            redirect_uri: 'https://a.weixin.hndt.com/h5/2018dianshang/index.html',
-            response_type: 'code',
-            scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
-            state: Date.parse(new Date()),
-            weChat_Redirect: '#wechat_redirect'
-        }
-        // if (weChat.isWeiXin()) {
-        //     if (!weChat.getQueryString('code')) {
-        //         window.location = weChat.redirectUrl()
-        //     }
-        // }
+      }
+      var weChatConf = {
+        baseUrl: 'https://open.weixin.qq.com/connect/oauth2/authorize?',
+        appId: 'wx5f789dea59c6c2c5',
+        redirect_uri: 'https://a.weixin.hndt.com/h5/2018dianshang/index.html',
+        response_type: 'code',
+        scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
+        state: Date.parse(new Date()),
+        weChat_Redirect: '#wechat_redirect'
+      }
+      // if (weChat.isWeiXin()) {
+      //     if (!weChat.getQueryString('code')) {
+      //         window.location = weChat.redirectUrl()
+      //     }
+      // }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
-        window.onload = function () {
-            window.viewportUnitsBuggyfill.init({
-                hacks: window.viewportUnitsBuggyfillHacks
-            });
-        }
+      window.onload = function() {
+        window.viewportUnitsBuggyfill.init({
+          hacks: window.viewportUnitsBuggyfillHacks
+        })
+      }
     </script>
-    <link rel="stylesheet" href="./css/app.css">
-    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <title>郑州电子商务领军人物评选</title>
-    <link rel="shortcut icon" href="https://a.weixin.hndt.com/boom/favicon.ico" type="image/x-icon">
-</head>
+    <link rel="stylesheet" href="./css/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
+    />
+    <title>2018感动中原十大年度任务宣传推介活动</title>
+    <link
+      rel="shortcut icon"
+      href="https://a.weixin.hndt.com/boom/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
 
-<body class="ignore">
-    <div class="g-hd">
-        <a href="http://www.hndt.com" class="link">
-        </a>
-    </div>
+  <body class="ignore">
+    <div class="g-hd"><a href="http://www.hndt.com" class="link"> </a></div>
     <div class="g-banner"></div>
-    <!-- <div aspectratio w-16-9 class="img">
-        <img aspectratio-content src="./img/banner.png" alt="">
-    </div> -->
-    <div class="g-m">
-        <h2 class="title">活动简介</h2>
-        <p class="m-bd">
-            为树立电商行业榜样，激励更多电商从业者为郑州电商发展做贡献，中国（郑州）跨境电子商务综合试验区郑州市建设工作领导小组办公室、郑州市商务局、郑州市互联网信息办公室、河南省通信管理局郑州市通信发展管理办公室、河南广播电视台教育广播联合主办，面向电商行业开展“郑州电子商务领军人物”评选，以这些领军人物为标杆，引领郑州电商行业发展方向，推动郑州电商行业转型升级，推进郑州跨境电商综试区建设。
-        </p>
-    </div>
-    <div class="g-m">
-        <h2 class="title">投票规则</h2>
-        <p class="m-bd">
-            投票目的：推选10名“郑州电子商务领军人物”
-        </p>
-        <p class="m-bd">
-            投票时间：7月19日9:30——7月31日18:00
-        </p>
-        <p class="m-bd">
-            投票范围：初评入围的30名“郑州电子商务领军人物”候选人
-        </p>
-        <p class="m-bd">
-            投票平台： 河南广播网（www.hndt.com）， 郑州电商服务平台（zzdsfwpt）微信公众号， Up radio1066微信公众号
-        </p>
-        <p class="m-bd">
-            投票方法：
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;1. 网站投票：
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录河南广播网（www.hndt.com）首页，点击“郑州电子商务领军人物评选”专题页面，微信扫码后即可参与投票。
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;2. 微信投票：
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方式一：关注郑州电商服务平台（zzdsfwpt）微信公众号，点击右下角“示范体系”菜单，选择“领军人物”栏目，在打开的页面中即可参与投票。
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方式二：关注Up radio1066微信公众号，点击右下角“领军人物”菜单，在打开的页面中即可参与投票。
-        </p>
-        <p class="m-bd" style="color:red">
-            注意：每个微信号每天只可以投票3次。
-        </p>
-    </div>
-    <div class="g-m">
-        <h2 class="title">注意事项</h2>
-        <p class="m-bd">
-            1. 投票结果将作为评选工作领导小组最终推选十大领军人物的参考依据之一。
-        </p>
-        <p class="m-bd">2. 严禁使用商业手段或通过其他不正当途径进行拉票、投票的作弊行为，一经发现，将取消相关人选的票数。</p>
-        <p class="m-bd">3. 本活动最终解释权归评选工作领导小组所有。</p>
+
+    <div class="g-m first">
+      <h2 class="title "></h2>
+      <p class="m-bd">
+        2018“感动中原”十大年度人物宣传推介活动由河南省委宣传部指导，河南广播电视台和河南日报报业集团联合主办，河南广播电视台都市频道具体承办，河南广播电视台、河南日报报业集团所属媒体等共同协办，是弘扬河南人精神的重要人文品牌活动。从2005年开始，“感动中原”宣传推介活动已经成功举办了13届，推选出了王锋、王宽、陇海大院、胡佩兰、王百姓等130余位先进典型人物和群体，充分展示了河南人的良好形象和精神风貌，传播了河南正能量，凝聚起了让中原更加出彩的强大精神力量。
+      </p>
     </div>
     <div class="g-bd">
-        <h2 class="title">参加人员</h2>
-        <ul class="list-wrap clearfix">
-            <!-- <li class="list">
-                <div class="avatar-wrap">
-                    <a href="">
-                        <img src="http://www.hndt.com/zt/entre/res/wap/img/dahui.jpg" alt="" class="avatar">
-                    </a>
-                    
-                </div>
-                <div class="text-wrap">
-                    <h3 class="name">姓名：叶良辰</h3>
-                    <div class="ticket-wrap">
-                        <span class="ticket-num">票数：200</span>
-
-                    </div>
-                    <a href="" class="link">
-                        <span class="icon"></span>
-                        <span class="text">投票</span>
-                    </a>
-
-                </div>
-            </li> -->
-
-        </ul>
-    </div>
-    <div class="g-qrcode">
-        <div class="qrcode-wrap">
-            <div class="qrcode-box">
-                <img src="./img/icon-qrcode-1.jpg" alt="" class="qrcode">
-                <p class="desc">郑州电商服务平台</p>
+      <h2 class="title"></h2>
+      <ul class="list-wrap clearfix">
+        <li class="list">
+          <div class="avatar-wrap">
+            <a href="">
+              <img
+                src="http://www.hndt.com/zt/entre/res/wap/img/dahui.jpg"
+                alt=""
+                class="avatar"
+              />
+            </a>
+          </div>
+          <div class="text-wrap">
+            <h3 class="name">姓名：叶良辰</h3>
+            <div class="ticket-wrap">
+              <span class="ticket-num">票数：200</span>
             </div>
-            <div class="qrcode-box second">
-                <img src="./img/icon-qrcode-2.jpg" alt="" class="qrcode ">
-                <p class="desc">Up radio1066</p>
+            <a href="" class="link">
+              <span class="icon"></span> <span class="text">点击投票</span>
+            </a>
+          </div>
+        </li>
+        <li class="list">
+          <div class="avatar-wrap">
+            <a href="">
+              <img
+                src="http://www.hndt.com/zt/entre/res/wap/img/dahui.jpg"
+                alt=""
+                class="avatar"
+              />
+            </a>
+          </div>
+          <div class="text-wrap">
+            <h3 class="name">姓名：叶良辰</h3>
+            <div class="ticket-wrap">
+              <span class="ticket-num">票数：200</span>
             </div>
-        </div>
+            <a href="" class="link">
+              <span class="icon"></span> <span class="text">投票</span>
+            </a>
+          </div>
+        </li>
+        <li class="list">
+          <div class="avatar-wrap">
+            <a href="">
+              <img
+                src="http://www.hndt.com/zt/entre/res/wap/img/dahui.jpg"
+                alt=""
+                class="avatar"
+              />
+            </a>
+          </div>
+          <div class="text-wrap">
+            <h3 class="name">姓名：叶良辰</h3>
+            <div class="ticket-wrap">
+              <span class="ticket-num">票数：200</span>
+            </div>
+            <a href="" class="link">
+              <span class="icon"></span> <span class="text">投票</span>
+            </a>
+          </div>
+        </li>
+        <li class="list">
+          <div class="avatar-wrap">
+            <a href="">
+              <img
+                src="http://www.hndt.com/zt/entre/res/wap/img/dahui.jpg"
+                alt=""
+                class="avatar"
+              />
+            </a>
+          </div>
+          <div class="text-wrap">
+            <h3 class="name">姓名：叶良辰</h3>
+            <div class="ticket-wrap">
+              <span class="ticket-num">票数：200</span>
+            </div>
+            <a href="" class="link">
+              <span class="icon"></span> <span class="text">投票</span>
+            </a>
+          </div>
+        </li>
+        <li class="list">
+          <div class="avatar-wrap">
+            <a href="">
+              <img
+                src="http://www.hndt.com/zt/entre/res/wap/img/dahui.jpg"
+                alt=""
+                class="avatar"
+              />
+            </a>
+          </div>
+          <div class="text-wrap">
+            <h3 class="name">姓名：叶良辰</h3>
+            <div class="ticket-wrap">
+              <span class="ticket-num">票数：200</span>
+            </div>
+            <a href="" class="link">
+              <span class="icon"></span> <span class="text">投票</span>
+            </a>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <div class="g-download">
-        <a href="http://www.hndt.com/app/download/index.html" class="down">下载河南广播APP</a>
-        <p class="desc">关注身边发生的事 河南人自己的APP</p>
+      <a href="http://www.hndt.com/app/download/index.html" class="down"
+        >下载河南广播APP</a
+      >
+      <p class="desc">关注身边发生的事 河南人自己的APP</p>
     </div>
 
     <div class="g-ft">
-        <div class="m-version">
-            <a href="http://www.hndt.com/index.mb.html">触摸版</a> |
-            <a href="http://www.hndt.com">电脑版</a> |
-            <a href="http://www.hndt.com/index.mb.html">APP版</a>
-        </div>
-        <div class="m-copyright">
-            手机河南广播网 ICP：豫ICP备14003020号
-        </div>
+      <div class="m-version">
+        <a href="http://www.hndt.com/index.mb.html">触摸版</a> |
+        <a href="http://www.hndt.com">电脑版</a> |
+        <a href="http://www.hndt.com/index.mb.html">APP版</a>
+      </div>
+      <div class="m-copyright">手机河南广播网 ICP：豫ICP备14003020号</div>
     </div>
 
     <div class="g-ft-pc">
-        <p class="para">Copyright © 2017 hndt Corporation,All Rights Reserved</p>
-        <p class="para">河南广播网 版权所有</p>
+      <p class="para">Copyright © 2017 hndt Corporation,All Rights Reserved</p>
+      <p class="para">河南广播网 版权所有</p>
     </div>
 
     <script src="./js/app.js"></script>
     <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?8d8b13e4dff379c880b2436c9ae60cc8";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
+      var _hmt = _hmt || []
+      ;(function() {
+        var hm = document.createElement('script')
+        hm.src = 'https://hm.baidu.com/hm.js?8d8b13e4dff379c880b2436c9ae60cc8'
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(hm, s)
+      })()
     </script>
-</body>
-
+  </body>
 </html>
