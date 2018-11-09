@@ -310,54 +310,60 @@
         padding: 80px 41px 0;
         background: #ffede6;
         box-sizing: border-box;
-        .list {
-          float: left;
-          width: 190px;
-          margin-left: 41px;
-          margin-bottom: 80px;
-          &:nth-child(5n+1) {
-            margin-left: 0;
-          }
-          .avatar-wrap {
+        .tips {
+          display: none;
+        }
+        .list-wrap-inner {
+          width: 100%;
+          .list {
+            float: left;
             width: 190px;
-            font-size: 0;
-            .avatar {
-              width: 190px;
-              height: 260px;
+            margin-left: 41px;
+            margin-bottom: 80px;
+            &:nth-child(5n+1) {
+              margin-left: 0;
             }
-          }
-          .text-wrap {
-            margin-top: 12px;
-            font-size: 18px;
-            text-align: center;
-            font-weight: 500;
-            .ticket-wrap {
-              .ticket-num {
-                display: inline-block;
-                padding: 4px 16px;
+            .avatar-wrap {
+              width: 190px;
+              font-size: 0;
+              .avatar {
+                width: 190px;
+                height: 260px;
               }
             }
-            .link {
-              display: inline-block;
-              width: 190px;
-              height: 40px;
-              line-height: 40px;
-              margin-top: 10px;
-              border-radius: 6px;
-              color: #ffffff;
-              background: #b40500;
-              .icon {
-                vertical-align: middle;
-                display: inline-block;
-                display: none;
-                width: 26px;
-                height: 21px;
-                background: url('../img/icon-toupiao.png') center center no-repeat;
-                background-size: cover;
+            .text-wrap {
+              margin-top: 12px;
+              font-size: 18px;
+              text-align: center;
+              font-weight: 500;
+              .ticket-wrap {
+                .ticket-num {
+                  display: inline-block;
+                  padding: 4px 16px;
+                }
               }
-              .text {
-                // vertical-align: middle;
-                font-size: 18px;
+              .link {
+                display: inline-block;
+                width: 190px;
+                height: 40px;
+                line-height: 40px;
+                margin-top: 10px;
+                border-radius: 6px;
+                color: #ffffff;
+                background: #b40500;
+                .icon {
+                  vertical-align: middle;
+                  display: inline-block;
+                  display: none;
+                  width: 26px;
+                  height: 21px;
+                  background: url('../img/icon-toupiao.png') center center no-repeat;
+                  background-size: cover;
+                }
+                .text {
+                  // vertical-align: middle;
+                  font-size: 18px;
+                }
               }
             }
           }
