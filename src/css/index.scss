@@ -93,7 +93,8 @@
             flex: 0 0 90px;
             color: #b91b18;
           }
-          .val {}
+          .val {
+          }
         }
         .list-wrap-inner {
           margin-top: 20px;
@@ -102,7 +103,7 @@
             width: 320px;
             margin-left: 26px;
             margin-bottom: 100px;
-            &:nth-child(2n+1) {
+            &:nth-child(2n + 1) {
               margin-left: 0;
             }
             .avatar-wrap {
@@ -141,7 +142,8 @@
                   display: none;
                   width: 26px;
                   height: 21px;
-                  background: url('../img/icon-toupiao.png') center center no-repeat;
+                  background: url('../img/icon-toupiao.png') center center
+                    no-repeat;
                   background-size: cover;
                 }
               }
@@ -160,7 +162,8 @@
         font-size: 28px;
         color: #fff;
         border-radius: 100px;
-        background: url('../img/icon-phone.png') left 60px center no-repeat #0081dc;
+        background: url('../img/icon-phone.png') left 60px center no-repeat
+          #0081dc;
         background-size: auto 40px;
       }
       .desc {
@@ -320,7 +323,7 @@
             width: 190px;
             margin-left: 41px;
             margin-bottom: 80px;
-            &:nth-child(5n+1) {
+            &:nth-child(5n + 1) {
               margin-left: 0;
             }
             .avatar-wrap {
@@ -357,7 +360,8 @@
                   display: none;
                   width: 26px;
                   height: 21px;
-                  background: url('../img/icon-toupiao.png') center center no-repeat;
+                  background: url('../img/icon-toupiao.png') center center
+                    no-repeat;
                   background-size: cover;
                 }
                 .text {
@@ -399,7 +403,7 @@
       }
     }
     .g-ft-pc {
-      width: 650px;
+      width: 928px;
       margin: 80px auto 40px;
       height: 115px;
       text-align: left;
