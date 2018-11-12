@@ -1,170 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script>
-        var weChat = {
-            getQueryString: function (name) {
-                var url = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                var newUrl = window.location.search.substr(1).match(url);
-                if (newUrl != null) {
-                    return unescape(newUrl[2]);
-                } else {
-                    return false;
-                }
-            },
-            redirectUrl: function () {
-                return weChatConf.baseUrl + "appid=" + weChatConf.appId + "&redirect_uri=" +
-                    encodeURIComponent(weChatConf.redirect_uri) + "&response_type=" +
-                    weChatConf.response_type + "&scope=" + weChatConf.scope + "&state=" +
-                    weChatConf.state + weChatConf.weChat_Redirect
-            },
-            getOpenId: function (code) {
-
-            },
-            getStorage: function (name) {
-                return localStorage.getItem(name)
-            },
-            setStorage: function (name, value) {
-                return localStorage.setItem(name, value)
-            },
-            isPhone: function () {
-                return (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))
-            },
-            isWeiXin: function () {
-                var ua = navigator.userAgent.toLowerCase();
-                return ua.match(/MicroMessenger/i) == "micromessenger";
-            }
+      var weChat = {
+        getQueryString: function(name) {
+          var url = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+          var newUrl = window.location.search.substr(1).match(url)
+          if (newUrl != null) {
+            return unescape(newUrl[2])
+          } else {
+            return false
+          }
+        },
+        redirectUrl: function() {
+          return (
+            weChatConf.baseUrl +
+            'appid=' +
+            weChatConf.appId +
+            '&redirect_uri=' +
+            encodeURIComponent(weChatConf.redirect_uri) +
+            '&response_type=' +
+            weChatConf.response_type +
+            '&scope=' +
+            weChatConf.scope +
+            '&state=' +
+            weChatConf.state +
+            weChatConf.weChat_Redirect
+          )
+        },
+        getOpenId: function(code) {},
+        getStorage: function(name) {
+          return localStorage.getItem(name)
+        },
+        setStorage: function(name, value) {
+          return localStorage.setItem(name, value)
+        },
+        isPhone: function() {
+          return /Android|webOS|iPhone|iPod|BlackBerry/i.test(
+            navigator.userAgent
+          )
+        },
+        isWeiXin: function() {
+          var ua = navigator.userAgent.toLowerCase()
+          return ua.match(/MicroMessenger/i) == 'micromessenger'
         }
-        var weChatConf = {
-            baseUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?",
-            appId: 'wx5f789dea59c6c2c5',
-            redirect_uri: 'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' + weChat.getQueryString(
-                'id'),
-            response_type: 'code',
-            scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
-            state: Date.parse(new Date()),
-            weChat_Redirect: '#wechat_redirect'
+      }
+      var weChatConf = {
+        baseUrl: 'https://open.weixin.qq.com/connect/oauth2/authorize?',
+        appId: 'wx5f789dea59c6c2c5',
+        redirect_uri:
+          'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
+          weChat.getQueryString('id'),
+        response_type: 'code',
+        scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
+        state: Date.parse(new Date()),
+        weChat_Redirect: '#wechat_redirect'
+      }
+      if (weChat.isWeiXin()) {
+        if (!weChat.getQueryString('code')) {
+          window.location = weChat.redirectUrl()
         }
-        if (weChat.isWeiXin()) {
-            if (!weChat.getQueryString('code')) {
-                window.location = weChat.redirectUrl()
-            }
-        }
+      }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
-        window.onload = function () {
-            window.viewportUnitsBuggyfill.init({
-                hacks: window.viewportUnitsBuggyfillHacks
-            });
-        }
+      window.onload = function() {
+        window.viewportUnitsBuggyfill.init({
+          hacks: window.viewportUnitsBuggyfillHacks
+        })
+      }
     </script>
-    <link rel="stylesheet" href="./css/app.css">
-    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
+    <link rel="stylesheet" href="./css/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
+    />
     <title>郑州电子商务领军人物评选</title>
-    <link rel="shortcut icon" href="https://a.weixin.hndt.com/boom/favicon.ico" type="image/x-icon">
-</head>
+    <link
+      rel="shortcut icon"
+      href="https://a.weixin.hndt.com/boom/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
 
-<body class="ignore">
-    <div class="g-hd">
-        <a href="http://www.hndt.com" class="link">
-        </a>
-        <a href="https://a.weixin.hndt.com/h5/2018dianshang/index.html" class="back"></a>
+  <body class="ignore">
+    <div class="g-hd" style="display:none">
+      <a href="http://www.hndt.com" class="link"> </a>
+      <a
+        href="https://a.weixin.hndt.com/h5/2018dianshang/index.html"
+        class="back"
+      ></a>
     </div>
     <div class="g-banner"></div>
-    <!-- <div aspectratio w-16-9 class="img">
-        <img aspectratio-content src="./img/banner.png" alt="">
-    </div> -->
 
     <div class="g-bd">
-        <h2 class="title">个人介绍</h2>
-        <div class="bd-wrap clearfix">
-            <div class="info-wrap clearfix">
-                <div class="avatar-wrap">
-                    <img src="" alt="" class="avatar">
-                </div>
-                <div class="text-wrap">
-                    <h3 class="name"></h3>
-                    <!-- <p class="work">所在单位：这是单位名称</p>
-                    <p class="honor">所获荣誉：这是荣誉介绍</p> -->
-                    <div class="ticket-wrap">
-                        <span class="ticket-num">票数：
-                            <span></span>
-                        </span>
-                        <!-- <span class="ticket-handler" id="vote-btn">投票</span> -->
-                        <a href="https://a.weixin.hndt.com/h5/2018dianshang/index.html" class="back">返回列表</a>
-                    </div>
-                </div>
+      <h2 class="title">个人介绍</h2>
+      <div class="bd-wrap clearfix">
+        <div class="info-wrap clearfix">
+          <div class="avatar-wrap"><img src="" alt="" class="avatar" /></div>
+          <div class="text-wrap">
+            <h3 class="name"></h3>
+            <!--
+              <p class="work">所在单位：这是单位名称</p>
+              <p class="honor">所获荣誉：这是荣誉介绍</p>
+            -->
+            <div class="ticket-wrap">
+              <span class="ticket-num">票数： <span></span> </span>
+              <!-- <span class="ticket-handler" id="vote-btn">投票</span> -->
+              <a
+                href="https://a.weixin.hndt.com/h5/2018dianshang/index.html"
+                class="back"
+                >返回列表</a
+              >
             </div>
-            <div class="m-qrcode">
-                <div class="qrcode" id="qrcode"></div>
-
-                <p class="tips">微信扫码为他投票</p>
-            </div>
+          </div>
         </div>
+        <div class="m-qrcode">
+          <div class="qrcode" id="qrcode"></div>
+
+          <p class="tips">微信扫码为他投票</p>
+        </div>
+      </div>
     </div>
 
     <div class="g-bdc">
-        <h2 class="title">个人事迹</h2>
-        <div class="bd-wrap clearfix">
-            <div class="video-wrap">
-                <video class="video" id="video" src="" width="100%" poster="./img/icon-banner-wap.png" playsinline="playsinline" webkit-playsinline="true"
-                    x5-playsinline="true" x5-video-player-fullscreen="false" controls></video>
-                <video src="" id="video-pc" class="video" width="100%" poster="./img/icon-banner-wap.png" controls></video>
-                <div class="play-btn" id="video-play"></div>
-            </div>
-
-            <div class="text-wrap">
-                <h3 class="name">个人事迹</h3>
-                <div class="content">
-                </div>
-            </div>
+      <h2 class="title">个人事迹</h2>
+      <div class="bd-wrap clearfix">
+        <div class="video-wrap">
+          <video
+            class="video"
+            id="video"
+            src=""
+            width="100%"
+            poster="./img/icon-banner-wap.png"
+            playsinline="playsinline"
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            x5-video-player-fullscreen="false"
+            controls
+          ></video>
+          <video
+            src=""
+            id="video-pc"
+            class="video"
+            width="100%"
+            poster="./img/icon-banner-wap.png"
+            controls
+          ></video>
+          <div class="play-btn" id="video-play"></div>
         </div>
+
+        <div class="text-wrap">
+          <h3 class="name">个人事迹</h3>
+          <div class="content"></div>
+        </div>
+      </div>
     </div>
     <div class="g-qrcode">
-        <div class="qrcode-wrap">
-            <div class="qrcode-box">
-                <img src="./img/icon-qrcode-1.jpg" alt="" class="qrcode">
-                <p class="desc">郑州电商服务平台</p>
-            </div>
-            <div class="qrcode-box second">
-                <img src="./img/icon-qrcode-2.jpg" alt="" class="qrcode ">
-                <p class="desc">Up radio1066</p>
-            </div>
+      <div class="qrcode-wrap">
+        <div class="qrcode-box">
+          <img src="./img/icon-qrcode-1.jpg" alt="" class="qrcode" />
+          <p class="desc">郑州电商服务平台</p>
         </div>
+        <div class="qrcode-box second">
+          <img src="./img/icon-qrcode-2.jpg" alt="" class="qrcode " />
+          <p class="desc">Up radio1066</p>
+        </div>
+      </div>
     </div>
     <div class="g-download">
-        <a href="http://www.hndt.com/app/download/index.html" class="down">下载河南广播APP</a>
-        <p class="desc">关注身边发生的事 河南人自己的APP</p>
+      <a href="http://www.hndt.com/app/download/index.html" class="down"
+        >下载河南广播APP</a
+      >
+      <p class="desc">关注身边发生的事 河南人自己的APP</p>
     </div>
     <div class="g-ft">
-        <div class="m-version">
-            <a href="http://www.hndt.com/index.mb.html">触摸版</a> |
-            <a href="http://www.hndt.com">电脑版</a> |
-            <a href="http://www.hndt.com/index.mb.html">APP版</a>
-        </div>
-        <div class="m-copyright">
-            手机河南广播网 ICP：豫ICP备14003020号
-        </div>
+      <div class="m-version">
+        <a href="http://www.hndt.com/index.mb.html">触摸版</a> |
+        <a href="http://www.hndt.com">电脑版</a> |
+        <a href="http://www.hndt.com/index.mb.html">APP版</a>
+      </div>
+      <div class="m-copyright">手机河南广播网 ICP：豫ICP备14003020号</div>
     </div>
     <div class="g-ft-pc">
-        <p class="para">Copyright © 2017 hndt Corporation,All Rights Reserved</p>
-        <p class="para">河南广播网 版权所有</p>
+      <p class="para">Copyright © 2017 hndt Corporation,All Rights Reserved</p>
+      <p class="para">河南广播网 版权所有</p>
     </div>
     <script src="./js/app.js"></script>
     <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?8d8b13e4dff379c880b2436c9ae60cc8";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
+      var _hmt = _hmt || []
+      ;(function() {
+        var hm = document.createElement('script')
+        hm.src = 'https://hm.baidu.com/hm.js?8d8b13e4dff379c880b2436c9ae60cc8'
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(hm, s)
+      })()
     </script>
-</body>
-
+  </body>
 </html>
