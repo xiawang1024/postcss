@@ -25,9 +25,9 @@
   function getOpenId(code, cb) {
     // if (!weChat.getStorage('WXHNDTOPENID')) {
     $.ajax({
-      type: 'GET',
-      url: 'https://a.weixin.hndt.com/boom/api/token/access/redirect2',
-      data: { code: code, cate: 'wx5f789dea59c6c2c5' },
+      type: 'POST',
+      url: 'https://a.weixin.hndt.com/boom/wx/access/subscribe',
+      data: { code: code, state: 'wx5f789dea59c6c2c5', subscribe: false },
       dataType: 'json',
       success: function(data) {
         console.log(data)
@@ -48,12 +48,12 @@
   // 填充列表
   $.ajax({
     type: 'GET',
-    url: 'https://a.weixin.hndt.com/h5/2018dianshang/data/index.json',
+    url: 'https://a.weixin.hndt.com/h5/gdzy/data/index.json',
     dataType: 'json',
     success: function(data) {
       $.ajax({
         type: 'GET',
-        url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshowlist',
+        url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/show?voteId=3',
         dataType: 'json',
         timeout: 5000,
         success: function(voteList) {
@@ -94,51 +94,59 @@
     return list
   }
   function listToHtml(list) {
-    var listWrap = $('.g-bd .list-wrap')
+    var listWrap = $('.g-bd .list-wrap .list-wrap-inner')
     var len = list.length
     var html = ''
     for (var i = 0; i < len; i++) {
       var item = list[i]
-      // html +=
-      // 	'<li class="list">' +
-      // 	'                <div class="avatar-wrap">' +
-      // 	'                    <img src="' +
-      // 	item.icon +
-      // 	'" alt="" class="avatar">' +
-      // 	'                </div>' +
-      // 	'                <div class="text-wrap">' +
-      // 	'                    <h3 class="name">' +
-      // 	item.title +
-      // 	'</h3>' +
-      // 	'                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
-      // 	item.id +
-      // 	'" class="link">' +
-      // 	'                        <span class="icon"></span>' +
-      // 	'                        <span class="text">投票</span>' +
-      // 	'                    </a>' +
-      // 	'                </div>' +
-      // 	'            </li>';
-
       html +=
-        '<li class="list">' +
-        '                <div class="avatar-wrap">' +
-        '                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
-        item.id +
-        '"><img src="' +
+        '<li class="list" >' +
+        '            <div class="avatar-wrap">' +
+        '              <a href="">' +
+        '                <img' +
+        '                  src="' +
         item.icon +
-        '" alt="" class="avatar"></a>' +
-        '                </div>' +
-        '                <div class="text-wrap">' +
-        '                    <h3 class="name">' +
+        '"' +
+        '                  alt=""' +
+        '                  class="avatar"' +
+        '                />' +
+        '              </a>' +
+        '            </div>' +
+        '            <div class="text-wrap">' +
+        '              <h3 class="name">姓名：' +
         item.title +
         '</h3>' +
-        '                    <div class="ticket-wrap">' +
-        '                        <span class="ticket-num">票数:' +
-        item.vote +
-        '</span>' +
-        '                    </div>' +
-        '                </div>' +
-        '            </li>'
+        '              <div class="ticket-wrap">' +
+        '                <span class="ticket-num">票数：200</span>' +
+        '              </div>' +
+        '              <button href="" class="link" data-id="' +
+        item.id +
+        '">' +
+        '                <span class="icon"></span> <span class="text">点击投票</span>' +
+        '              </button>' +
+        '            </div>' +
+        '          </li>'
+
+      // html +=
+      //   '<li class="list">' +
+      //   '                <div class="avatar-wrap">' +
+      //   '                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
+      //   item.id +
+      //   '"><img src="' +
+      //   item.icon +
+      //   '" alt="" class="avatar"></a>' +
+      //   '                </div>' +
+      //   '                <div class="text-wrap">' +
+      //   '                    <h3 class="name">' +
+      //   item.title +
+      //   '</h3>' +
+      //   '                    <div class="ticket-wrap">' +
+      //   '                        <span class="ticket-num">票数:' +
+      //   item.vote +
+      //   '</span>' +
+      //   '                    </div>' +
+      //   '                </div>' +
+      //   '            </li>'
     }
     listWrap.html(html)
   }
@@ -166,5 +174,76 @@
       },
       time
     )
+  })
+  //uuid生成
+  if (window.requestIdleCallback) {
+    requestIdleCallback(function() {
+      fingerHash()
+    })
+  } else {
+    setTimeout(function() {
+      fingerHash()
+    }, 500)
+  }
+  var uuid = null
+  function fingerHash() {
+    Fingerprint2.get(function(components) {
+      var murmur = Fingerprint2.x64hash128(
+        components
+          .map(function(pair) {
+            return pair.value
+          })
+          .join(),
+        31
+      )
+      uuid = murmur
+      console.log(murmur)
+    })
+  }
+
+  //投票
+  $(document).on('click', '.g-bd .list-wrap-inner .list .link', function() {
+    console.log($(this))
+    var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
+    console.log(userInfo)
+    if (!userInfo) {
+      weui.alert('请在微信端打开投票！')
+      return
+    }
+    var id = $(this).data('id')
+    console.log(id)
+    console.log(uuid)
+    var appId = 'wx5f789dea59c6c2c5',
+      voteId = 3
+    var openId = userInfo.openid
+
+    var subLoading = weui.loading('正在提交')
+    $.ajax({
+      type: 'POST',
+      url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
+      data: {
+        appId: appId,
+        openId: openId,
+        voteId: voteId,
+        id: id,
+        uuid: uuid
+      },
+      dataType: 'json',
+      success: function(data) {
+        console.log(data)
+        subLoading.hide()
+        if (data.status == 'ok') {
+          weui.alert('投票成功！')
+        } else if (data.status == 'warn') {
+          weui.alert('投票未开始！')
+        } else {
+          weui.alert('投票失败！')
+        }
+      },
+      error: function(err) {
+        console.log(err)
+        weui.alert('网络错误，请重新投票！')
+      }
+    })
   })
 })()
