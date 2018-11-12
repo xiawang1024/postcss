@@ -62,11 +62,14 @@
         state: Date.parse(new Date()),
         weChat_Redirect: '#wechat_redirect'
       }
-      if (weChat.isWeiXin()) {
-        if (!weChat.getQueryString('code')) {
-          window.location = weChat.redirectUrl()
+      var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
+      
+    
+    if (weChat.isWeiXin()) {
+        if(!userInfo) {
+            window.location = weChat.redirectUrl()
         }
-      }
+    }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
@@ -81,7 +84,7 @@
       rel="stylesheet"
       href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
     />
-    <title>郑州电子商务领军人物评选</title>
+    <title>2018感动中原十大年度任务宣传推介活动</title>
     <link
       rel="shortcut icon"
       href="https://a.weixin.hndt.com/boom/favicon.ico"
@@ -90,12 +93,12 @@
   </head>
 
   <body class="ignore">
-    <div class="g-hd" style="display:none">
-      <a href="http://www.hndt.com" class="link"> </a>
-      <a
-        href="https://a.weixin.hndt.com/h5/2018dianshang/index.html"
+    <div class="g-hd" >
+      <a href="http://www.hndt.com" style="display:none" class="link"> </a>
+      <a 
+        href="https://a.weixin.hndt.com/h5/gdzy/index.html"
         class="back"
-      ></a>
+      >返回</a>
     </div>
     <div class="g-banner"></div>
 
@@ -112,9 +115,9 @@
             -->
             <div class="ticket-wrap">
               <span class="ticket-num">票数： <span></span> </span>
-              <!-- <span class="ticket-handler" id="vote-btn">投票</span> -->
+               <span class="ticket-handler" id="vote-btn">投票</span> 
               <a
-                href="https://a.weixin.hndt.com/h5/2018dianshang/index.html"
+                href="https://a.weixin.hndt.com/h5/gdzy/index.html"
                 class="back"
                 >返回列表</a
               >
@@ -162,7 +165,7 @@
         </div>
       </div>
     </div>
-    <div class="g-qrcode">
+    <div class="g-qrcode" style="display:none">
       <div class="qrcode-wrap">
         <div class="qrcode-box">
           <img src="./img/icon-qrcode-1.jpg" alt="" class="qrcode" />
@@ -174,23 +177,31 @@
         </div>
       </div>
     </div>
-    <div class="g-download">
-      <a href="http://www.hndt.com/app/download/index.html" class="down"
-        >下载河南广播APP</a
+    <div class="g-download" style="display:none">
+      <a href="http://www.hndt.com/app/download/index.html" class="down"></a>
+        下载河南广播APP</a
       >
       <p class="desc">关注身边发生的事 河南人自己的APP</p>
     </div>
     <div class="g-ft">
-      <div class="m-version">
-        <a href="http://www.hndt.com/index.mb.html">触摸版</a> |
-        <a href="http://www.hndt.com">电脑版</a> |
-        <a href="http://www.hndt.com/index.mb.html">APP版</a>
+      <div class="qrcode-wrap">
+        <img src="./img/icon-qrcode.png" alt="" class="qrcode" />
+        <p class="tel">资讯电话：0371-6573 2233</p>
       </div>
-      <div class="m-copyright">手机河南广播网 ICP：豫ICP备14003020号</div>
+      <p class="para">
+        河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100
+        万粉丝）、9个微信公众号（300万粉丝）、头条号（150万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
+      </p>
     </div>
+
     <div class="g-ft-pc">
-      <p class="para">Copyright © 2017 hndt Corporation,All Rights Reserved</p>
-      <p class="para">河南广播网 版权所有</p>
+      <img class="qrcode" alt="" src="./img/icon-qrcode.png" />
+      <div class="para">
+        <p>
+          河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100万粉丝）、9个微信公众号（300万粉丝）、头条号（150万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
+        </p>
+        <p class="tel">资讯电话：0371-6573 2233</p>
+      </div>
     </div>
     <script src="./js/app.js"></script>
     <script>
