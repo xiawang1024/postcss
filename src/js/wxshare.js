@@ -1,10 +1,10 @@
 window.onload = function() {
-  var TITLE = '郑州电子商务领军人物评选'
+  var TITLE = '2018感动中原十大年度人物宣传推介活动'
   var LINK =
     'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
     weChat.getQueryString('id') //分享链接
-  var IMG_URL = 'https://a.weixin.hndt.com/h5/2018dianshang/img/icon-share.png'
-  var DESC = '郑州电子商务领军人物评选'
+  var IMG_URL = 'https://a.weixin.hndt.com/h5/gdzy/icon-share.png'
+  var DESC = '2018感动中原十大年度人物宣传推介活动'
   var url =
     'https://a.weixin.hndt.com/h5/2018dianshang/data/' +
     weChat.getQueryString('id') +

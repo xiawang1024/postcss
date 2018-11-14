@@ -82,16 +82,20 @@
 
   //个人信息
   // var url = 'https://api.hndt.com/api/page?template_id=357&article_id=' + weChat.getQueryString('id');
-  // var url = 'https://a.weixin.hndt.com/h5/2018dianshang/data/' + weChat.getQueryString('id') + '.json';
-  var url = 'http://192.168.9.41:3000/index.json'
+  var url =
+    'https://a.weixin.hndt.com/h5/2018dianshang/data/' +
+    weChat.getQueryString('id') +
+    '.json'
+  // var url = 'http://192.168.9.41:3000/index.json'
   $.ajax({
     type: 'GET',
     url: url,
     dataType: 'json',
     timeout: 5000,
     success: function(data) {
+      loading.hide()
       toHtml(data)
-      voteHandler(data)
+      voteHandler(data.id)
     }
   })
   //投票
@@ -174,22 +178,22 @@
   }
 
   //更新投票数
-  $.ajax({
-    type: 'post',
-    url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshow',
-    data: {
-      id: weChat.getQueryString('id')
-    },
-    dataType: 'json',
-    timeout: 10000,
-    success: function(data) {
-      loading.hide()
-      $('.g-bd .ticket-num').html('票数：' + data.data + '')
-    },
-    error: function(err) {
-      console.log(err)
-      loading.hide()
-      weui.alert('网络错误！')
-    }
-  })
+  // $.ajax({
+  //   type: 'post',
+  //   url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshow',
+  //   data: {
+  //     id: weChat.getQueryString('id')
+  //   },
+  //   dataType: 'json',
+  //   timeout: 10000,
+  //   success: function(data) {
+  //     loading.hide()
+  //     $('.g-bd .ticket-num').html('票数：' + data.data + '')
+  //   },
+  //   error: function(err) {
+  //     console.log(err)
+  //     loading.hide()
+  //     weui.alert('网络错误！')
+  //   }
+  // })
 })()
