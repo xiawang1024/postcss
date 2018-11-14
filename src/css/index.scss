@@ -13,8 +13,8 @@
     }
     .g-banner {
       width: 100%;
-      height: 400px;
-      background: url('../img/icon-banner-pc.png') center center no-repeat;
+      height: 545px;
+      background: url('../img/icon-banner-wap.png') center center no-repeat;
       background-size: cover;
     }
     .g-tab {
@@ -30,7 +30,8 @@
         font-size: 28px;
         font-weight: bold;
         .item {
-          color: #ffaf4e;
+          // color: #ffaf4e;
+          color: #fff;
           cursor: pointer;
           &:first-child {
             float: left;
@@ -93,8 +94,7 @@
             flex: 0 0 90px;
             color: #b91b18;
           }
-          .val {
-          }
+          .val {}
         }
         .list-wrap-inner {
           margin-top: 20px;
@@ -103,7 +103,7 @@
             width: 320px;
             margin-left: 25px;
             margin-bottom: 100px;
-            &:nth-child(2n + 1) {
+            &:nth-child(2n+1) {
               margin-left: 0;
             }
             .avatar-wrap {
@@ -129,24 +129,21 @@
                 }
               }
               .link {
-                width: 100%;
-                height: 60px;
-                line-height: 60px;
-                margin-top: 20px;
-                display: inline-block; // padding: 4px 14px;
-                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 320px;
+                height: 80px;
+                margin-top: 10px;
                 color: #ffffff;
-                outline: none;
-                border: none;
-                background: #b40500;
-                .icon {
-                  // display: inline-block;
-                  display: none;
-                  width: 26px;
-                  height: 21px;
-                  background: url('../img/icon-toupiao.png') center center
-                    no-repeat;
-                  background-size: cover;
+                font-size: 28px;
+                .icon,
+                .text {
+                  width: 150px;
+                  height: 56px;
+                  line-height: 56px;
+                  border-radius: 6px;
+                  background: #b40500;
                 }
               }
             }
@@ -164,8 +161,7 @@
         font-size: 28px;
         color: #fff;
         border-radius: 100px;
-        background: url('../img/icon-phone.png') left 60px center no-repeat
-          #0081dc;
+        background: url('../img/icon-phone.png') left 60px center no-repeat #0081dc;
         background-size: auto 40px;
       }
       .desc {
@@ -253,7 +249,8 @@
         font-size: 28px;
         font-weight: bold;
         .item {
-          color: #ffaf4e;
+          // color: #ffaf4e;
+          color: #fff;
           cursor: pointer;
           &:first-child {
             float: left;
@@ -325,7 +322,7 @@
             width: 190px;
             margin-left: 41px;
             margin-bottom: 80px;
-            &:nth-child(5n + 1) {
+            &:nth-child(5n+1) {
               margin-left: 0;
             }
             .avatar-wrap {
@@ -348,29 +345,21 @@
                 }
               }
               .link {
-                display: inline-block;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
                 width: 190px;
                 height: 40px;
-                line-height: 40px;
                 margin-top: 10px;
-                border-radius: 6px;
                 color: #ffffff;
-                outline: none;
-                border: none;
-                background: #b40500;
-                .icon {
-                  vertical-align: middle;
-                  display: inline-block;
-                  display: none;
-                  width: 26px;
-                  height: 21px;
-                  background: url('../img/icon-toupiao.png') center center
-                    no-repeat;
-                  background-size: cover;
-                }
+                font-size: 16px;
+                .icon,
                 .text {
-                  // vertical-align: middle;
-                  font-size: 18px;
+                  width: 85px;
+                  height: 32px;
+                  line-height: 32px;
+                  border-radius: 6px;
+                  background: #b40500;
                 }
               }
             }

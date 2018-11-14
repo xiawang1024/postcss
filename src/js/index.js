@@ -119,11 +119,11 @@
         '              <div class="ticket-wrap">' +
         '                <span class="ticket-num">票数：200</span>' +
         '              </div>' +
-        '              <button href="" class="link" data-id="' +
+        '              <div href="" class="link" data-id="' +
         item.id +
         '">' +
-        '                <span class="icon"></span> <span class="text">点击投票</span>' +
-        '              </button>' +
+        '                <span class="icon">详情</span> <span class="text">投票</span>' +
+        '              </div>' +
         '            </div>' +
         '          </li>'
 
@@ -201,49 +201,67 @@
     })
   }
 
-  //投票
-  $(document).on('click', '.g-bd .list-wrap-inner .list .link', function() {
-    console.log($(this))
-    var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
-    console.log(userInfo)
-    if (!userInfo) {
-      weui.alert('请在微信端打开投票！')
-      return
+  //详情
+  $(document).on(
+    'click',
+    '.g-bd .list-wrap-inner .list .link .icon',
+    function() {
+      var id = $(this)
+        .parent()
+        .data('id')
+      window.location =
+        'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' + id
     }
-    var id = $(this).data('id')
-    console.log(id)
-    console.log(uuid)
-    var appId = 'wx5f789dea59c6c2c5',
-      voteId = 3
-    var openId = userInfo.openid
-
-    var subLoading = weui.loading('正在提交')
-    $.ajax({
-      type: 'POST',
-      url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
-      data: {
-        appId: appId,
-        openId: openId,
-        voteId: voteId,
-        id: id,
-        uuid: uuid
-      },
-      dataType: 'json',
-      success: function(data) {
-        console.log(data)
-        subLoading.hide()
-        if (data.status == 'ok') {
-          weui.alert('投票成功！')
-        } else if (data.status == 'warn') {
-          weui.alert('投票未开始！')
-        } else {
-          weui.alert('投票失败！')
-        }
-      },
-      error: function(err) {
-        console.log(err)
-        weui.alert('网络错误，请重新投票！')
+  )
+  //投票
+  $(document).on(
+    'click',
+    '.g-bd .list-wrap-inner .list .link .text',
+    function() {
+      console.log($(this))
+      var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
+      console.log(userInfo)
+      if (!userInfo) {
+        weui.alert('请在微信端打开投票！')
+        return
       }
-    })
-  })
+      var id = $(this)
+        .parent()
+        .data('id')
+      console.log(id)
+      console.log(uuid)
+      var appId = 'wx5f789dea59c6c2c5',
+        voteId = 3
+      var openId = userInfo.openid
+
+      var subLoading = weui.loading('正在提交')
+      $.ajax({
+        type: 'POST',
+        url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
+        data: {
+          appId: appId,
+          openId: openId,
+          voteId: voteId,
+          id: id,
+          uuid: uuid
+        },
+        dataType: 'json',
+        success: function(data) {
+          console.log(data)
+          subLoading.hide()
+          if (data.status == 'ok') {
+            weui.alert('投票成功！')
+          } else if (data.status == 'warn') {
+            weui.alert('投票未开始！')
+          } else {
+            weui.alert('投票失败！')
+          }
+        },
+        error: function(err) {
+          console.log(err)
+          weui.alert('网络错误，请重新投票！')
+        }
+      })
+    }
+  )
 })()
