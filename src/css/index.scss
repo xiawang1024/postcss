@@ -204,6 +204,9 @@
           margin-left: 20px;
         }
       }
+      .para {
+        text-indent: 2em;
+      }
     }
     .g-ft-pc {
       display: none;
@@ -445,6 +448,9 @@
         line-height: 2;
         &:first-child {
           margin-top: 30px;
+        }
+        p:first-child {
+          text-indent: 2em;
         }
       }
     }
