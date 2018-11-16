@@ -102,7 +102,9 @@
       html +=
         '<li class="list" >' +
         '            <div class="avatar-wrap">' +
-        '              <a href="">' +
+        '              <div href="" data-id="' +
+        item.id +
+        '">' +
         '                <img' +
         '                  src="' +
         item.icon +
@@ -110,7 +112,7 @@
         '                  alt=""' +
         '                  class="avatar"' +
         '                />' +
-        '              </a>' +
+        '              </div>' +
         '            </div>' +
         '            <div class="text-wrap">' +
         '              <h3 class="name">姓名：' +
@@ -213,6 +215,13 @@
         'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' + id
     }
   )
+  $(document).on('click', '.g-bd .list-wrap-inner .list .avatar', function() {
+    var id = $(this)
+      .parent()
+      .data('id')
+    window.location =
+      'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' + id
+  })
   //投票
   $(document).on(
     'click',
