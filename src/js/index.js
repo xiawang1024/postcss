@@ -257,14 +257,15 @@
         dataType: 'json',
         success: function(data) {
           console.log(data)
+          var msg = data.msg
           subLoading.hide()
           if (data.status == 'ok') {
-            weui.alert('投票成功！')
+            weui.alert(msg)
             refreshVote(that, id)
           } else if (data.status == 'warn') {
-            weui.alert('投票未开始！')
+            weui.alert(msg)
           } else {
-            weui.alert('投票失败！')
+            weui.alert(msg)
           }
         },
         error: function(err) {
