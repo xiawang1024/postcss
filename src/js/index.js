@@ -119,7 +119,9 @@
         item.title +
         '</h3>' +
         '              <div class="ticket-wrap">' +
-        '                <span class="ticket-num">票数：200</span>' +
+        '                <span class="ticket-num">票数：' +
+        item.vote +
+        '</span>' +
         '              </div>' +
         '              <div href="" class="link" data-id="' +
         item.id +
@@ -227,9 +229,8 @@
     'click',
     '.g-bd .list-wrap-inner .list .link .text',
     function() {
-      console.log($(this))
       var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
-      console.log(userInfo)
+      var that = $(this)
       if (!userInfo) {
         weui.alert('请在微信端打开投票！')
         return
@@ -237,8 +238,7 @@
       var id = $(this)
         .parent()
         .data('id')
-      console.log(id)
-      console.log(uuid)
+
       var appId = 'wx5f789dea59c6c2c5',
         voteId = 3
       var openId = userInfo.openid
@@ -260,6 +260,7 @@
           subLoading.hide()
           if (data.status == 'ok') {
             weui.alert('投票成功！')
+            refreshVote(that, id)
           } else if (data.status == 'warn') {
             weui.alert('投票未开始！')
           } else {
@@ -273,4 +274,31 @@
       })
     }
   )
+
+  function refreshVote(that, id) {
+    //投票信息
+    var voteId = 3
+    console.log(that)
+
+    $.ajax({
+      type: 'get',
+      url:
+        'https://a.weixin.hndt.com/boom/openapi/vote/log/show/' +
+        voteId +
+        '/' +
+        id,
+
+      dataType: 'json',
+      success: function(data) {
+        that
+          .parent()
+          .prev()
+          .find('.ticket-num')
+          .html('票数：' + data + '')
+      },
+      error: function(err) {
+        console.log(err)
+      }
+    })
+  }
 })()
