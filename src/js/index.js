@@ -126,13 +126,14 @@
         },
         success: function(data) {
           voteLoading.hide()
+          var msg = data.msg
           if (data.status == 'ok') {
-            weui.alert('投票成功！')
-            refreshVote()
+            weui.alert(msg)
+            refreshVote(id)
           } else if (data.status == 'warn') {
-            weui.alert('投票未开始！')
+            weui.alert(msg)
           } else {
-            weui.alert('投票失败！')
+            weui.alert(msg)
           }
         },
         error: function(err) {
@@ -144,17 +145,19 @@
     })
   }
   //更新投票数
-  function refreshVote() {
+  function refreshVote(id) {
     //投票信息
+    var voteId = 3
     $.ajax({
-      type: 'post',
-      url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshow',
-      data: {
-        id: weChat.getQueryString('id')
-      },
+      type: 'get',
+      url:
+        'https://a.weixin.hndt.com/boom/openapi/vote/log/show/' +
+        voteId +
+        '/' +
+        id,
       dataType: 'json',
       success: function(data) {
-        $('.g-bd .ticket-num').html('票数：' + data.data + '')
+        $('.g-bd .ticket-num').html('票数：' + data + '')
       },
       error: function(err) {
         console.log(err)
@@ -177,23 +180,26 @@
     }, 20)
   }
 
-  //更新投票数
-  // $.ajax({
-  //   type: 'post',
-  //   url: 'https://a.weixin.hndt.com/boom/api/battle/entrevoteshow',
-  //   data: {
-  //     id: weChat.getQueryString('id')
-  //   },
-  //   dataType: 'json',
-  //   timeout: 10000,
-  //   success: function(data) {
-  //     loading.hide()
-  //     $('.g-bd .ticket-num').html('票数：' + data.data + '')
-  //   },
-  //   error: function(err) {
-  //     console.log(err)
-  //     loading.hide()
-  //     weui.alert('网络错误！')
-  //   }
-  // })
+  // 更新投票数
+  $.ajax({
+    type: 'get',
+    url:
+      'https://a.weixin.hndt.com/boom/openapi/vote/log/show/3/' +
+      weChat.getQueryString('id'),
+
+    dataType: 'json',
+    timeout: 10000,
+    success: function(data) {
+      loading.hide()
+      if (!data) {
+        data = 0
+      }
+      $('.g-bd .ticket-num').html('票数：' + data + '')
+    },
+    error: function(err) {
+      console.log(err)
+      loading.hide()
+      weui.alert('网络错误！')
+    }
+  })
 })()

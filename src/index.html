@@ -55,7 +55,7 @@
         baseUrl: 'https://open.weixin.qq.com/connect/oauth2/authorize?',
         appId: 'wx5f789dea59c6c2c5',
         redirect_uri:
-          'https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
+          'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' +
           weChat.getQueryString('id'),
         response_type: 'code',
         scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
@@ -66,9 +66,9 @@
       
     
     if (weChat.isWeiXin()) {
-        if(!userInfo) {
-            window.location = weChat.redirectUrl()
-        }
+      if (!weChat.getQueryString('code')) {
+              window.location = weChat.redirectUrl()
+          }
     }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
