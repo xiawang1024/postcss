@@ -1,124 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script>
-        
-        var weChat = {
-            getQueryString: function (name) {
-                var url = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                var newUrl = window.location.search.substr(1).match(url);
-                if (newUrl != null) {
-                    return unescape(newUrl[2]);
-                } else {
-                    return false;
-                }
-            },
-            redirectUrl: function () {
-                return weChatConf.baseUrl + "appid=" + weChatConf.appId + "&redirect_uri=" +
-                    encodeURIComponent(weChatConf.redirect_uri) + "&response_type=" +
-                    weChatConf.response_type + "&scope=" + weChatConf.scope + "&state=" +
-                    weChatConf.state + weChatConf.weChat_Redirect
-            },
-            getOpenId: function (code) {
-
-            },
-            getStorage: function (name) {
-                return localStorage.getItem(name)
-            },
-            setStorage: function (name, value) {
-                return localStorage.setItem(name, value)
-            }
-        }
-        var weChatConf = {
-            baseUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?",
-            appId: 'wx5f789dea59c6c2c5',
-            redirect_uri: 'https://a.weixin.hndt.com/h5/partysday/songlist/index.html?cid='+weChat.getQueryString('cid'),
-            response_type: 'code',
-            scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
-            state: Date.parse(new Date()),
-            weChat_Redirect: '#wechat_redirect'
-        }
-        if (!weChat.getQueryString('code')) {
-            window.location = weChat.redirectUrl()
-        }
-    </script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
-        window.onload = function () {
-            window.viewportUnitsBuggyfill.init({
-                hacks: window.viewportUnitsBuggyfillHacks
-            });
-        }
+      window.onload = function() {
+        window.viewportUnitsBuggyfill.init({
+          hacks: window.viewportUnitsBuggyfillHacks
+        })
+      }
     </script>
-    <link rel="stylesheet" href="./css/app.css">
-    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
-    <title>给党唱支生日歌--庆祝中国共产党建党97周年</title>
-</head>
+    <link rel="stylesheet" href="./css/app.css" />
 
-<body>
-    <div class="g-hd">
-        <span class="icon-back" id="back"></span>
+    <title>河南广播电视台第三方内容条款</title>
+  </head>
+
+  <body>
+    <div class="m-wrap first">
+      <h2 class="title">河南广播电视台第三方内容条款</h2>
+      <div class="wrap">
+        <p class="para">
+          “云上河南”所提供的内容、服务、所有权以及运营权均归河南广播电视台所有。如您浏览、访问或使用本移动客户端或本网站所提供的服务、产品或信息，即表示您自愿接受本服务协议的全部条款以及内容，并同意接受河南广播电视台为您提供的服务。
+        </p>
+        <p class="para">
+          当您选择频道，即表示您接受我们为您推荐来自第三方网站的内容，各个频道主要第三方内容明细见下文。
+        </p>
+        <p class="para">
+          如您对本服务协议的任何内容存在异议，请立即停止访问本网站并停止使用“云上河南”提供的相关服务。请您详细阅读本协议的全部内容
+        </p>
+      </div>
     </div>
-
-    <div aspectratio w-16-9 class="img">
-        <img aspectratio-content src="./img/banner.png" alt="">
+    <div class="m-wrap">
+      <h2 class="title">“云上河南”各个频道可能包含的第三方内容明示：</h2>
+      <div class="wrap">
+        <table border="1">
+          <thead>
+            <tr>
+              <th>频道名称</th>
+              <th>主要来源</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>头条</td>
+              <td>网易新闻</td>
+            </tr>
+            <tr>
+              <td>政情</td>
+              <td>河南政府网</td>
+            </tr>
+            <tr>
+              <td>国内</td>
+              <td>光明网、新浪新闻新华网、中国新闻网、央广网</td>
+            </tr>
+            <tr>
+              <td>财经</td>
+              <td>人民网、新华网</td>
+            </tr>
+            <tr>
+              <td>交通</td>
+              <td>声势传媒</td>
+            </tr>
+            <tr>
+              <td>教育</td>
+              <td>中国新闻网、新华网、网易新闻</td>
+            </tr>
+            <tr>
+              <td>旅游</td>
+              <td>河南旅游资讯</td>
+            </tr>
+            <tr>
+              <td>科技</td>
+              <td>36氪</td>
+            </tr>
+            <tr>
+              <td>体育</td>
+              <td>东方IC、视觉中国</td>
+            </tr>
+            <tr>
+              <td>娱乐</td>
+              <td>新浪网</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-    <div class="g-userInfo" id="app">
-        <audio style="display:none" id="audio" loop></audio>
-        <div class="avatar-wrap">
-            <img v-if="userInfo.headimgurl" :src="userInfo.headimgurl"
-                alt="" class="avatar">
-        </div>
-        <div class="m-list">
-            <h3 class="title">{{userInfo.nickname}}的歌曲库</h3>
-            <div class="m-tab">
-                <button class="btn" :class=" tabIndex == 1?'z-crt':''" @click="tabSwitch(1)">审核过的</button>
-                <button class="btn" :class=" tabIndex == 0?'z-crt':''" @click="tabSwitch(0)">未审核的</button>
-            </div>
-            <ul class="list-wrap">
-                <li v-if="showSongList" class="list" v-for="(item,index) of showSongList">
-                    <div class="song-info">
-                        <div class="song-name">歌名：{{item.name}}</div>
-                        <div class="song-created-at">上传时间：{{item.createTime}}</div>
-                    </div>
-                    <span class="icon-play" :class=" playIndex == index?'z-crt':''"  @click="playSong(item.path,index)"></span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-
-
-    <div class="g-download">
-        <a href="http://www.hndt.com/app/download/index.html" class="down">下载河南广播APP</a>
-        <p class="desc">关注身边发生的事 河南人自己的APP</p>
-    </div>
-    <div class="g-ft">
-        <div class="m-version">
-            <a href="http://www.hndt.com/index.mb.html">触摸版</a> |
-            <a href="http://www.hndt.com">电脑版</a> |
-            <a href="http://www.hndt.com/index.mb.html">APP版</a>
-        </div>
-        <div class="m-copyright">
-            手机河南广播网 ICP：豫ICP备14003020号
-        </div>
-    </div>
-    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
-    <script src="./js/app.js"></script>
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?8d8b13e4dff379c880b2436c9ae60cc8";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-</body>
-
+  </body>
 </html>
