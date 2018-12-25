@@ -96,12 +96,12 @@ gulp.task('wx-js', () => {
   return (
     gulp
       .src([
-        `${baseDir}/js/qrcode.min.js`,
+        // `${baseDir}/js/qrcode.min.js`,
         `${baseDir}/js/zepto.js`,
-        `${baseDir}/js/fastclick.js`,
+        // `${baseDir}/js/fastclick.js`,
         `${baseDir}/js/weui.js`,
         `${baseDir}/js/jweixin.js`,
-        `${baseDir}/js/finger.js`,
+        // `${baseDir}/js/finger.js`,
         `${baseDir}/js/wxshare.js`,
         `${baseDir}/js/index.js`
       ])

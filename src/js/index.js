@@ -1,26 +1,4 @@
 !(function() {
-  var loading = weui.loading('加载中...')
-  if (weChat.isPhone()) {
-    // fastClick 消除click 300ms延迟
-    if ('addEventListener' in document) {
-      document.addEventListener(
-        'DOMContentLoaded',
-        function() {
-          FastClick.attach(document.body)
-        },
-        false
-      )
-    }
-  }
-
-  if (!weChat.isWeiXin()) {
-    new QRCode(document.getElementById('qrcode'), {
-      text: window.location.href,
-      width: 160,
-      height: 160
-    })
-  }
-
   if (weChat.isWeiXin()) {
     var weChatCode = weChat.getQueryString('code')
     if (weChatCode) {
@@ -30,7 +8,6 @@
     }
   }
   function getOpenId(code, cb) {
-    // if (!weChat.getStorage('WXHNDTOPENID')) {
     $.ajax({
       type: 'GET',
       url: 'https://a.weixin.hndt.com/boom/wx/access/subscribe',
@@ -51,155 +28,138 @@
         window.location = weChat.redirectUrl()
       }
     })
-    // }
   }
-
-  //uuid生成
-  if (window.requestIdleCallback) {
-    requestIdleCallback(function() {
-      fingerHash()
+  function getPostData() {
+    var department = $('#depart').html()
+    var name = $('#name').val()
+    var mobile = $('#mobile').val()
+    var code = $('#code').val()
+    if (department == '请选择部门') {
+      weui.topTips('请选择部门')
+      return
+    }
+    if (!name) {
+      weui.topTips('请填写姓名')
+      return
+    }
+    if (!mobile) {
+      weui.topTips('请填写手机号')
+      return
+    }
+    if (!code) {
+      weui.topTips('请填写验证码')
+      return
+    }
+    return {
+      department: department,
+      name: name,
+      mobile: mobile,
+      code: code
+    }
+  }
+  function fetchGetCode(mobile) {
+    $.ajax({
+      url: 'https://a.weixin.hndt.com/boom/openapi/user/send/code',
+      type: 'post',
+      data: {
+        mobile: mobile
+      },
+      success: function(res) {
+        console.log(res)
+        weui.toast('验证码发送成功')
+      }
     })
-  } else {
-    setTimeout(function() {
-      fingerHash()
-    }, 500)
   }
-  var uuid = null
-  function fingerHash() {
-    Fingerprint2.get(function(components) {
-      var murmur = Fingerprint2.x64hash128(
-        components
-          .map(function(pair) {
-            return pair.value
-          })
-          .join(),
-        31
-      )
-      uuid = murmur
-      console.log(murmur)
-    })
-  }
+  var isPostCode = false
+  $('#get-code').click(function(e) {
+    var mobile = $('#mobile').val()
+    if (!mobile) {
+      weui.topTips('请填写手机号')
+      return
+    }
 
-  //个人信息
-  // var url = 'https://api.hndt.com/api/page?template_id=357&article_id=' + weChat.getQueryString('id');
-  var url =
-    'https://a.weixin.hndt.com/h5/2018dianshang/data/' +
-    weChat.getQueryString('id') +
-    '.json'
-  // var url = 'http://192.168.9.41:3000/index.json'
-  $.ajax({
-    type: 'GET',
-    url: url,
-    dataType: 'json',
-    timeout: 5000,
-    success: function(data) {
-      loading.hide()
-      toHtml(data)
-      voteHandler(data.id)
+    if (!isPostCode) {
+      fetchGetCode(mobile)
+      countDown()
+      isPostCode = true
+    } else {
+      return
     }
   })
-  //投票
-  function voteHandler(id) {
-    $('#vote-btn').click(function() {
-      var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
-      if (!userInfo) {
-        weui.alert('请打开微信投票！')
-        return
+
+  function countDown() {
+    var count = 20
+    var timer = setInterval(function() {
+      count--
+      var codeText = '(' + count + ')s'
+      $('#get-code').html(codeText)
+      if (count == 0) {
+        clearInterval(timer)
+        isPostCode = false
+        $('#get-code').html('获取验证码')
       }
-      var voteLoading = weui.loading('努力提交中...')
-
-      var appId = 'wx5f789dea59c6c2c5',
-        voteId = 3
-      var openId = userInfo.openid
-
-      $.ajax({
-        type: 'POST',
-        url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
-        dataType: 'json',
-        timeout: 5000,
-        data: {
-          appId: appId,
-          openId: openId,
-          voteId: voteId,
-          id: id,
-          uuid: uuid
-        },
-        success: function(data) {
-          voteLoading.hide()
-          var msg = data.msg
-          if (data.status == 'ok') {
-            weui.alert(msg)
-            refreshVote(id)
-          } else if (data.status == 'warn') {
-            weui.alert(msg)
-          } else {
-            weui.alert(msg)
-          }
-        },
-        error: function(err) {
-          console.log(err)
-          voteLoading.hide()
-          weui.alert('网络错误！')
-        }
-      })
-    })
+    }, 1000)
   }
-  //更新投票数
-  function refreshVote(id) {
-    //投票信息
-    var voteId = 3
+
+  $('#signUp-btn').click(function() {
+    var postData = getPostData()
+    var userInfo = JSON.parse(window.localStorage.getItem('WXHNDTOPENID'))
+    postData.password = 'password'
+    postData.appId = userInfo.appid
+    postData.openId = userInfo.openid
     $.ajax({
-      type: 'get',
-      url:
-        'https://a.weixin.hndt.com/boom/openapi/vote/log/show/' +
-        voteId +
-        '/' +
-        id,
-      dataType: 'json',
-      success: function(data) {
-        $('.g-bd .ticket-num').html('票数：' + data + '')
+      type: 'post',
+      contentType: 'application/json',
+      url: 'https://a.weixin.hndt.com/boom/openapi/user/register',
+      data: JSON.stringify(postData),
+      success: function(res) {
+        console.log(res)
+        var status = res.status
+        if (status == 'ok') {
+          weui.toast('信息提交成功')
+        } else {
+          weui.alert('您已提交过信息，如需修改请联系管理员')
+        }
       },
-      error: function(err) {
-        console.log(err)
+      error: function() {
+        weui.alert('系统错误，请联系管理员')
       }
     })
-  }
-  //toHtml
-  function toHtml(data) {
-    $('.g-bd .avatar').attr('src', data.icon)
-    $('.g-bd .name').html(data.title)
-    $('.video').attr('src', data.video)
-    var body = data.body.replace(/src/g, 'data')
-    $('.g-bdc .content').html(body)
-    // $('.g-bdc .content').html(data.body);
-    setTimeout(function() {
-      $('.content strong').css('color', '#2481c5')
-      $('.content strong')
-        .eq(0)
-        .css('color', '#000')
-    }, 20)
-  }
+  })
 
-  // 更新投票数
-  $.ajax({
-    type: 'get',
-    url:
-      'https://a.weixin.hndt.com/boom/openapi/vote/log/show/3/' +
-      weChat.getQueryString('id'),
-
-    dataType: 'json',
-    timeout: 10000,
-    success: function(data) {
-      loading.hide()
-      if (!data) {
-        data = 0
+  $('.depart').click(function() {
+    weui.picker(
+      [
+        {
+          label: '部门1',
+          value: 0
+        },
+        {
+          label: '部门2',
+          value: 1
+        },
+        {
+          label: '部门3',
+          value: 3
+        },
+        {
+          label: '部门4',
+          value: 4
+        }
+      ],
+      {
+        container: 'body',
+        defaultValue: [1],
+        onChange: function(result) {
+          console.log(result)
+        },
+        onConfirm: function(result) {
+          console.log(result)
+          var label = result[0].label
+          $('.depart').html(label)
+        },
+        id: 'singleLinePicker'
       }
-      $('.g-bd .ticket-num').html('票数：' + data + '')
-    },
-    error: function(err) {
-      console.log(err)
-      loading.hide()
-      weui.alert('网络错误！')
-    }
+    )
   })
 })()

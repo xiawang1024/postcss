@@ -54,22 +54,14 @@
       var weChatConf = {
         baseUrl: 'https://open.weixin.qq.com/connect/oauth2/authorize?',
         appId: 'wx5f789dea59c6c2c5',
-        redirect_uri:
-          'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' +
-          weChat.getQueryString('id'),
+        redirect_uri: 'https://a.weixin.hndt.com/h5/dspd-c/index.html',
         response_type: 'code',
         scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
         state: Date.parse(new Date()),
         weChat_Redirect: '#wechat_redirect'
       }
-      var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
-      
-    
-    if (weChat.isWeiXin()) {
-      if (!weChat.getQueryString('code')) {
-              window.location = weChat.redirectUrl()
-          }
-    }
+
+      // window.location = weChat.redirectUrl()
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
@@ -84,7 +76,7 @@
       rel="stylesheet"
       href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
     />
-    <title>2018感动中原十大年度任务宣传推介活动</title>
+    <title>职能部门</title>
     <link
       rel="shortcut icon"
       href="https://a.weixin.hndt.com/boom/favicon.ico"
@@ -92,117 +84,81 @@
     />
   </head>
 
-  <body class="ignore">
-    <div class="g-hd" >
-      <a href="http://www.hndt.com" style="display:none" class="link"> </a>
-      <a 
-        href="https://a.weixin.hndt.com/h5/gdzy/index.html"
-        class="back"
-      >返回</a>
-    </div>
-    <div class="g-banner"></div>
-
-    <div class="g-bd">
-      <h2 class="title">个人介绍</h2>
-      <div class="bd-wrap clearfix">
-        <div class="info-wrap clearfix">
-          <div class="avatar-wrap"><img src="" alt="" class="avatar" /></div>
-          <div class="text-wrap">
-            <h3 class="name"></h3>
-            <!--
-              <p class="work">所在单位：这是单位名称</p>
-              <p class="honor">所获荣誉：这是荣誉介绍</p>
-            -->
-            <div class="ticket-wrap">
-              <span class="ticket-num">票数： <span></span> </span>
-               <span class="ticket-handler" id="vote-btn">投票</span> 
-              <a
-                href="https://a.weixin.hndt.com/h5/gdzy/index.html"
-                class="back"
-                >返回列表</a
-              >
-            </div>
+  <body>
+    <h2 class="title">职能部门信息录入</h2>
+    <form class="form-wrap" style="margin-top:40px">
+      <div class="weui-cells">
+        <div class="weui-cell ">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">部门</label>
+          </div>
+          <div class="weui-cell__bd">
+            <span class="depart" id="depart" data-selected="false"
+              >请选择部门</span
+            >
           </div>
         </div>
-        <div class="m-qrcode">
-          <div class="qrcode" id="qrcode"></div>
-
-          <p class="tips">微信扫码为他投票</p>
+      </div>
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">姓名</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input
+              class="weui-input"
+              id="name"
+              type="text"
+              placeholder="请输入姓名"
+            />
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">手机号</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input
+              id="mobile"
+              class="weui-input"
+              type="number"
+              pattern="[0-9]*"
+              placeholder="请输入手机号"
+            />
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">验证码</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input
+              id="code"
+              class="weui-input"
+              type="number"
+              pattern="[0-9]*"
+              placeholder="请输入验证码"
+            />
+          </div>
+          <div class="weui-cell__ft">
+            <span id="get-code" href="javascript:;" class="weui-vcode-btn"
+              >获取验证码
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
 
-    <div class="g-bdc">
-      <h2 class="title">个人事迹</h2>
-      <div class="bd-wrap clearfix">
-        <div class="video-wrap">
-          <video
-            class="video"
-            id="video"
-            src=""
-            width="100%"
-            poster="./img/icon-banner-wap.png"
-            playsinline="playsinline"
-            webkit-playsinline="true"
-            x5-playsinline="true"
-            x5-video-player-fullscreen="false"
-            controls
-          ></video>
-          <video
-            src=""
-            id="video-pc"
-            class="video"
-            width="100%"
-            poster="./img/icon-banner-wap.png"
-            controls
-          ></video>
-          <div class="play-btn" id="video-play"></div>
-        </div>
-
-        <div class="text-wrap">
-          <h3 class="name">个人事迹</h3>
-          <div class="content"></div>
-        </div>
-      </div>
-    </div>
-    <div class="g-qrcode" style="display:none">
-      <div class="qrcode-wrap">
-        <div class="qrcode-box">
-          <img src="./img/icon-qrcode-1.jpg" alt="" class="qrcode" />
-          <p class="desc">郑州电商服务平台</p>
-        </div>
-        <div class="qrcode-box second">
-          <img src="./img/icon-qrcode-2.jpg" alt="" class="qrcode " />
-          <p class="desc">Up radio1066</p>
-        </div>
-      </div>
-    </div>
-    <div class="g-download" style="display:none">
-      <a href="http://www.hndt.com/app/download/index.html" class="down"></a>
-        下载河南广播APP</a
+    <div class="weui-btn-area" style="margin-top:60px">
+      <button
+        href="javascript:;"
+        id="signUp-btn"
+        class="weui-btn weui-btn_primary"
       >
-      <p class="desc">关注身边发生的事 河南人自己的APP</p>
-    </div>
-    <div class="g-ft">
-      <div class="qrcode-wrap">
-        <img src="./img/icon-qrcode.png" alt="" class="qrcode" />
-        <p class="tel">资讯电话：0371-6573 2233</p>
-      </div>
-      <p class="para">
-        河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100
-        万粉丝）、9个微信公众号（300万粉丝）、头条号（150万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
-      </p>
+        提交
+      </button>
     </div>
 
-    <div class="g-ft-pc">
-      <img class="qrcode" alt="" src="./img/icon-qrcode.png" />
-      <div class="para">
-        <p>
-          河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100万粉丝）、9个微信公众号（300万粉丝）、头条号（150万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
-        </p>
-        <p class="tel">资讯电话：0371-6573 2233</p>
-      </div>
-    </div>
     <script src="./js/app.js"></script>
     <script>
       var _hmt = _hmt || []
