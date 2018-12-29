@@ -1,4 +1,6 @@
 !(function() {
+  var baseUrl = 'https://talk.hndt.com'
+  var voteId = '64b10009d77b4eae92242feff827be69'
   var loading = weui.loading('加载中...')
   if (weChat.isPhone()) {
     // fastClick 消除click 300ms延迟
@@ -52,10 +54,13 @@
     dataType: 'json',
     success: function(data) {
       $.ajax({
-        type: 'GET',
-        url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/show?voteId=3',
+        type: 'post',
+        url: baseUrl + '/dspdvote/getvote.do',
+        data: {
+          voteid: voteId
+        },
         dataType: 'json',
-        timeout: 5000,
+
         success: function(voteList) {
           for (var i = 0; i < data.length; i++) {
             data[i].vote = 0
@@ -65,7 +70,7 @@
           loading.hide()
         },
         error: function(err) {
-          weui.alert('网络错误！')
+          weui.alert('系统错误，请联系管理员！')
           loading.hide()
         }
       })
@@ -73,7 +78,7 @@
     error: function(err) {
       console.log(err)
       loading.hide()
-      weui.alert('网络错误！')
+      weui.alert('系统错误，请联系管理员！')
     }
   })
   function resetList(list, voteList) {
@@ -246,32 +251,26 @@
 
       var subLoading = weui.loading('正在提交')
       $.ajax({
-        type: 'POST',
-        url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
+        type: 'post',
+        url: baseUrl + '/dspdvote/tovote.do',
         data: {
-          // appId: appId,
-          // openId: openId,
-          // voteId: voteId,
-          // id: id,
-          // uuid: uuid
+          voteid: voteId,
+          phone: mobile,
+          itemid: id
         },
         dataType: 'json',
         success: function(data) {
           console.log(data)
-          var msg = data.msg
+          var msg = data.message
           subLoading.hide()
-          if (data.status == 'ok') {
-            weui.alert(msg)
+          if (data.success) {
             refreshVote(that, id)
-          } else if (data.status == 'warn') {
-            weui.alert(msg)
-          } else {
-            weui.alert(msg)
           }
+          weui.alert(msg)
         },
         error: function(err) {
           console.log(err)
-          weui.alert('网络错误，请重新投票！')
+          weui.alert('系统错误，请联系管理员！')
         }
       })
     }
@@ -279,45 +278,75 @@
 
   function refreshVote(that, id) {
     //投票信息
-    var voteId = 3
-    console.log(that)
-
     $.ajax({
-      type: 'get',
-      url:
-        'https://a.weixin.hndt.com/boom/openapi/vote/log/show/' +
-        voteId +
-        '/' +
-        id,
-
+      type: 'post',
+      url: baseUrl + '/dspdvote/getvote.do',
+      data: {
+        voteid: voteId
+      },
       dataType: 'json',
-      success: function(data) {
+      success: function(res) {
+        var data = res.result
         that
           .parent()
           .prev()
           .find('.ticket-num')
-          .html('票数：' + data + '')
+          .html('票数：' + data[id] + '')
+        console.log(data[id])
       },
       error: function(err) {
-        console.log(err)
+        weui.alert('系统错误，请联系管理员！')
       }
     })
   }
   $('#signUp-btn').click(function() {
-    window.localStorage.setItem('mobile', '13619840984')
-    $('#dialog').hide()
+    var mobile = $('#mobile').val()
+    var code = $('#code').val()
+    if (!code) {
+      weui.topTips('请输入验证码')
+      return
+    }
+    $.ajax({
+      url: baseUrl + '/dspdvote/verifycode.do',
+      type: 'post',
+      data: {
+        voteid: voteId,
+        phone: mobile,
+        code: code
+      },
+      success: function(res) {
+        if (res.success) {
+          window.localStorage.setItem('mobile', mobile)
+          $('#dialog').hide()
+        } else {
+          $('#code').val('')
+        }
+        weui.toast(res.message)
+      },
+      error: function(err) {
+        weui.alert('系统错误，请联系管理员！')
+      }
+    })
   })
   //验证码
   function fetchGetCode(mobile) {
     $.ajax({
-      url: 'https://a.weixin.hndt.com/boom/openapi/user/send/code',
+      url: baseUrl + '/dspdvote/verify.do',
       type: 'post',
       data: {
-        mobile: mobile
+        voteid: voteId,
+        phone: mobile
       },
       success: function(res) {
         console.log(res)
-        weui.toast('验证码发送成功')
+        if (res.success) {
+          weui.toast('验证码发送成功')
+        } else {
+          weui.toast(res.message)
+        }
+      },
+      error: function(err) {
+        weui.alert('系统错误，请联系管理员！')
       }
     })
   }
@@ -374,6 +403,6 @@
     }
   })
   draggie.on('staticClick', function() {
-    alert(11)
+    window.location = 'https://a.weixin.hndt.com/h5/gdzy/prize/index.html'
   })
 })()
