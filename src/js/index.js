@@ -13,13 +13,13 @@
     }
   }
 
-  if (!weChat.isWeiXin()) {
-    new QRCode(document.getElementById('qrcode'), {
-      text: window.location.href,
-      width: 160,
-      height: 160
-    })
-  }
+  // if (!weChat.isWeiXin()) {
+  //   new QRCode(document.getElementById('qrcode'), {
+  //     text: window.location.href,
+  //     width: 160,
+  //     height: 160
+  //   })
+  // }
 
   if (weChat.isWeiXin()) {
     var weChatCode = weChat.getQueryString('code')
@@ -55,15 +55,15 @@
   }
 
   //uuid生成
-  if (window.requestIdleCallback) {
-    requestIdleCallback(function() {
-      fingerHash()
-    })
-  } else {
-    setTimeout(function() {
-      fingerHash()
-    }, 500)
-  }
+  // if (window.requestIdleCallback) {
+  //   requestIdleCallback(function() {
+  //     fingerHash()
+  //   })
+  // } else {
+  //   setTimeout(function() {
+  //     fingerHash()
+  //   }, 500)
+  // }
   var uuid = null
   function fingerHash() {
     Fingerprint2.get(function(components) {
@@ -201,5 +201,78 @@
       loading.hide()
       weui.alert('网络错误！')
     }
+  })
+
+  $('#signUp-btn').click(function() {
+    window.localStorage.setItem('mobile', '13619840984')
+    $('#dialog').hide()
+  })
+  //验证码
+  function fetchGetCode(mobile) {
+    $.ajax({
+      url: 'https://a.weixin.hndt.com/boom/openapi/user/send/code',
+      type: 'post',
+      data: {
+        mobile: mobile
+      },
+      success: function(res) {
+        console.log(res)
+        weui.toast('验证码发送成功')
+      }
+    })
+  }
+  var isPostCode = false
+  $('#get-code').click(function(e) {
+    var mobile = $('#mobile').val()
+    if (!mobile) {
+      weui.topTips('请填写手机号')
+      return
+    }
+
+    if (!isPostCode) {
+      fetchGetCode(mobile)
+      countDown()
+      isPostCode = true
+    } else {
+      return
+    }
+  })
+
+  function countDown() {
+    var count = 20
+    var timer = setInterval(function() {
+      count--
+      var codeText = '(' + count + ')s'
+      $('#get-code').html(codeText)
+      if (count == 0) {
+        clearInterval(timer)
+        isPostCode = false
+        $('#get-code').html('获取验证码')
+      }
+    }, 1000)
+  }
+  //drag
+  var elem = document.querySelector('.draggable')
+  var draggie = new Draggabilly(elem, {
+    // options...
+    containment: 'body'
+  })
+  var screenWidth = document.documentElement.clientWidth
+  // var screenHeight = document.documentElement.clientHeight
+  var screenHeight = $('.g-banner').height() + $('.g-hd').height()
+  var logoBoxWidth = elem.offsetWidth + 10
+  draggie.setPosition(screenWidth - logoBoxWidth, screenHeight + 80)
+  draggie.on('dragEnd', function(event, pointer) {
+    // var { pageX, pageY } = pointer
+    var pageX = pointer.pageX
+    var pageY = pointer.pageY
+    if (pageX < screenWidth / 2) {
+      draggie.setPosition(10, pageY)
+    } else {
+      draggie.setPosition(screenWidth - logoBoxWidth, pageY)
+    }
+  })
+  draggie.on('staticClick', function() {
+    alert(11)
   })
 })()
