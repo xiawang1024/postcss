@@ -1,5 +1,6 @@
 !(function() {
   var baseUrl = 'https://talk.hndt.com'
+  // var baseUrl = 'http://192.168.9.79:8080'
   var voteId = '64b10009d77b4eae92242feff827be69'
   var loading = weui.loading('加载中...')
   if (weChat.isPhone()) {
@@ -266,7 +267,14 @@
           if (data.success) {
             refreshVote(that, id)
           }
-          weui.alert(msg)
+          if (!data.result) {
+            weui.alert(msg)
+          } else {
+            // weui.alert(msg, function() {
+
+            // })
+            $('#dialog').show()
+          }
         },
         error: function(err) {
           console.log(err)
@@ -340,7 +348,8 @@
       success: function(res) {
         console.log(res)
         if (res.success) {
-          weui.toast('验证码发送成功')
+          weui.toast(res.message)
+          countDown()
         } else {
           weui.toast(res.message)
         }
@@ -360,7 +369,7 @@
 
     if (!isPostCode) {
       fetchGetCode(mobile)
-      countDown()
+
       isPostCode = true
     } else {
       return
