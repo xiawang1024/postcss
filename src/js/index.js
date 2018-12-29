@@ -180,16 +180,16 @@
     )
   })
   //uuid生成
-  if (window.requestIdleCallback) {
-    requestIdleCallback(function() {
-      fingerHash()
-    })
-  } else {
-    setTimeout(function() {
-      fingerHash()
-    }, 500)
-  }
-  var uuid = null
+  // if (window.requestIdleCallback) {
+  //   requestIdleCallback(function() {
+  //     fingerHash()
+  //   })
+  // } else {
+  //   setTimeout(function() {
+  //     fingerHash()
+  //   }, 500)
+  // }
+  // var uuid = null
   function fingerHash() {
     Fingerprint2.get(function(components) {
       var murmur = Fingerprint2.x64hash128(
@@ -244,20 +244,16 @@
         .parent()
         .data('id')
 
-      var appId = 'wx5f789dea59c6c2c5',
-        voteId = 3
-      var openId = userInfo.openid
-
       var subLoading = weui.loading('正在提交')
       $.ajax({
         type: 'POST',
         url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
         data: {
-          appId: appId,
-          openId: openId,
-          voteId: voteId,
-          id: id,
-          uuid: uuid
+          // appId: appId,
+          // openId: openId,
+          // voteId: voteId,
+          // id: id,
+          // uuid: uuid
         },
         dataType: 'json',
         success: function(data) {
