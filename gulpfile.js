@@ -98,13 +98,13 @@ gulp.task('wx-js', () => {
       .src([
         // `${baseDir}/js/vue.js`,
         `${baseDir}/js/zepto.js`,
-        `${baseDir}/js/fastclick.js`,
-        `${baseDir}/js/weui.js`,
+        // `${baseDir}/js/fastclick.js`,
+        // `${baseDir}/js/weui.js`,
         `${baseDir}/js/jweixin.js`,
-        `${baseDir}/js/drag.js`,
+        // `${baseDir}/js/drag.js`,
         // `${baseDir}/js/finger.js`,
-        `${baseDir}/js/wxshare.js`,
-        `${baseDir}/js/index.js`
+        `${baseDir}/js/wxshare.js`
+        // `${baseDir}/js/index.js`
       ])
       .pipe(sourceMaps.init())
       // .pipe(
