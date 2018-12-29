@@ -60,11 +60,11 @@
         state: Date.parse(new Date()),
         weChat_Redirect: '#wechat_redirect'
       }
-      if (weChat.isWeiXin()) {
-          if (!weChat.getQueryString('code')) {
-              window.location = weChat.redirectUrl()
-          }
-      }
+      // if (weChat.isWeiXin()) {
+      //     if (!weChat.getQueryString('code')) {
+      //         window.location = weChat.redirectUrl()
+      //     }
+      // }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
@@ -79,7 +79,7 @@
       rel="stylesheet"
       href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
     />
-    <title>2018感动中原十大年度任务宣传推介活动</title>
+    <title>2018感动中原十大年度人物宣传推介活动</title>
     <link
       rel="shortcut icon"
       href="https://a.weixin.hndt.com/boom/favicon.ico"
@@ -109,9 +109,7 @@
       <div class="list-wrap">
         <div class="tips">
           <span class="key">注意：</span>
-          <span class="val">
-            一个手机一天给同一个人只能投一次，但可以投给多个人！
-          </span>
+          <span class="val"> 每人每天10次投票机会，不限人物！ </span>
         </div>
         <ul class="list-wrap-inner clearfix">
           <!-- <li class="list">
@@ -133,7 +131,6 @@
               </div>
             </div>
           </li> -->
-          
         </ul>
       </div>
     </div>
@@ -141,7 +138,7 @@
     <div class="g-download" style="display:none">
       <a href="http://www.hndt.com/app/download/index.html" class="down"
         >下载河南广播APP
-      </>
+      </a>
       <p class="desc">关注身边发生的事 河南人自己的APP</p>
     </div>
 
@@ -165,8 +162,61 @@
         <p class="tel">咨询电话：0371-6573 2233</p>
       </div>
     </div>
-
+    <div id="dialog" style="display: none;">
+      <div class="weui-mask"></div>
+      <div class="weui-dialog">
+        <div class="weui-dialog__hd">
+          <strong class="weui-dialog__title">验证手机号</strong>
+        </div>
+        <div class="weui-dialog__bd">
+          <div class="weui-cells weui-cells_form" style="margin-top:0">
+            <div class="weui-cell">
+              <div class="weui-cell__hd">
+                <label class="weui-label">手机</label>
+              </div>
+              <div class="weui-cell__bd">
+                <input
+                  id="mobile"
+                  class="weui-input"
+                  type="number"
+                  pattern="[0-11]*"
+                  placeholder="请输入手机号"
+                />
+              </div>
+            </div>
+            <div class="weui-cell weui-cell_vcode">
+              <div class="weui-cell__bd">
+                <input
+                  id="code"
+                  class="weui-input"
+                  style="text-align: center"
+                  type="tel"
+                  placeholder="验证码"
+                />
+              </div>
+              <div class="weui-cell__ft">
+                <span href="javascript:;" id="get-code" class="weui-vcode-btn"
+                  >获取验证码
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="weui-dialog__ft">
+          <span
+            id="signUp-btn"
+            href="javascript:;"
+            class="weui-dialog__btn weui-dialog__btn_primary"
+          >
+            确定
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="draggable">抽奖</div>
+    <script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
     <script src="./js/app.js"></script>
+
     <script>
       var _hmt = _hmt || []
       ;(function() {

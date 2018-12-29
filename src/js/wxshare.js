@@ -1,8 +1,8 @@
 window.onload = function() {
-  var TITLE = '2018感动中原十大年度任务宣传推介活动'
+  var TITLE = '2018感动中原十大年度人物宣传推介活动'
   var LINK = 'https://a.weixin.hndt.com/h5/gdzy/index.html' //分享链接
   var IMG_URL = 'https://a.weixin.hndt.com/h5/gdzy/icon-share.png'
-  var DESC = '2018感动中原十大年度任务宣传推介活动'
+  var DESC = '2018感动中原十大年度人物宣传推介活动'
 
   //微信配置
   var href = window.location.href
