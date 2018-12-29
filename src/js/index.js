@@ -101,29 +101,28 @@
   //投票
   function voteHandler(id) {
     $('#vote-btn').click(function() {
-      var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
-      if (!userInfo) {
-        weui.alert('请打开微信投票！')
+      // var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
+      // if (!userInfo) {
+      //   weui.alert('请打开微信投票！')
+      //   return
+      // }
+      var mobile = window.localStorage.getItem('mobile')
+      if (!mobile) {
+        $('#dialog').show()
         return
       }
       var voteLoading = weui.loading('努力提交中...')
 
-      var appId = 'wx5f789dea59c6c2c5',
-        voteId = 3
-      var openId = userInfo.openid
+      // var appId = 'wx5f789dea59c6c2c5',
+      //   voteId = 3
+      // var openId = userInfo.openid
 
       $.ajax({
         type: 'POST',
         url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
         dataType: 'json',
         timeout: 5000,
-        data: {
-          appId: appId,
-          openId: openId,
-          voteId: voteId,
-          id: id,
-          uuid: uuid
-        },
+        data: {},
         success: function(data) {
           voteLoading.hide()
           var msg = data.msg
