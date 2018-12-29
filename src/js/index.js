@@ -2,15 +2,15 @@
   var loading = weui.loading('加载中...')
   if (weChat.isPhone()) {
     // fastClick 消除click 300ms延迟
-    if ('addEventListener' in document) {
-      document.addEventListener(
-        'DOMContentLoaded',
-        function() {
-          FastClick.attach(document.body)
-        },
-        false
-      )
-    }
+    // if ('addEventListener' in document) {
+    //   document.addEventListener(
+    //     'DOMContentLoaded',
+    //     function() {
+    //       FastClick.attach(document.body)
+    //     },
+    //     false
+    //   )
+    // }
   }
 
   // if (!weChat.isWeiXin()) {
@@ -272,6 +272,6 @@
     }
   })
   draggie.on('staticClick', function() {
-    alert(11)
+    window.location = 'https://a.weixin.hndt.com/h5/gdzy/prize/index.html'
   })
 })()
