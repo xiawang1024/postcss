@@ -1,16 +1,18 @@
 !(function() {
+  var voteId = '64b10009d77b4eae92242feff827be69'
+  var baseUrl = 'http://192.168.9.79:8080'
   var loading = weui.loading('加载中...')
   if (weChat.isPhone()) {
     // fastClick 消除click 300ms延迟
-    // if ('addEventListener' in document) {
-    //   document.addEventListener(
-    //     'DOMContentLoaded',
-    //     function() {
-    //       FastClick.attach(document.body)
-    //     },
-    //     false
-    //   )
-    // }
+    if ('addEventListener' in document) {
+      document.addEventListener(
+        'DOMContentLoaded',
+        function() {
+          FastClick.attach(document.body)
+        },
+        false
+      )
+    }
   }
 
   // if (!weChat.isWeiXin()) {
@@ -82,10 +84,8 @@
 
   //个人信息
   // var url = 'https://api.hndt.com/api/page?template_id=357&article_id=' + weChat.getQueryString('id');
-  var url =
-    'https://a.weixin.hndt.com/h5/2018dianshang/data/' +
-    weChat.getQueryString('id') +
-    '.json'
+  var id = weChat.getQueryString('id')
+  var url = 'https://a.weixin.hndt.com/h5/2018dianshang/data/' + id + '.json'
   // var url = 'http://192.168.9.41:3000/index.json'
   $.ajax({
     type: 'GET',
@@ -98,14 +98,11 @@
       voteHandler(data.id)
     }
   })
+  // 获取投票数
+  refreshVote(id)
   //投票
   function voteHandler(id) {
     $('#vote-btn').click(function() {
-      // var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
-      // if (!userInfo) {
-      //   weui.alert('请打开微信投票！')
-      //   return
-      // }
       var mobile = window.localStorage.getItem('mobile')
       if (!mobile) {
         $('#dialog').show()
@@ -113,32 +110,34 @@
       }
       var voteLoading = weui.loading('努力提交中...')
 
-      // var appId = 'wx5f789dea59c6c2c5',
-      //   voteId = 3
-      // var openId = userInfo.openid
-
       $.ajax({
-        type: 'POST',
-        url: 'https://a.weixin.hndt.com/boom/openapi/vote/log/add',
+        type: 'post',
+        url: baseUrl + '/dspdvote/tovote.do',
         dataType: 'json',
-        timeout: 5000,
-        data: {},
+        data: {
+          voteid: voteId,
+          phone: mobile,
+          itemid: id
+        },
         success: function(data) {
           voteLoading.hide()
-          var msg = data.msg
-          if (data.status == 'ok') {
-            weui.alert(msg)
+          var msg = data.message
+          if (data.success) {
             refreshVote(id)
-          } else if (data.status == 'warn') {
+          }
+          if (!data.result) {
             weui.alert(msg)
           } else {
-            weui.alert(msg)
+            // weui.alert(msg, function() {
+
+            // })
+            $('#dialog').show()
           }
         },
         error: function(err) {
           console.log(err)
           voteLoading.hide()
-          weui.alert('网络错误！')
+          weui.alert('系统错误，请联系管理员！')
         }
       })
     })
@@ -146,20 +145,27 @@
   //更新投票数
   function refreshVote(id) {
     //投票信息
-    var voteId = 3
+
     $.ajax({
-      type: 'get',
-      url:
-        'https://a.weixin.hndt.com/boom/openapi/vote/log/show/' +
-        voteId +
-        '/' +
-        id,
+      type: 'post',
+      url: baseUrl + '/dspdvote/getvote.do',
+      data: {
+        voteid: voteId
+      },
       dataType: 'json',
-      success: function(data) {
-        $('.g-bd .ticket-num').html('票数：' + data + '')
+      success: function(res) {
+        var data = res.result
+        loading.hide()
+        var voteNum = data[id]
+        if (!voteNum) {
+          voteNum = 0
+        }
+        $('.g-bd .ticket-num').html('票数：' + voteNum + '')
       },
       error: function(err) {
         console.log(err)
+        loading.hide()
+        weui.alert('系统错误，请联系管理员！')
       }
     })
   }
@@ -179,44 +185,47 @@
     }, 20)
   }
 
-  // 更新投票数
-  $.ajax({
-    type: 'get',
-    url:
-      'https://a.weixin.hndt.com/boom/openapi/vote/log/show/3/' +
-      weChat.getQueryString('id'),
-
-    dataType: 'json',
-    timeout: 10000,
-    success: function(data) {
-      loading.hide()
-      if (!data) {
-        data = 0
-      }
-      $('.g-bd .ticket-num').html('票数：' + data + '')
-    },
-    error: function(err) {
-      console.log(err)
-      loading.hide()
-      weui.alert('网络错误！')
-    }
-  })
-
   $('#signUp-btn').click(function() {
-    window.localStorage.setItem('mobile', '13619840984')
-    $('#dialog').hide()
+    var code = $('#code').val()
+    var mobile = $('#mobile').val()
+    if (!code) {
+      weui.topTips('请输入验证码')
+      return
+    }
+    $.ajax({
+      type: 'post',
+      url: baseUrl + '/dspdvote/verifycode.do',
+      data: {
+        voteid: voteId,
+        phone: mobile,
+        code: code
+      },
+      success: function(res) {
+        if (res.success) {
+          window.localStorage.setItem('mobile', mobile)
+          $('#dialog').hide()
+        } else {
+          $('#code').val('')
+        }
+        weui.toast(res.message)
+      }
+    })
   })
   //验证码
   function fetchGetCode(mobile) {
     $.ajax({
-      url: 'https://a.weixin.hndt.com/boom/openapi/user/send/code',
+      url: baseUrl + '/dspdvote/verify.do',
       type: 'post',
       data: {
-        mobile: mobile
+        phone: mobile,
+        voteid: voteId
       },
       success: function(res) {
         console.log(res)
-        weui.toast('验证码发送成功')
+        weui.toast(res.message)
+      },
+      error: function(err) {
+        weui.alert('系统错误，请联系管理员！')
       }
     })
   }
@@ -250,6 +259,10 @@
       }
     }, 1000)
   }
+  $('.weui-mask').click(function() {
+    $('#dialog').hide()
+  })
+
   //drag
   var elem = document.querySelector('.draggable')
   var draggie = new Draggabilly(elem, {

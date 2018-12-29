@@ -5,6 +5,7 @@ window.onload = function() {
     weChat.getQueryString('id') //分享链接
   var IMG_URL = 'https://a.weixin.hndt.com/h5/gdzy/icon-share.png'
   var DESC = '2018“感动中原”十大年度人物网络投票活动'
+
   var url =
     'https://a.weixin.hndt.com/h5/2018dianshang/data/' +
     weChat.getQueryString('id') +
@@ -13,13 +14,12 @@ window.onload = function() {
     type: 'GET',
     url: url,
     dataType: 'json',
-    timeout: 5000,
     success: function(data) {
-      TITLE = TITLE + '——' + data.title
+      TITLE = '请为我投票--' + data.title
     },
     error: function(err) {
       console.log(err)
-      weui.alert('网络错误')
+      weui.alert('系统错误，请联系管理员')
     }
   })
   //微信配置
