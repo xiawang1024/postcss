@@ -1,6 +1,7 @@
 !(function() {
   var voteId = '64b10009d77b4eae92242feff827be69'
-  var baseUrl = 'http://192.168.9.79:8080'
+  // var baseUrl = 'http://192.168.9.79:8080'
+  var baseUrl = 'https://talk.hndt.com'
   var loading = weui.loading('加载中...')
   if (weChat.isPhone()) {
     // fastClick 消除click 300ms延迟
@@ -223,6 +224,7 @@
       success: function(res) {
         console.log(res)
         weui.toast(res.message)
+        countDown()
       },
       error: function(err) {
         weui.alert('系统错误，请联系管理员！')
@@ -239,7 +241,7 @@
 
     if (!isPostCode) {
       fetchGetCode(mobile)
-      countDown()
+
       isPostCode = true
     } else {
       return
