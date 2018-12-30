@@ -62,7 +62,8 @@
         },
         dataType: 'json',
 
-        success: function(voteList) {
+        success: function(res) {
+          var voteList = res.result
           for (var i = 0; i < data.length; i++) {
             data[i].vote = 0
           }
@@ -389,6 +390,10 @@
       }
     }, 1000)
   }
+  $('.weui-mask').click(function() {
+    $('#dialog').hide()
+  })
+
   //drag
   var elem = document.querySelector('.draggable')
   var draggie = new Draggabilly(elem, {
