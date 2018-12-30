@@ -98,7 +98,8 @@
                 line-height: 60px;
                 border-radius: 4px;
                 padding: 6px 24px 6px 70px;
-                background: url('../img/icon-toupiao.png') left 24px center no-repeat #b40500;
+                background: url('../img/icon-toupiao.png') left 24px center
+                  no-repeat #b40500;
                 background-size: auto 32px;
               }
               .back {
@@ -137,7 +138,8 @@
             transform: translate(-50%, -50%);
             width: 160px;
             height: 160px;
-            background: url('../img/icon-video-play.png') center center no-repeat;
+            background: url('../img/icon-video-play.png') center center
+              no-repeat;
             background-size: cover;
           }
         }
@@ -196,7 +198,8 @@
         font-size: 28px;
         color: #fff;
         border-radius: 100px;
-        background: url('../img/icon-phone.png') left 60px center no-repeat #0081dc;
+        background: url('../img/icon-phone.png') left 60px center no-repeat
+          #0081dc;
         background-size: auto 40px;
       }
       .desc {
@@ -342,7 +345,8 @@
                 line-height: 40px;
                 border-radius: 4px;
                 padding: 2px 16px 2px 40px;
-                background: url('../img/icon-toupiao.png') left 12px center no-repeat #b40500;
+                background: url('../img/icon-toupiao.png') left 12px center
+                  no-repeat #b40500;
                 background-size: auto 18px;
                 cursor: pointer;
               }
@@ -409,7 +413,8 @@
             transform: translate(-50%, -50%);
             width: 60px;
             height: 60px;
-            background: url('../img/icon-video-play.png') center center no-repeat;
+            background: url('../img/icon-video-play.png') center center
+              no-repeat;
             background-size: cover;
             cursor: pointer;
           }
@@ -480,6 +485,7 @@
       .qrcode {
         float: left;
         width: 106px;
+        margin-right: 10px;
       }
       .para {
         line-height: 2;
