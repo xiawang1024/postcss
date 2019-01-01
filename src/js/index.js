@@ -86,7 +86,8 @@
   //个人信息
   // var url = 'https://api.hndt.com/api/page?template_id=357&article_id=' + weChat.getQueryString('id');
   var id = weChat.getQueryString('id')
-  var url = 'https://a.weixin.hndt.com/h5/2018dianshang/data/' + id + '.json'
+  //www.hndt.com/zt/gdzy/201901/01/2286745/index.json
+  http: var url = 'http://www.hndt.com/zt/gdzy/201901/01/' + id + '/index.json'
   // var url = 'http://192.168.9.41:3000/index.json'
   $.ajax({
     type: 'GET',

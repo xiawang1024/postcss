@@ -7,9 +7,9 @@ window.onload = function() {
   var DESC = '2018“感动中原”十大年度人物网络投票活动'
 
   var url =
-    'https://a.weixin.hndt.com/h5/2018dianshang/data/' +
+    'http://www.hndt.com/zt/gdzy/201901/01/' +
     weChat.getQueryString('id') +
-    '.json'
+    '/index.json'
   $.ajax({
     type: 'GET',
     url: url,
