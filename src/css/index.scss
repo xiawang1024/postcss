@@ -135,7 +135,7 @@
               font-size: 28px;
               text-align: center;
               .name {
-                // height: 132px;
+                height: 132px;
               }
               .ticket-wrap {
                 .ticket-num {
@@ -384,6 +384,9 @@
               font-size: 18px;
               text-align: center;
               font-weight: 500;
+              .name {
+                height: 84px;
+              }
               .ticket-wrap {
                 .ticket-num {
                   display: inline-block;
