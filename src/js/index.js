@@ -85,9 +85,11 @@
 
   //个人信息
   // var url = 'https://api.hndt.com/api/page?template_id=357&article_id=' + weChat.getQueryString('id');
+
   var id = weChat.getQueryString('id')
-  //www.hndt.com/zt/gdzy/201901/01/2286745/index.json
-  http: var url = 'http://www.hndt.com/zt/gdzy/201901/01/' + id + '/index.json'
+  //http://a.weixin.hndt.com/h5/gdzy/data/201901/01/2286730/index.json
+  http: var url =
+    'https://a.weixin.hndt.com/h5/gdzy/data/201901/01/' + id + '/index.json'
   // var url = 'http://192.168.9.41:3000/index.json'
   $.ajax({
     type: 'GET',
