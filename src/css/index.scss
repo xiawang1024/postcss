@@ -103,11 +103,11 @@
         box-sizing: border-box;
         .tips {
           display: flex;
-          width: 544px;
+          width: 600px;
           margin: auto;
           font-size: 26px;
           .key {
-            flex: 0 0 90px;
+            flex: 0 0 150px;
             color: #b91b18;
           }
           .val {
@@ -123,6 +123,22 @@
             &:nth-child(2n + 1) {
               margin-left: 0;
             }
+            &:nth-last-child(1) {
+              .name-title {
+                display: none;
+              }
+              .name {
+                display: none;
+              }
+            }
+            &:nth-last-child(2) {
+              .name-title {
+                display: none;
+              }
+              .name {
+                display: none;
+              }
+            }
             .avatar-wrap {
               width: 320px;
               font-size: 0;
@@ -136,6 +152,12 @@
               font-size: 28px;
               text-align: center;
               .name {
+                .black {
+                  border: 1px solid #666;
+                  padding: 1px 2px;
+                }
+              }
+              .desc {
                 height: 132px;
               }
               .ticket-wrap {
@@ -358,7 +380,7 @@
           margin: auto;
           font-size: 22px;
           .key {
-            flex: 0 0 90px;
+            flex: 0 0 120px;
             color: #b91b18;
           }
         }
@@ -372,6 +394,22 @@
             margin-bottom: 80px;
             &:nth-child(5n + 1) {
               margin-left: 0;
+            }
+            &:nth-last-child(1) {
+              .name-title {
+                display: none;
+              }
+              .name {
+                display: none;
+              }
+            }
+            &:nth-last-child(2) {
+              .name-title {
+                display: none;
+              }
+              .name {
+                display: none;
+              }
             }
             .avatar-wrap {
               width: 190px;
@@ -387,6 +425,13 @@
               text-align: center;
               font-weight: 500;
               .name {
+                // height: 84px;
+                .black {
+                  border: 1px solid #666;
+                  padding: 1px 2px;
+                }
+              }
+              .desc {
                 height: 84px;
               }
               .ticket-wrap {
@@ -447,7 +492,7 @@
       }
     }
     .g-ft-pc {
-      width: 928px;
+      width: 600px;
       margin: 80px auto 40px;
       height: 115px;
       text-align: left;

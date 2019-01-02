@@ -122,9 +122,14 @@
         '              </div>' +
         '            </div>' +
         '            <div class="text-wrap">' +
-        '              <h3 class="name">姓名：' +
+        '              <h3 class="name"><span class="name-title">姓名：</span><span class="name-inner ' +
+        (item.keyword == 'black' ? 'black' : 'none') +
+        '">' +
+        item.name +
+        '</span></h3>' +
+        '<p class="desc">' +
         item.title +
-        '</h3>' +
+        '</p>' +
         '              <div class="ticket-wrap">' +
         '                <span class="ticket-num">票数：' +
         item.vote +
