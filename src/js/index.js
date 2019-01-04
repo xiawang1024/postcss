@@ -1,6 +1,6 @@
 !(function() {
-  var baseUrl = 'https://talk.hndt.com'
-  // var baseUrl = 'http://192.168.9.79:8080'
+  // var baseUrl = 'http://talk.hndt.com'
+  var baseUrl = 'http://528892cfcc0a1a72.natapp.cc'
   var voteId = '64b10009d77b4eae92242feff827be69'
   var loading = weui.loading('加载中...')
   if (weChat.isPhone()) {
@@ -29,7 +29,7 @@
     // if (!weChat.getStorage('WXHNDTOPENID')) {
     $.ajax({
       type: 'POST',
-      url: 'https://a.weixin.hndt.com/boom/wx/access/subscribe',
+      url: 'http://a.weixin.hndt.com/boom/wx/access/subscribe',
       data: { code: code, state: 'wx5f789dea59c6c2c5', subscribe: false },
       dataType: 'json',
       success: function(data) {
@@ -51,7 +51,7 @@
   // 填充列表
   $.ajax({
     type: 'GET',
-    url: 'https://a.weixin.hndt.com/h5/gdzy/data/index.json',
+    url: 'http://a.weixin.hndt.com/h5/gdzy/data/index.json',
     dataType: 'json',
     success: function(data) {
       $.ajax({
@@ -146,7 +146,7 @@
       // html +=
       //   '<li class="list">' +
       //   '                <div class="avatar-wrap">' +
-      //   '                    <a href="https://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
+      //   '                    <a href="http://a.weixin.hndt.com/h5/2018dianshang/vote/index.html?id=' +
       //   item.id +
       //   '"><img src="' +
       //   item.icon +
@@ -226,7 +226,7 @@
         .parent()
         .data('id')
       window.location =
-        'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' + id
+        'http://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' + id
     }
   )
   $(document).on('click', '.g-bd .list-wrap-inner .list .avatar', function() {
@@ -234,7 +234,7 @@
       .parent()
       .data('id')
     window.location =
-      'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' + id
+      'http://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' + id
   })
   //投票
   $(document).on(
@@ -359,6 +359,7 @@
         } else {
           weui.toast(res.message)
         }
+        isPostCode = true
       },
       error: function(err) {
         weui.alert('系统错误，请联系管理员！')
@@ -375,8 +376,6 @@
 
     if (!isPostCode) {
       fetchGetCode(mobile)
-
-      isPostCode = true
     } else {
       return
     }
@@ -422,6 +421,6 @@
     }
   })
   draggie.on('staticClick', function() {
-    window.location = 'https://a.weixin.hndt.com/h5/gdzy/prize/index.html'
+    window.location = 'http://a.weixin.hndt.com/h5/gdzy/prize/index.html'
   })
 })()
