@@ -358,6 +358,7 @@
           countDown()
         } else {
           weui.toast(res.message)
+          isPostCode = false
         }
       },
       error: function(err) {
