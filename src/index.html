@@ -55,7 +55,7 @@
         baseUrl: 'https://open.weixin.qq.com/connect/oauth2/authorize?',
         appId: 'wx5f789dea59c6c2c5',
         redirect_uri:
-          'https://a.weixin.hndt.com/h5/gdzy/detail/index.html?id=' +
+          'https://a.weixin.hndt.com/h5/hnga/detail/index.html?id=' +
           weChat.getQueryString('id'),
         response_type: 'code',
         scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
@@ -65,11 +65,11 @@
       var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
       
     
-    // if (weChat.isWeiXin()) {
-    //   if (!weChat.getQueryString('code')) {
-    //           window.location = weChat.redirectUrl()
-    //       }
-    // }
+    if (weChat.isWeiXin()) {
+      if (!weChat.getQueryString('code')) {
+              window.location = weChat.redirectUrl()
+          }
+    }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
@@ -84,7 +84,7 @@
       rel="stylesheet"
       href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
     />
-    <title>2018“感动中原”十大年度人物宣传推介活动</title>
+    <title>十大出彩河南公安人物网络投票</title>
     <link
       rel="shortcut icon"
       href="https://a.weixin.hndt.com/boom/favicon.ico"
@@ -96,7 +96,7 @@
     <div class="g-hd" >
       <a href="http://www.hndt.com" style="display:none" class="link"> </a>
       <a 
-        href="https://a.weixin.hndt.com/h5/gdzy/index.html"
+        href="https://a.weixin.hndt.com/h5/hnga/index.html"
         class="back"
       >返回</a>
     </div>
@@ -117,7 +117,7 @@
               <span class="ticket-num">票数： <span></span> </span>
                <span class="ticket-handler" id="vote-btn">投票</span> 
               <a
-                href="https://a.weixin.hndt.com/h5/gdzy/index.html"
+                href="https://a.weixin.hndt.com/h5/hnga/index.html"
                 class="back"
                 >返回列表
               </a>
@@ -165,15 +165,31 @@
         </div>
       </div>
     </div>
-    <div class="g-qrcode" style="display:none">
+    <div class="g-qrcode" >
       <div class="qrcode-wrap">
         <div class="qrcode-box">
-          <img src="./img/icon-qrcode-1.jpg" alt="" class="qrcode" />
-          <p class="desc">郑州电商服务平台</p>
+          <img src="./img/icon-logo-1.png" alt="" class="qrcode" />
+         
         </div>
-        <div class="qrcode-box second">
-          <img src="./img/icon-qrcode-2.jpg" alt="" class="qrcode " />
-          <p class="desc">Up radio1066</p>
+        <div class="qrcode-box">
+          <img src="./img/icon-qr-1.png" alt="" class="qrcode " />
+          
+        </div>
+        <div class="qrcode-box">
+          <img src="./img/icon-logo-2.png" alt="" class="qrcode" />
+         
+        </div>
+        <div class="qrcode-box">
+          <img src="./img/icon-qr-2.png" alt="" class="qrcode " />
+          
+        </div>
+        <div class="qrcode-box">
+          <img src="./img/icon-logo-3.png" alt="" class="qrcode" />
+         
+        </div>
+        <div class="qrcode-box">
+          <img src="./img/icon-qr-3.png" alt="" class="qrcode " />
+          
         </div>
       </div>
     </div>
@@ -186,7 +202,7 @@
     <div class="g-ft">
       <div class="qrcode-wrap">
         <img src="./img/icon-qrcode.png" alt="" class="qrcode" />
-        <p class="tel" style="text-indent: 2em">更多活动详情可关注都市频道官方微信公众号，咨询电话0371-65732233。</p>
+        <p class="tel" style="text-indent: 2em">更多详情请关注河南警方头条号，平安中原、湛蓝心部落、河南都市频道微信公众号。</p>
       </div>
       <p class="para" style="display: none">
         河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100
@@ -200,7 +216,7 @@
         <p style="display: none">
           河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100万粉丝）、9个微信公众号（300万粉丝）、头条号（190万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
         </p>
-        <p class="tel" style="text-indent: 2em;margin-top: 36px">更多活动详情可关注都市频道官方微信公众号，咨询电话0371-65732233。</p>
+        <p class="tel" style="text-indent: 2em;margin-top: 36px">更多详情请关注河南警方头条号，平安中原、湛蓝心部落、河南都市频道微信公众号。</p>
       </div>
     </div>
     <div id="dialog" style="display: none;">

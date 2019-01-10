@@ -1,498 +1,502 @@
 // wap端 css
 @media screen and (max-width: 768px) {
-  @import './wap/index.scss';
-  #video-pc {
-    display: none;
-  }
-  body {
-    width: 750px;
-    margin: 0 auto;
-    .draggable {
-      position: absolute;
-      bottom: 300px;
-      right: 10px;
-      width: 120px;
-      height: 80px;
-      text-align: center;
-      line-height: 80px;
-      color: #fff;
-      opacity: 0.7;
-      background: #b91b18;
-      border-radius: 6px;
-      &.is-pointer-down {
-        opacity: 1;
-      }
-    }
-    .g-hd {
-      position: relative;
-      width: 100%;
-      height: 80px; // background: url('../img/icon-logo-wap.png') center center no-repeat;
-      background-size: auto 60px;
-      .back {
-        position: absolute;
-        top: 0;
-        left: 20px;
-        display: inline-block;
-        width: 100px;
-        height: 80px;
-        line-height: 80px;
-        text-align: right;
-        background: url('../img/icon-back.png') left center no-repeat;
-        background-size: auto 40px;
-      }
-    }
-    .g-banner {
-      width: 100%;
-      height: 228px;
-      background: url('../img/icon-banner-wap.png') center center no-repeat;
-      background-size: cover;
-    }
-    .g-bd {
-      width: 100%;
-      padding: 30px;
-      box-sizing: border-box;
-      .title {
-        width: 100%;
-        height: 60px;
-        line-height: 60px;
-        font-size: 32px;
-        color: #c12501;
-        border-bottom: 1px solid #c12501;
-      }
-      .bd-wrap {
-        .info-wrap {
-          width: 100%;
-          margin-top: 30px;
-          .avatar-wrap {
-            float: left;
-            width: 200px;
-            font-size: 0;
-            .avatar {
-              width: 200px;
-              height: 275px;
-            }
-          }
-          .text-wrap {
-            position: relative;
-            float: left;
-            width: 460px;
-            height: 275px;
-            margin-left: 30px;
-            font-size: 28px;
-            .ticket-wrap {
-              position: absolute;
-              bottom: 6px;
-              color: #ffffff;
-              .ticket-num {
-                display: inline-block;
-                height: 60px;
-                line-height: 60px;
-                padding: 6px 16px;
-                border-radius: 4px;
-                background: #b40500;
-              }
-              .ticket-handler {
-                display: inline-block;
-                margin-left: 30px;
-                height: 60px;
-                line-height: 60px;
-                border-radius: 4px;
-                padding: 6px 24px 6px 70px;
-                background: url('../img/icon-toupiao.png') left 24px center no-repeat #b40500;
-                background-size: auto 32px;
-              }
-              .back {
-                display: none;
-              }
-            }
-          }
-        }
-        .m-qrcode {
-          display: none;
-        }
-      }
-    }
-    .g-bdc {
-      width: 100%;
-      padding: 30px;
-      box-sizing: border-box;
-      .title {
-        width: 100%;
-        height: 60px;
-        line-height: 60px;
-        font-size: 32px;
-        color: #c12501;
-        border-bottom: 1px solid #c12501;
-      }
-      .bd-wrap {
-        .video-wrap {
-          display: none;
-          position: relative;
-          width: 690px; // height: 389px;
-          margin-top: 30px;
-          .play-btn {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 160px;
-            height: 160px;
-            background: url('../img/icon-video-play.png') center center no-repeat;
-            background-size: cover;
-          }
-        }
-        .text-wrap {
-          margin-top: 20px;
-          .name {
-            font-size: 32px;
-            font-weight: bold;
-          }
-          .content {
-            margin-top: 10px;
-            line-height: 2;
-            video,
-            img {
-              display: none;
-            }
-            strong {
-              color: #b40500;
-              font-weight: bold;
-            }
-            strong:first-child {
-              color: #000;
-            }
-          }
-        }
-      }
-    }
-    .g-qrcode {
-      width: 100%;
-      margin-top: 50px;
-      .qrcode-wrap {
-        width: 100%;
-        display: flex;
-        font-size: 0;
-        justify-content: space-around;
-        .qrcode-box {
-          width: 220px;
-          text-align: center;
-          .qrcode {
-            width: 200px;
-            height: 200px;
-          }
-          .desc {
-            font-size: 20px;
-          }
-        }
-      }
-    }
-    .g-download {
-      width: 100%;
-      margin-top: 80px;
-      text-align: center;
-      .down {
-        display: inline-block;
-        padding: 20px 60px 20px 100px;
-        font-size: 28px;
-        color: #fff;
-        border-radius: 100px;
-        background: url('../img/icon-phone.png') left 60px center no-repeat #0081dc;
-        background-size: auto 40px;
-      }
-      .desc {
-        margin-top: 20px;
-        font-size: 24px;
-      }
-    }
-    .g-ft {
-      width: 100%;
-      margin-top: 40px;
-      padding: 28px 20px;
-      @include tp-1px(#eee);
-      text-align: left;
-      font-size: 28px;
-      box-sizing: border-box;
-      .qrcode-wrap {
-        display: flex;
-        align-items: center;
-        .qrcode {
-          width: 212px;
-        }
-        .tel {
-          font-size: 30px;
-          margin-left: 20px;
-        }
-      }
-      .para {
-        text-indent: 2em;
-      }
-    }
-    .g-ft-pc {
-      display: none;
-    }
-  }
+	@import './wap/index.scss';
+	#video-pc {
+		display: none;
+	}
+	body {
+		width: 750px;
+		margin: 0 auto;
+		.draggable {
+			position: absolute;
+			bottom: 300px;
+			right: 10px;
+			width: 120px;
+			height: 80px;
+			text-align: center;
+			line-height: 80px;
+			color: #fff;
+			opacity: 0.7;
+			background: #b91b18;
+			border-radius: 6px;
+			&.is-pointer-down {
+				opacity: 1;
+			}
+		}
+		.g-hd {
+			position: relative;
+			width: 100%;
+			height: 80px; // background: url('../img/icon-logo-wap.png') center center no-repeat;
+			background-size: auto 60px;
+			.back {
+				position: absolute;
+				top: 0;
+				left: 20px;
+				display: inline-block;
+				width: 120px;
+				height: 80px;
+				line-height: 80px;
+				text-align: right;
+				background: url('../img/icon-back.png') left center no-repeat;
+				background-size: auto 40px;
+			}
+		}
+		.g-banner {
+			width: 100%;
+			height: 300px;
+			background: url('../img/icon-banner-wap.png') center center no-repeat;
+			background-size: cover;
+		}
+		.g-bd {
+			width: 100%;
+			padding: 30px;
+			box-sizing: border-box;
+			.title {
+				width: 100%;
+				height: 60px;
+				line-height: 60px;
+				font-size: 32px;
+				color: #c12501;
+				border-bottom: 1px solid #c12501;
+			}
+			.bd-wrap {
+				.info-wrap {
+					width: 100%;
+					margin-top: 30px;
+					.avatar-wrap {
+						float: left;
+						width: 200px;
+						font-size: 0;
+						.avatar {
+							width: 200px;
+							height: 275px;
+						}
+					}
+					.text-wrap {
+						position: relative;
+						float: left;
+						width: 460px;
+						height: 275px;
+						margin-left: 30px;
+						font-size: 28px;
+						.ticket-wrap {
+							position: absolute;
+							bottom: 6px;
+							color: #ffffff;
+							.ticket-num {
+								display: inline-block;
+								height: 60px;
+								line-height: 60px;
+								padding: 6px 16px;
+								border-radius: 4px;
+								background: #b40500;
+							}
+							.ticket-handler {
+								display: inline-block;
+								margin-left: 30px;
+								height: 60px;
+								line-height: 60px;
+								border-radius: 4px;
+								padding: 6px 24px 6px 70px;
+								background: url('../img/icon-toupiao.png') left 24px center no-repeat #b40500;
+								background-size: auto 32px;
+							}
+							.back {
+								display: none;
+							}
+						}
+					}
+				}
+				.m-qrcode {
+					display: none;
+				}
+			}
+		}
+		.g-bdc {
+			width: 100%;
+			padding: 30px;
+			box-sizing: border-box;
+			.title {
+				width: 100%;
+				height: 60px;
+				line-height: 60px;
+				font-size: 32px;
+				color: #c12501;
+				border-bottom: 1px solid #c12501;
+			}
+			.bd-wrap {
+				.video-wrap {
+					display: none;
+					position: relative;
+					width: 690px; // height: 389px;
+					margin-top: 30px;
+					.play-btn {
+						display: none;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						width: 160px;
+						height: 160px;
+						background: url('../img/icon-video-play.png') center center no-repeat;
+						background-size: cover;
+					}
+				}
+				.text-wrap {
+					margin-top: 20px;
+					.name {
+						font-size: 32px;
+						font-weight: bold;
+					}
+					.content {
+						margin-top: 10px;
+						line-height: 2;
+						video,
+						img {
+							display: none;
+						}
+						strong {
+							color: #b40500;
+							font-weight: bold;
+						}
+						strong:first-child {
+							color: #000;
+						}
+					}
+				}
+			}
+		}
+		.g-qrcode {
+			width: 100%;
+			margin-top: 50px;
+			.qrcode-wrap {
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+				font-size: 0;
+				justify-content: space-around;
+				padding: 0 30px;
+				box-sizing: border-box;
+				.qrcode-box {
+					flex: 0 0 240px;
+					width: 240px;
+					text-align: center;
+					margin-bottom: 60px;
+					.qrcode {
+						width: 100%;
+					}
+					.desc {
+						font-size: 20px;
+					}
+				}
+			}
+		}
+		.g-download {
+			width: 100%;
+			margin-top: 80px;
+			text-align: center;
+			.down {
+				display: inline-block;
+				padding: 20px 60px 20px 100px;
+				font-size: 28px;
+				color: #fff;
+				border-radius: 100px;
+				background: url('../img/icon-phone.png') left 60px center no-repeat #0081dc;
+				background-size: auto 40px;
+			}
+			.desc {
+				margin-top: 20px;
+				font-size: 24px;
+			}
+		}
+		.g-ft {
+			width: 100%;
+			margin-top: 40px;
+			padding: 28px 20px;
+			@include tp-1px(#eee);
+			text-align: left;
+			font-size: 28px;
+			box-sizing: border-box;
+			.qrcode-wrap {
+				display: flex;
+				align-items: center;
+				.qrcode {
+					width: 212px;
+				}
+				.tel {
+					font-size: 30px;
+					margin-left: 20px;
+				}
+			}
+			.para {
+				text-indent: 2em;
+			}
+		}
+		.g-ft-pc {
+			display: none;
+		}
+	}
 }
 
 // pc端 css
 @media screen and (min-width: 769px) {
-  @import './pc/index.scss';
-  #video {
-    display: none;
-  }
-  body.ignore {
-    width: 100%;
-    background: #f3f3f3;
-    .draggable {
-      position: absolute;
-      bottom: 300px;
-      right: 10px;
-      width: 90px;
-      height: 60px;
-      text-align: center;
-      line-height: 60px;
-      color: #fff;
-      opacity: 0.7;
-      background: #b91b18;
-      border-radius: 6px;
-      &.is-pointer-down {
-        opacity: 1;
-      }
-    }
-    .g-hd {
-      display: none;
-      width: 100%;
-      height: 46px;
-      .link {
-        display: block;
-        width: 1200px;
-        height: 46px;
-        margin: 0 auto;
-        background: url('../img/icon-logo-pc.png') left center no-repeat;
-      }
-      .back {
-        display: none;
-      }
-    }
-    .g-banner {
-      max-width: 1920px;
-      height: 448px;
-      margin: 0 auto;
-      background: url('../img/icon-banner-pc.png') center center no-repeat;
-      background-size: cover;
-    }
-    .g-bd {
-      width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px 0;
-      border: 1px solid #dddddd;
-      border-top: none;
-      border-bottom: none;
-      background: #ffffff;
-      box-sizing: border-box;
-      .title {
-        width: 100%;
-        height: 45px;
-        line-height: 45px;
-        font-size: 18px;
-        color: #c12501;
-        border-bottom: 1px solid #c12501;
-      }
-      .bd-wrap {
-        width: 100%;
-        .info-wrap {
-          float: left; // width: 100%;
-          margin-top: 30px;
-          .avatar-wrap {
-            float: left;
-            width: 200px;
-            font-size: 0;
-            .avatar {
-              width: 200px;
-              height: 275px;
-            }
-          }
-          .text-wrap {
-            position: relative;
-            float: left;
-            width: 460px;
-            height: 275px;
-            margin-left: 30px;
-            font-size: 16px;
-            .name,
-            .work,
-            .honor {
-              line-height: 2;
-            }
-            .ticket-wrap {
-              position: absolute;
-              bottom: 6px;
-              color: #ffffff;
-              .ticket-num {
-                display: inline-block;
-                height: 40px;
-                line-height: 40px;
-                padding: 2px 16px;
-                border-radius: 4px;
-                background: #b40500;
-              }
-              .ticket-handler {
-                display: inline-block;
-                margin-left: 30px;
-                height: 40px;
-                line-height: 40px;
-                border-radius: 4px;
-                padding: 2px 16px 2px 40px;
-                background: url('../img/icon-toupiao.png') left 12px center no-repeat #b40500;
-                background-size: auto 18px;
-                cursor: pointer;
-              }
-              .back {
-                display: inline-block;
-                margin-left: 30px;
-                height: 40px;
-                line-height: 40px;
-                border-radius: 4px;
-                padding: 2px 16px;
-                color: #ffffff;
-                background: #b40500;
-              }
-            }
-          }
-        }
-        .m-qrcode {
-          display: none;
-          float: right;
-          margin-top: 70px;
-          margin-right: 210px;
-          font-size: 0;
-          .qrcode {
-            width: 160px;
-            height: 160px;
-          }
-          .tips {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 15px;
-            color: #000;
-          }
-        }
-      }
-    }
-    .g-bdc {
-      width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      border: 1px solid #dddddd;
-      border-top: none;
-      background: #ffffff;
-      box-sizing: border-box;
-      .title {
-        width: 100%;
-        height: 45px;
-        line-height: 45px;
-        font-size: 18px;
-        color: #c12501;
-        border-bottom: 1px solid #c12501;
-      }
-      .bd-wrap {
-        width: 100%;
-        .video-wrap {
-          float: left;
-          display: none;
-          position: relative;
-          width: 350px; // height: 197px;
-          margin-top: 30px;
-          .play-btn {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: url('../img/icon-video-play.png') center center no-repeat;
-            background-size: cover;
-            cursor: pointer;
-          }
-        }
-        .text-wrap {
-          float: left;
-          width: 500px;
-          margin-top: 30px;
-          margin-left: 30px;
-          .name {
-            font-size: 20px;
-            font-weight: bold;
-          }
-          .content {
-            margin-top: 10px;
-            font-size: 14px;
-            line-height: 2;
-            video,
-            img {
-              display: none;
-            }
-            strong {
-              font-weight: bold;
-            }
-            strong:first-child {
-              color: #000;
-            }
-          }
-        }
-      }
-    }
-    .g-download,
-    .g-ft {
-      display: none;
-    }
-    .g-qrcode {
-      width: 100%;
-      margin-top: 50px;
-      .qrcode-wrap {
-        width: 500px;
-        margin: 0 auto;
-        font-size: 0;
-        .qrcode-box {
-          display: inline-block;
-          width: 160px;
-          &.second {
-            margin-left: 180px;
-          }
-          .qrcode {
-            width: 160px;
-          }
-          .desc {
-            margin-top: 8px;
-            text-align: center;
-            font-size: 14px;
-          }
-        }
-      }
-    }
-    .g-ft-pc {
-      width: 928px;
-      margin: 80px auto 40px;
-      height: 115px;
-      text-align: left;
-      font-size: 13px;
-      color: #000;
-      overflow: hidden;
-      .qrcode {
-        float: left;
-        width: 106px;
-        margin-right: 10px;
-      }
-      .para {
-        line-height: 2;
-        &:first-child {
-          margin-top: 30px;
-        }
-        p:first-child {
-          text-indent: 2em;
-        }
-      }
-    }
-  }
+	@import './pc/index.scss';
+	#video {
+		display: none;
+	}
+	body.ignore {
+		width: 100%;
+		background: #f3f3f3;
+		.draggable {
+			position: absolute;
+			bottom: 300px;
+			right: 10px;
+			width: 90px;
+			height: 60px;
+			text-align: center;
+			line-height: 60px;
+			color: #fff;
+			opacity: 0.7;
+			background: #b91b18;
+			border-radius: 6px;
+			&.is-pointer-down {
+				opacity: 1;
+			}
+		}
+		.g-hd {
+			display: none;
+			width: 100%;
+			height: 46px;
+			.link {
+				display: block;
+				width: 1200px;
+				height: 46px;
+				margin: 0 auto;
+				background: url('../img/icon-logo-pc.png') left center no-repeat;
+			}
+			.back {
+				display: none;
+			}
+		}
+		.g-banner {
+			max-width: 1920px;
+			height: 768px;
+			margin: 0 auto;
+			background: url('../img/icon-banner-pc.png') center center no-repeat;
+			background-size: cover;
+		}
+		.g-bd {
+			width: 1200px;
+			margin: 0 auto;
+			padding: 40px 20px 0;
+			border: 1px solid #dddddd;
+			border-top: none;
+			border-bottom: none;
+			background: #ffffff;
+			box-sizing: border-box;
+			.title {
+				width: 100%;
+				height: 45px;
+				line-height: 45px;
+				font-size: 18px;
+				color: #c12501;
+				border-bottom: 1px solid #c12501;
+			}
+			.bd-wrap {
+				width: 100%;
+				.info-wrap {
+					float: left; // width: 100%;
+					margin-top: 30px;
+					.avatar-wrap {
+						float: left;
+						width: 200px;
+						font-size: 0;
+						.avatar {
+							width: 200px;
+							height: 275px;
+						}
+					}
+					.text-wrap {
+						position: relative;
+						float: left;
+						width: 460px;
+						height: 275px;
+						margin-left: 30px;
+						font-size: 16px;
+						.name,
+						.work,
+						.honor {
+							line-height: 2;
+						}
+						.ticket-wrap {
+							position: absolute;
+							bottom: 6px;
+							color: #ffffff;
+							.ticket-num {
+								display: inline-block;
+								height: 40px;
+								line-height: 40px;
+								padding: 2px 16px;
+								border-radius: 4px;
+								background: #b40500;
+							}
+							.ticket-handler {
+								display: none;
+								margin-left: 30px;
+								height: 40px;
+								line-height: 40px;
+								border-radius: 4px;
+								padding: 2px 16px 2px 40px;
+								background: url('../img/icon-toupiao.png') left 12px center no-repeat #b40500;
+								background-size: auto 18px;
+								cursor: pointer;
+							}
+							.back {
+								display: inline-block;
+								margin-left: 30px;
+								height: 40px;
+								line-height: 40px;
+								border-radius: 4px;
+								padding: 2px 16px;
+								color: #ffffff;
+								background: #b40500;
+							}
+						}
+					}
+				}
+				.m-qrcode {
+					// display: none;
+					float: right;
+					margin-top: 70px;
+					margin-right: 210px;
+					font-size: 0;
+					.qrcode {
+						width: 160px;
+						height: 160px;
+					}
+					.tips {
+						margin-top: 20px;
+						text-align: center;
+						font-size: 15px;
+						color: #000;
+					}
+				}
+			}
+		}
+		.g-bdc {
+			width: 1200px;
+			margin: 0 auto;
+			padding: 40px 20px;
+			border: 1px solid #dddddd;
+			border-top: none;
+			background: #ffffff;
+			box-sizing: border-box;
+			.title {
+				width: 100%;
+				height: 45px;
+				line-height: 45px;
+				font-size: 18px;
+				color: #c12501;
+				border-bottom: 1px solid #c12501;
+			}
+			.bd-wrap {
+				width: 100%;
+				.video-wrap {
+					float: left;
+					display: none;
+					position: relative;
+					width: 350px; // height: 197px;
+					margin-top: 30px;
+					.play-btn {
+						display: none;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						width: 60px;
+						height: 60px;
+						background: url('../img/icon-video-play.png') center center no-repeat;
+						background-size: cover;
+						cursor: pointer;
+					}
+				}
+				.text-wrap {
+					float: left;
+					width: 500px;
+					margin-top: 30px;
+					margin-left: 30px;
+					.name {
+						font-size: 20px;
+						font-weight: bold;
+					}
+					.content {
+						margin-top: 10px;
+						font-size: 14px;
+						line-height: 2;
+						video,
+						img {
+							display: none;
+						}
+						strong {
+							font-weight: bold;
+						}
+						strong:first-child {
+							color: #000;
+						}
+					}
+				}
+			}
+		}
+		.g-download,
+		.g-ft {
+			display: none;
+		}
+		.g-qrcode {
+			width: 100%;
+			margin-top: 50px;
+			.qrcode-wrap {
+				display: flex;
+				justify-content: space-around;
+				width: 1200px;
+				margin: 0 auto;
+				font-size: 0;
+				.qrcode-box {
+					display: inline-block;
+					width: 140px;
+
+					.qrcode {
+						width: 140px;
+					}
+					.desc {
+						margin-top: 8px;
+						text-align: center;
+						font-size: 14px;
+					}
+				}
+			}
+		}
+		.g-ft-pc {
+			width: 640px;
+			margin: 80px auto 40px;
+			height: 115px;
+			text-align: left;
+			font-size: 13px;
+			color: #000;
+			overflow: hidden;
+			.qrcode {
+				float: left;
+				width: 106px;
+				margin-right: 10px;
+			}
+			.para {
+				line-height: 2;
+				&:first-child {
+					margin-top: 30px;
+				}
+				p:first-child {
+					text-indent: 2em;
+				}
+			}
+		}
+	}
 }
