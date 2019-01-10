@@ -4,7 +4,7 @@ window.onload = function() {
 	var IMG_URL = 'https://a.weixin.hndt.com/h5/hnga/icon-share.png'
 	var DESC = '十大出彩河南公安人物网络投票'
 
-	var url = 'https://a.weixin.hndt.com/h5/gdzy/data/201901/10/' + weChat.getQueryString('id') + '/index.json'
+	var url = 'https://a.weixin.hndt.com/h5/hnga/data/201901/10/' + weChat.getQueryString('id') + '/index.json'
 	$.ajax({
 		type: 'GET',
 		url: url,

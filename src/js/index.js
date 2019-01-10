@@ -88,7 +88,7 @@
 
 	var id = weChat.getQueryString('id')
 	//http://a.weixin.hndt.com/h5/gdzy/data/201901/01/2286730/index.json
-	var url = 'https://a.weixin.hndt.com/h5/gdzy/data/201901/10/' + id + '/index.json'
+	var url = 'https://a.weixin.hndt.com/h5/hnga/data/201901/10/' + id + '/index.json'
 	// var url = 'http://192.168.9.41:3000/index.json'
 	$.ajax({
 		type: 'GET',
@@ -292,6 +292,6 @@
 		}
 	})
 	draggie.on('staticClick', function() {
-		window.location = 'https://a.weixin.hndt.com/h5/gdzy/prize/index.html'
+		window.location = 'https://a.weixin.hndt.com/h5/hnga/prize/index.html'
 	})
 })()
