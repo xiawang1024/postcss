@@ -54,17 +54,17 @@
       var weChatConf = {
         baseUrl: 'https://open.weixin.qq.com/connect/oauth2/authorize?',
         appId: 'wx5f789dea59c6c2c5',
-        redirect_uri: 'https://a.weixin.hndt.com/h5/gdzy/index.html',
+        redirect_uri: 'https://a.weixin.hndt.com/h5/hnga/index.html',
         response_type: 'code',
         scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
         state: Date.parse(new Date()),
         weChat_Redirect: '#wechat_redirect'
       }
-      // if (weChat.isWeiXin()) {
-      //     if (!weChat.getQueryString('code')) {
-      //         window.location = weChat.redirectUrl()
-      //     }
-      // }
+      if (weChat.isWeiXin()) {
+          if (!weChat.getQueryString('code')) {
+              window.location = weChat.redirectUrl()
+          }
+      }
     </script>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <script>
@@ -79,7 +79,7 @@
       rel="stylesheet"
       href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
     />
-    <title>2018“感动中原”十大年度人物网络投票活动</title>
+    <title>十大出彩河南公安人物网络投票</title>
     <link
       rel="shortcut icon"
       href="https://a.weixin.hndt.com/boom/favicon.ico"
@@ -101,7 +101,7 @@
     <div class="g-m first">
       <h2 class="title "></h2>
       <p class="m-bd">
-        2018“感动中原”十大年度人物宣传推介活动由中共河南省委宣传部指导，河南广播电视台和河南日报报业集团联合主办，河南广播电视台都市频道具体承办，河南广播电视台、河南日报报业集团所属媒体共同协办，是弘扬河南人精神的重要人文品牌活动。从2005年至今，“感动中原”宣传推介活动已经成功举办了13届，推选出了王锋、王宽、陇海大院、胡佩兰、王百姓等130余位先进典型人物和群体，充分展示了河南人的良好形象和精神风貌，传播了河南正能量，凝聚起了让中原更加出彩的强大精神力量。
+        为传播中原警营正能量，树立河南公安良好形象，从2018年10月份起，省公安厅在全省公安机关组织开展“出彩河南公安人”集中宣传活动。活动开展以来，通过微博、微信等公安自媒体平台，联合本地传统主流媒体、新媒体，先后推树200多名公安先进典型，从中推选出50名候选人。他们当中，有禁毒战线的铿锵玫瑰、刑侦战线的破案能手，也有青春飞扬的最帅法医、不顾一切抓捕嫌犯的“泥彩”警察，其中，多名候选人的事迹在网络上广为传播，被网民热捧，成为新晋“警察网红”。
       </p>
     </div>
     <div class="g-bd">
@@ -113,7 +113,7 @@
         </div>
         <div class="tips">
           <span class="key">投票时间：</span>
-          <span class="val"> 2019年1月2号 - 2019年1月11号 </span>
+          <span class="val"> 2019年1月11号 - 2019年1月17号 </span>
         </div>
         <ul class="list-wrap-inner clearfix">
           <!-- <li class="list">
@@ -150,7 +150,7 @@
       <div class="qrcode-wrap">
         <img src="./img/icon-qrcode.png" alt="" class="qrcode" />
         <p class="tel" style="text-indent: 2em">
-          更多活动详情可关注都市频道官方微信公众号，咨询电话0371-65732233。
+          更多详情请关注河南警方头条号，平安中原、湛蓝心部落、河南都市频道微信公众号。
         </p>
       </div>
       <p class="para" style="display: none">
@@ -166,7 +166,7 @@
           河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100万粉丝）、9个微信公众号（300万粉丝）、头条号（190万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
         </p>
         <p class="tel" style="margin-top: 36px;text-indent: 2em">
-          更多活动详情可关注都市频道官方微信公众号，咨询电话0371-65732233。
+          更多详情请关注河南警方头条号，平安中原、湛蓝心部落、河南都市频道微信公众号。
         </p>
       </div>
     </div>
@@ -221,7 +221,7 @@
         </div>
       </div>
     </div>
-    <div class="draggable" style="display: none">抽奖</div>
+    <div class="draggable">抽奖</div>
     <script src="./js/app.js"></script>
 
     <script>
