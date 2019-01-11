@@ -1,8 +1,8 @@
 window.onload = function() {
-	var TITLE = '十大出彩河南公安人物网络投票'
+	var TITLE = '十大出彩河南公安人网络投票'
 	var LINK = 'https://a.weixin.hndt.com/h5/hnga/index.html' //分享链接
 	var IMG_URL = 'https://a.weixin.hndt.com/h5/hnga/icon-share.png'
-	var DESC = '十大出彩河南公安人物网络投票'
+	var DESC = '十大出彩河南公安人网络投票活动，小伙伴儿们快动动手指，为你心中的英雄投票吧！'
 
 	//微信配置
 	var href = window.location.href
