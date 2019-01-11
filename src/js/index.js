@@ -107,7 +107,7 @@
 		for (var i = 0; i < len; i++) {
 			var item = list[i]
 			html +=
-				'<li class="list" >' +
+				'<li class="item" >' +
 				'            <div class="avatar-wrap">' +
 				'              <div href="" data-id="' +
 				item.id +
@@ -165,7 +165,11 @@
 			//   '            </li>'
 		}
 		listWrap.html(html)
+		waterfall('.list-wrap-inner')
 	}
+	window.addEventListener('resize', function() {
+		waterfall('.list-wrap-inner')
+	})
 
 	//tab 切换
 	$('.g-tab .item').click(function() {

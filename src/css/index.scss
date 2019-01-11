@@ -114,37 +114,38 @@
 					}
 				}
 				.list-wrap-inner {
+					width: 100%;
 					margin-top: 20px;
-					.list {
-						float: left;
-						width: 320px;
-						margin-left: 25px;
-						margin-bottom: 100px;
-						&:nth-child(2n + 1) {
-							margin-left: 0;
-						}
-						&:nth-last-child(1) {
-							.name-title {
-								display: none;
-							}
-							.name {
-								display: none;
-							}
-						}
-						&:nth-last-child(2) {
-							.name-title {
-								display: none;
-							}
-							.name {
-								display: none;
-							}
-						}
+					.item {
+						width: 47%;
+						// float: left;
+						// width: 320px;
+						// margin-left: 25px;
+						// margin-bottom: 100px;
+						// &:nth-child(2n + 1) {
+						// 	margin-left: 0;
+						// }
+						// &:nth-last-child(1) {
+						// 	.name-title {
+						// 		display: none;
+						// 	}
+						// 	.name {
+						// 		display: none;
+						// 	}
+						// }
+						// &:nth-last-child(2) {
+						// 	.name-title {
+						// 		display: none;
+						// 	}
+						// 	.name {
+						// 		display: none;
+						// 	}
+						// }
 						.avatar-wrap {
-							width: 320px;
+							width: 100%;
 							font-size: 0;
 							.avatar {
-								width: 320px;
-								height: 440px;
+								width: 100%;
 							}
 						}
 						.text-wrap {
@@ -158,7 +159,7 @@
 								}
 							}
 							.desc {
-								height: 132px;
+								// height: 132px;
 							}
 							.ticket-wrap {
 								.ticket-num {
@@ -171,7 +172,7 @@
 								display: flex;
 								align-items: center;
 								justify-content: space-between;
-								width: 320px;
+								width: 100%;
 								height: 80px;
 								margin-top: 10px;
 								color: #ffffff;
