@@ -30,7 +30,7 @@
 		$.ajax({
 			type: 'POST',
 			url: 'https://a.weixin.hndt.com/boom/wx/access/subscribe',
-			data: { code: code, state: 'wx5f789dea59c6c2c5', subscribe: false },
+			data: { code: code, state: 'wxbf02a07137a4e2d3', subscribe: false },
 			dataType: 'json',
 			success: function(data) {
 				console.log(data)
