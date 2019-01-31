@@ -48,6 +48,7 @@
     return {
       name: name,
       mobile: mobile,
+      appId: 'wxbf02a07137a4e2d3',
       code: code
     }
   }
@@ -60,7 +61,12 @@
       },
       success: function(res) {
         console.log(res)
-        weui.toast('验证码发送成功')
+        var status = res.stauts
+        if (status) {
+          weui.toast('验证码发送成功')
+        } else {
+          weui.toast('验证码发送失败')
+        }
       }
     })
   }
