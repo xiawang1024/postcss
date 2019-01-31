@@ -1,14 +1,12 @@
 window.onload = function() {
   var TITLE = '职能部门人员信息录入'
-  var LINK = 'https://a.weixin.hndt.com/h5/dspd-c/index.html'
-  var IMG_URL = 'https://a.weixin.hndt.com/h5/gdzy/icon-share.png'
+  var LINK = 'https://a.weixin.hndt.com/h5/hntv2/news/reporter/index.html'
+  var IMG_URL = ''
   var DESC = '职能部门人员信息录入'
 
   //微信配置
   var href = window.location.href
-  $.post('https://a.weixin.hndt.com/boom/at/sign', { url: href }, function(
-    data
-  ) {
+  $.post('https://a.weixin.hndt.com/boom/at/sign', { url: href }, function(data) {
     wx.config({
       debug: false,
       appId: data.appId,

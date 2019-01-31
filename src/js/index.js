@@ -11,7 +11,7 @@
     $.ajax({
       type: 'GET',
       url: 'https://a.weixin.hndt.com/boom/wx/access/subscribe',
-      data: { code: code, state: 'wx5f789dea59c6c2c5', subscribe: false },
+      data: { code: code, state: 'wxbf02a07137a4e2d3', subscribe: false },
       dataType: 'json',
       timeout: 5000,
       success: function(data) {
@@ -30,14 +30,9 @@
     })
   }
   function getPostData() {
-    var department = $('#depart').html()
     var name = $('#name').val()
     var mobile = $('#mobile').val()
     var code = $('#code').val()
-    if (department == '请选择部门') {
-      weui.topTips('请选择部门')
-      return
-    }
     if (!name) {
       weui.topTips('请填写姓名')
       return
@@ -51,7 +46,6 @@
       return
     }
     return {
-      department: department,
       name: name,
       mobile: mobile,
       code: code
@@ -88,7 +82,7 @@
   })
 
   function countDown() {
-    var count = 20
+    var count = 60
     var timer = setInterval(function() {
       count--
       var codeText = '(' + count + ')s'
@@ -104,62 +98,25 @@
   $('#signUp-btn').click(function() {
     var postData = getPostData()
     var userInfo = JSON.parse(window.localStorage.getItem('WXHNDTOPENID'))
-    postData.password = 'password'
-    postData.appId = userInfo.appid
     postData.openId = userInfo.openid
     $.ajax({
       type: 'post',
       contentType: 'application/json',
-      url: 'https://a.weixin.hndt.com/boom/openapi/user/register',
+      url: 'https://a.weixin.hndt.com/boom/openapi/user/dept_register',
       data: JSON.stringify(postData),
       success: function(res) {
         console.log(res)
         var status = res.status
-        if (status == 'ok') {
-          weui.toast('信息提交成功')
-        } else {
-          weui.alert('您已提交过信息，如需修改请联系管理员')
-        }
+        // if (status == 'ok') {
+        //   weui.toast('信息提交成功')
+        // } else {
+        //   weui.alert('您已提交过信息，如需修改请联系管理员')
+        // }
+        weui.alert(res.msg)
       },
       error: function() {
         weui.alert('系统错误，请联系管理员')
       }
     })
-  })
-
-  $('.depart').click(function() {
-    weui.picker(
-      [
-        {
-          label: '部门1',
-          value: 0
-        },
-        {
-          label: '部门2',
-          value: 1
-        },
-        {
-          label: '部门3',
-          value: 3
-        },
-        {
-          label: '部门4',
-          value: 4
-        }
-      ],
-      {
-        container: 'body',
-        defaultValue: [1],
-        onChange: function(result) {
-          console.log(result)
-        },
-        onConfirm: function(result) {
-          console.log(result)
-          var label = result[0].label
-          $('.depart').html(label)
-        },
-        id: 'singleLinePicker'
-      }
-    )
   })
 })()
