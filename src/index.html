@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script>
+      var weChat = {
+        getQueryString: function(name) {
+          var url = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+          var newUrl = window.location.search.substr(1).match(url)
+          if (newUrl != null) {
+            return unescape(newUrl[2])
+          } else {
+            return false
+          }
+        },
+        redirectUrl: function() {
+          return (
+            weChatConf.baseUrl +
+            'appid=' +
+            weChatConf.appId +
+            '&redirect_uri=' +
+            encodeURIComponent(weChatConf.redirect_uri) +
+            '&response_type=' +
+            weChatConf.response_type +
+            '&scope=' +
+            weChatConf.scope +
+            '&state=' +
+            weChatConf.state +
+            weChatConf.weChat_Redirect
+          )
+        },
+        getOpenId: function(code) {},
+        getStorage: function(name) {
+          return localStorage.getItem(name)
+        },
+        setStorage: function(name, value) {
+          return localStorage.setItem(name, value)
+        },
+        isPhone: function() {
+          return /Android|webOS|iPhone|iPod|BlackBerry/i.test(
+            navigator.userAgent
+          )
+        },
+        isWeiXin: function() {
+          var ua = navigator.userAgent.toLowerCase()
+          return ua.match(/MicroMessenger/i) == 'micromessenger'
+        }
+      }
+      var weChatConf = {
+        baseUrl: 'https://open.weixin.qq.com/connect/oauth2/authorize?',
+        appId: 'wx5f789dea59c6c2c5',
+        redirect_uri: 'https://a.weixin.hndt.com/h5/gdzy/index.html',
+        response_type: 'code',
+        scope: 'snsapi_userinfo', //snsapi_base 只获取openId ， snsapi_userinfo 获取用户信息
+        state: Date.parse(new Date()),
+        weChat_Redirect: '#wechat_redirect'
+      }
+      // if (weChat.isWeiXin()) {
+      //     if (!weChat.getQueryString('code')) {
+      //         window.location = weChat.redirectUrl()
+      //     }
+      // }
+    </script>
+    <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+    <script>
+      window.onload = function() {
+        window.viewportUnitsBuggyfill.init({
+          hacks: window.viewportUnitsBuggyfillHacks
+        })
+      }
+    </script>
+    <link rel="stylesheet" href="./css/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"
+    />
+    <title>2018“感动中原”十大年度人物网络投票活动</title>
+    <link
+      rel="shortcut icon"
+      href="https://a.weixin.hndt.com/boom/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+
+  <body class="ignore">
+    <div class="g-hd" style="display:none">
+      <a href="http://www.hndt.com" class="link"> </a>
+    </div>
+    <div class="g-banner"></div>
+    <div class="g-tab">
+      <div class="tab-wrap clearfix">
+        <div class="item z-curt">活动介绍</div>
+        <div class="item">活动投票</div>
+      </div>
+    </div>
+    <div class="g-m first">
+      <h2 class="title "></h2>
+      <p class="m-bd">
+        2018“感动中原”十大年度人物宣传推介活动由中共河南省委宣传部指导，河南广播电视台和河南日报报业集团联合主办，河南广播电视台都市频道具体承办，河南广播电视台、河南日报报业集团所属媒体共同协办，是弘扬河南人精神的重要人文品牌活动。从2005年至今，“感动中原”宣传推介活动已经成功举办了13届，推选出了王锋、王宽、陇海大院、胡佩兰、王百姓等130余位先进典型人物和群体，充分展示了河南人的良好形象和精神风貌，传播了河南正能量，凝聚起了让中原更加出彩的强大精神力量。
+      </p>
+    </div>
+    <div class="g-bd">
+      <h2 class="title"></h2>
+      <div class="list-wrap">
+        <div class="tips">
+          <span class="key">注<span style="opacity: 0;">注意</span>意：</span>
+          <span class="val"> 每人每天10次投票机会，不限人物！ </span>
+        </div>
+        <div class="tips">
+          <span class="key">投票时间：</span>
+          <span class="val"> 2019年1月2号 - 2019年1月11号 </span>
+        </div>
+        <ul class="list-wrap-inner clearfix">
+          <!-- <li class="list">
+            <div class="avatar-wrap">
+              <a href="">
+                <img
+                  src="http://www.hndt.com/zt/entre/res/wap/img/dahui.jpg"
+                  alt=""
+                  class="avatar"/>
+              </a>
+            </div>
+            <div class="text-wrap">
+              <h3 class="name">姓名：叶良辰</h3>
+              <div class="ticket-wrap">
+                <span class="ticket-num">票数：200</span>
+              </div>
+              <div href="" class="link">
+                <span class="icon">详情</span> <span class="text">投票</span>
+              </div>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="g-download" style="display:none">
+      <a href="http://www.hndt.com/app/download/index.html" class="down"
+        >下载河南广播APP
+      </a>
+      <p class="desc">关注身边发生的事 河南人自己的APP</p>
+    </div>
+
+    <div class="g-ft">
+      <div class="qrcode-wrap">
+        <img src="./img/icon-qrcode.png" alt="" class="qrcode" />
+        <p class="tel" style="text-indent: 2em">
+          更多活动详情可关注都市频道官方微信公众号，咨询电话0371-65732233。
+        </p>
+      </div>
+      <p class="para" style="display: none">
+        河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100
+        万粉丝）、9个微信公众号（300万粉丝）、头条号（190万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
+      </p>
+    </div>
+
+    <div class="g-ft-pc">
+      <img class="qrcode" alt="" src="./img/icon-qrcode.png" />
+      <div class="para">
+        <p style="display: none">
+          河南都市频道新媒体，涵盖了多个互联网传播平台，包括微博（100万粉丝）、9个微信公众号（300万粉丝）、头条号（190万粉丝）、大鱼号、企鹅号、搜狐号以及网易号等多个平台，将软文硬广、电视手机大小屏互动、网络直播及精心策划的线下活动等形式灵活搭配，为广大本地客户、地域客户的推广需求提供了形式新颖、性价比高的新选择。
+        </p>
+        <p class="tel" style="margin-top: 36px;text-indent: 2em">
+          更多活动详情可关注都市频道官方微信公众号，咨询电话0371-65732233。
+        </p>
+      </div>
+    </div>
+    <div id="dialog" style="display: none;">
+      <div class="weui-mask"></div>
+      <div class="weui-dialog">
+        <div class="weui-dialog__hd">
+          <strong class="weui-dialog__title">验证手机号</strong>
+        </div>
+        <div class="weui-dialog__bd">
+          <div class="weui-cells weui-cells_form" style="margin-top:0">
+            <div class="weui-cell">
+              <div class="weui-cell__hd">
+                <label class="weui-label">手机</label>
+              </div>
+              <div class="weui-cell__bd">
+                <input
+                  id="mobile"
+                  class="weui-input"
+                  type="number"
+                  pattern="[0-11]*"
+                  placeholder="请输入手机号"
+                />
+              </div>
+            </div>
+            <div class="weui-cell weui-cell_vcode">
+              <div class="weui-cell__bd">
+                <input
+                  id="code"
+                  class="weui-input"
+                  style="text-align: center"
+                  type="tel"
+                  placeholder="验证码"
+                />
+              </div>
+              <div class="weui-cell__ft">
+                <span href="javascript:;" id="get-code" class="weui-vcode-btn"
+                  >获取验证码
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="weui-dialog__ft">
+          <span
+            id="signUp-btn"
+            href="javascript:;"
+            class="weui-dialog__btn weui-dialog__btn_primary"
+          >
+            确定
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="draggable" style="display: none">抽奖</div>
+    <script src="./js/app.js"></script>
+
+    <script>
+      var _hmt = _hmt || []
+      ;(function() {
+        var hm = document.createElement('script')
+        hm.src = 'https://hm.baidu.com/hm.js?8d8b13e4dff379c880b2436c9ae60cc8'
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(hm, s)
+      })()
+    </script>
+  </body>
+</html>
